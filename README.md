@@ -1,8 +1,10 @@
+# DoctorBase
+
 [![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
+[![codecov](https://codecov.io/gh/AY2526S1-CS2103T-W10-3/tp/graph/badge.svg?token=ZGJVSEKLZH)](https://codecov.io/gh/AY2526S1-CS2103T-W10-3/tp)
 
 ![Ui](docs/images/Ui.png)
 
-## DoctorBase
 
 * This is **a sample project for Software Engineering (SE) students**.<br>
   Example usages:
