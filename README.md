@@ -15,10 +15,10 @@ DoctorBase is a desktop application with a text-based interface, designed for do
 DoctorBase is made for doctors who wish to handle both medical practice and administrative tasks on their own.
 
 ### Value Proposition
-* Simplify Admin Workload 
+* Simplify Admin Workload
 * Easily manage Patient Records & Appointments
-* Efficiently schedule appointment 
-* Quickly search for Patient Records 
+* Efficiently schedule appointment
+* Quickly search for Patient Records
 * Reduce forgotten or missed appointments
 
 
