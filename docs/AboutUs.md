@@ -53,7 +53,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/jxnwxx.png" width="200px">
 
 [[github](http://github.com/jxnwxx)]
-[[portfolio](team/jxnwxxx.md)]
+[[portfolio](team/jxnwxx.md)]
 
 * Role: Developer
 * Responsibilities: UI
