@@ -38,11 +38,11 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Yeo Beng Jun Vincent
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/goatmilkkk.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/goatmilkkk)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
