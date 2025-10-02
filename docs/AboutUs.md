@@ -19,34 +19,35 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Sean Ng Hao Jun
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/lunardrak.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/lunardrak)]
+[[portfolio](team/lunardrak.md)]
 
 * Role: Team Lead
 * Responsibilities: UI
 
-### Johnny Doe
+### Timothy Quek
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/whyisquek.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/WhyisQuek)]
+[[portfolio](team/whyisquek.md)]
 
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Yeo Beng Jun Vincent
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/goatmilkkk.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/goatmilkkk)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: App Logic
 
 ### Yue Jun Wei
 
