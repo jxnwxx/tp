@@ -15,10 +15,10 @@ public class TitleTest {
 
     @Test
     public void constructor_invalidTitle_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, () -> new Title(" Checkup"));   // leading space
-        assertThrows(IllegalArgumentException.class, () -> new Title(""));           // empty string
-        assertThrows(IllegalArgumentException.class, () -> new Title("~"));          // single invalid symbol
-        assertThrows(IllegalArgumentException.class, () -> new Title("   "));        // only spaces
+        assertThrows(IllegalArgumentException.class, () -> new Title(" Checkup")); // leading space
+        assertThrows(IllegalArgumentException.class, () -> new Title("")); // empty string
+        assertThrows(IllegalArgumentException.class, () -> new Title("~")); // single invalid symbol
+        assertThrows(IllegalArgumentException.class, () -> new Title("   ")); // only spaces
     }
 
     @Test
@@ -27,17 +27,17 @@ public class TitleTest {
         assertThrows(NullPointerException.class, () -> Title.isValidTitle(null));
 
         // invalid title
-        assertFalse(Title.isValidTitle(""));         // empty string
-        assertFalse(Title.isValidTitle(" "));        // spaces only
-        assertFalse(Title.isValidTitle("~"));        // invalid character
+        assertFalse(Title.isValidTitle("")); // empty string
+        assertFalse(Title.isValidTitle(" ")); // spaces only
+        assertFalse(Title.isValidTitle("~")); // invalid character
         assertFalse(Title.isValidTitle(" Checkup")); // leading space
 
         // valid title
-        assertTrue(Title.isValidTitle("Dental Checkup"));        // alphabets only
-        assertTrue(Title.isValidTitle("Room 2B"));               // alphanumeric
-        assertTrue(Title.isValidTitle("Covid-19 (PCR)"));        // parentheses and hyphen
-        assertTrue(Title.isValidTitle("Dr Tan's Appointment"));  // apostrophe allowed
-        assertTrue(Title.isValidTitle("Follow-up, Eczema"));     // comma allowed
+        assertTrue(Title.isValidTitle("Dental Checkup")); // alphabets only
+        assertTrue(Title.isValidTitle("Room 2B")); // alphanumeric
+        assertTrue(Title.isValidTitle("Covid-19 (PCR)")); // parentheses and hyphen
+        assertTrue(Title.isValidTitle("Dr Tan's Appointment")); // apostrophe allowed
+        assertTrue(Title.isValidTitle("Follow-up, Eczema")); // comma allowed
     }
 
 
