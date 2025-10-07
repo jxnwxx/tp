@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Nric {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "NRIC should start with a letter (S, T, F or G)";
+            "NRIC must start with a letter (S, T, F, G, or M), followed by 7 digits and end with a letter.";
 
     /*
      * Case-insensitive NRIC regex.
