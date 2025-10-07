@@ -4,6 +4,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.util.Objects;
 
 
@@ -11,20 +13,34 @@ import java.util.Objects;
  * Represents an Appointment in the address book.
  */
 public class Appointment {
-    private static final DateTimeFormatter DATETIME_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy, HHmm");
+    public static final DateTimeFormatter DATETIME_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy, HHmm");
+    public static final String DATETIME_MESSAGE_CONSTRAINTS =
+            "Appointment date invalid! Expected Format: dd-MM-yyyy, HHmm";
 
     private final Title title;
-    private final LocalDateTime date;
+    private final LocalDateTime dateTime;
 
     /**
      * Constructs a {@code Appointment}.
      * @param title An appointment title
-     * @param date An appointment datetime
+     * @param dateTime An appointment datetime
      */
-    public Appointment(Title title, LocalDateTime date) {
-        requireAllNonNull(title, date);
+    public Appointment(Title title, LocalDateTime dateTime) {
+        requireAllNonNull(title, dateTime);
         this.title = title;
-        this.date = date;
+        this.dateTime = dateTime;
+    }
+
+    /**
+     * Returns true if a given string is a valid Appointment DateTime.
+     */
+    public static boolean isValidDateTimeString(String test) {
+        try {
+            DATETIME_FORMAT.withResolverStyle(ResolverStyle.STRICT).parse(test);
+            return true;
+        } catch (NullPointerException | DateTimeParseException e) {
+            return false;
+        }
     }
 
     public Title getTitle() {
@@ -32,7 +48,11 @@ public class Appointment {
     }
 
     public LocalDateTime getDateTime() {
-        return date;
+        return dateTime;
+    }
+
+    public String getDateTimeAsString() {
+        return dateTime.format(DATETIME_FORMAT);
     }
 
     /**
@@ -49,15 +69,15 @@ public class Appointment {
             return false;
         }
 
-        return title.equals(otherAppointment.title) && date.equals(otherAppointment.date);
+        return title.equals(otherAppointment.title) && dateTime.equals(otherAppointment.dateTime);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, date);
+        return Objects.hash(title, dateTime);
     }
 
     public String toString() {
-        return String.format("%s (%s)", title, date.format(DATETIME_FORMAT));
+        return String.format("%s (%s)", title, getDateTimeAsString());
     }
 }
