@@ -35,6 +35,14 @@ public class SampleDataUtil {
                     new Appointment(
                         new Title("Dentist Appointment"),
                         LocalDateTime.of(2025, 10, 7, 14, 30)
+                    ),
+                    new Appointment(
+                            new Title("Follow-up, Eczema"),
+                            LocalDateTime.of(2025, 11, 7, 15, 45)
+                    ),
+                    new Appointment(
+                            new Title("Routine Check-up"),
+                            LocalDateTime.of(2025, 12, 7, 10, 30)
                     )
                 ))
             ),
