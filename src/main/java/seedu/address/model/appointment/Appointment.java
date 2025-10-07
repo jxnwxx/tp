@@ -13,26 +13,26 @@ import java.util.Objects;
 public class Appointment {
     private static final DateTimeFormatter DATETIME_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy, HHmm");
 
-    private final String name;
+    private final Title title;
     private final LocalDateTime date;
 
     /**
      * Constructs a {@code Appointment}.
-     * @param name An appointment name
+     * @param title An appointment title
      * @param date An appointment datetime
      */
-    public Appointment(String name, LocalDateTime date) {
-        requireAllNonNull(name, date);
-        this.name = name;
+    public Appointment(Title title, LocalDateTime date) {
+        requireAllNonNull(title, date);
+        this.title = title;
         this.date = date;
     }
 
-    public String getName() {
-        return this.name;
+    public Title getTitle() {
+        return title;
     }
 
     public LocalDateTime getDateTime() {
-        return this.date;
+        return date;
     }
 
     /**
@@ -49,15 +49,15 @@ public class Appointment {
             return false;
         }
 
-        return name.equals(otherAppointment.name) && date.equals(otherAppointment.date);
+        return title.equals(otherAppointment.title) && date.equals(otherAppointment.date);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, date);
+        return Objects.hash(title, date);
     }
 
     public String toString() {
-        return String.format("%s (%s)", this.name, this.date.format(DATETIME_FORMAT));
+        return String.format("%s (%s)", title, date.format(DATETIME_FORMAT));
     }
 }

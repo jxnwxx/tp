@@ -13,13 +13,13 @@ public class AppointmentTest {
 
     @Test
     public void constructor_validInput_success() {
-        String validName = "Dentist Appointment";
+        Title validTitle = new Title("Dentist Appointment");
         LocalDateTime validDate = LocalDateTime.of(2025, 10, 7, 14, 30);
 
-        Appointment appointment = new Appointment(validName, validDate);
+        Appointment appointment = new Appointment(validTitle, validDate);
 
         // check field assignments
-        assertEquals(validName, appointment.getName());
+        assertEquals(validTitle, appointment.getTitle());
         assertEquals(validDate, appointment.getDateTime());
 
         // check string format (dd-MM-yyyy, HHmm)
