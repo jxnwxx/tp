@@ -11,13 +11,13 @@ public class Title {
     public static final String MESSAGE_CONSTRAINTS =
             "Appointment title should start with an alphanumeric character, "
                     + "and contain only alphanumeric characters, spaces, commas, apostrophes, "
-                    + "parentheses, or hyphens.";
+                    + "at signs, parentheses, or hyphens.";
 
     /*
      * The first character must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "\\p{Alnum}[\\p{Alnum} ,'()\\-]*";
+    public static final String VALIDATION_REGEX = "\\p{Alnum}[\\p{Alnum} ,'@()\\-]*";
 
     public final String title;
 
