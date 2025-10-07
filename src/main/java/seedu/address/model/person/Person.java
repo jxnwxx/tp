@@ -18,6 +18,7 @@ public class Person {
 
     // Identity fields
     private final Name name;
+    private final Nric nric;
     private final Phone phone;
     private final Email email;
 
@@ -28,13 +29,18 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Nric nric, Phone phone, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, nric, phone, email, address, tags);
         this.name = name;
+        this.nric = nric;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+    }
+
+    public Nric getNric() {
+        return nric;
     }
 
     public Name getName() {
@@ -93,6 +99,7 @@ public class Person {
         return name.equals(otherPerson.name)
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
+                && nric.equals(otherPerson.nric)
                 && address.equals(otherPerson.address)
                 && tags.equals(otherPerson.tags);
     }
@@ -100,13 +107,14 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, nric, address, tags);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("name", name)
+                .add("nric", nric)
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
