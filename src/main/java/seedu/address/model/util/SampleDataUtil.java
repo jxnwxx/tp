@@ -34,7 +34,15 @@ public class SampleDataUtil {
                 new ArrayList<>(List.of(
                     new Appointment(
                         new Title("Dentist Appointment"),
-                        LocalDateTime.of(2026, 10, 7, 14, 30)
+                        LocalDateTime.of(2025, 10, 7, 14, 30)
+                    ),
+                    new Appointment(
+                            new Title("Follow-up, Eczema"),
+                            LocalDateTime.of(2025, 11, 7, 15, 45)
+                    ),
+                    new Appointment(
+                            new Title("Routine Check-up"),
+                            LocalDateTime.of(2025, 12, 7, 10, 30)
                     )
                 ))
             ),
@@ -44,7 +52,12 @@ public class SampleDataUtil {
                 new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
                 getTagSet("colleagues", "friends"),
-                new ArrayList<>(List.of())
+                new ArrayList<>(List.of(
+                    new Appointment(
+                        new Title("Flu Jab"),
+                        LocalDateTime.of(2025, 11, 7, 16, 30)
+                    )
+                ))
             ),
             new Person(
                 new Name("Charlotte Oliveiro"),
@@ -52,7 +65,12 @@ public class SampleDataUtil {
                 new Email("charlotte@example.com"),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
                 getTagSet("neighbours"),
-                new ArrayList<>(List.of())
+                new ArrayList<>(List.of(
+                    new Appointment(
+                        new Title("Room 2B"),
+                        LocalDateTime.of(2024, 12, 7, 16, 30)
+                    )
+                ))
             ),
             new Person(
                 new Name("David Li"),
@@ -60,7 +78,12 @@ public class SampleDataUtil {
                 new Email("lidavid@example.com"),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
                 getTagSet("family"),
-                new ArrayList<>(List.of())
+                new ArrayList<>(List.of(
+                    new Appointment(
+                        new Title("Follow-Up, Eczema"),
+                        LocalDateTime.of(2024, 10, 8, 16, 30)
+                    )
+                ))
             ),
             new Person(
                 new Name("Irfan Ibrahim"),
@@ -68,7 +91,12 @@ public class SampleDataUtil {
                 new Email("irfan@example.com"),
                 new Address("Blk 47 Tampines Street 20, #17-35"),
                 getTagSet("classmates"),
-                new ArrayList<>(List.of())
+                new ArrayList<>(List.of(
+                    new Appointment(
+                        new Title("Covid-19"),
+                        LocalDateTime.of(2024, 10, 9, 16, 30)
+                    )
+                ))
             ),
             new Person(
                 new Name("Roy Balakrishnan"),
@@ -76,7 +104,12 @@ public class SampleDataUtil {
                 new Email("royb@example.com"),
                 new Address("Blk 45 Aljunied Street 85, #11-31"),
                 getTagSet("colleagues"),
-                new ArrayList<>(List.of())
+                new ArrayList<>(List.of(
+                    new Appointment(
+                        new Title("Covid-19"),
+                        LocalDateTime.of(2024, 10, 10, 16, 30)
+                    )
+                ))
             )
         };
     }
