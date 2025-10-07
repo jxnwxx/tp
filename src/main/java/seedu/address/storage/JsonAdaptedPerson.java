@@ -87,7 +87,7 @@ class JsonAdaptedPerson {
                     Nric.class.getSimpleName()));
         }
         if (!Nric.isValidNric(nric)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Nric.MESSAGE_CONSTRAINTS);
         }
         final Nric modelNric = new Nric(nric);
 
