@@ -1,8 +1,10 @@
 package seedu.address.testutil;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -26,6 +28,7 @@ public class PersonBuilder {
     private Email email;
     private Address address;
     private Set<Tag> tags;
+    private ArrayList<Appointment> appointments;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -36,6 +39,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
+        appointments = new ArrayList<>();
     }
 
     /**
@@ -47,6 +51,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
+        appointments = new ArrayList<>(personToCopy.getAppointments());
     }
 
     /**
@@ -89,8 +94,20 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Appointment} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withAppointments(ArrayList<Appointment> appointments) {
+        if (appointments == null) {
+            this.appointments = new ArrayList<>();
+            return this;
+        }
+        this.appointments = appointments;
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, tags);
+        return new Person(name, phone, email, address, tags, appointments);
     }
 
 }
