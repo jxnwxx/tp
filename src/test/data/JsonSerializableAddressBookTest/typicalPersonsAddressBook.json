@@ -13,7 +13,10 @@
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
-    "tags" : [ "owesMoney", "friends" ]
+    "tags" : [ "owesMoney", "friends" ],
+    "appointments": [
+      { "title": "Dentist Appointment", "dateTimeString": "07-10-2025, 1430" }
+    ]
   }, {
     "name" : "Carl Kurz",
     "nric" : "T1257515C",
