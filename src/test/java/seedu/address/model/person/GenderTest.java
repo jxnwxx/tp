@@ -44,20 +44,20 @@ public class GenderTest {
         assertTrue(Gender.isValidGender("o")); // Lowercase short form of Other
         assertTrue(Gender.isValidGender("O")); // Uppercase short form of Other
 
-        assertTrue(Gender.isValidGender("male"));    // Lowercase full word Male
-        assertTrue(Gender.isValidGender("MALE"));    // Uppercase full word Male
-        assertTrue(Gender.isValidGender("Male"));    // Capitalized full word Male
-        assertTrue(Gender.isValidGender("mAlE"));    // Mixed case full word Male
+        assertTrue(Gender.isValidGender("male")); // Lowercase full word Male
+        assertTrue(Gender.isValidGender("MALE")); // Uppercase full word Male
+        assertTrue(Gender.isValidGender("Male")); // Capitalized full word Male
+        assertTrue(Gender.isValidGender("mAlE")); // Mixed case full word Male
 
-        assertTrue(Gender.isValidGender("female"));  // Lowercase full word Female
-        assertTrue(Gender.isValidGender("FEMALE"));  // Uppercase full word Female
-        assertTrue(Gender.isValidGender("Female"));  // Capitalized full word Female
-        assertTrue(Gender.isValidGender("fEmAlE"));  // Mixed case full word Female
+        assertTrue(Gender.isValidGender("female")); // Lowercase full word Female
+        assertTrue(Gender.isValidGender("FEMALE")); // Uppercase full word Female
+        assertTrue(Gender.isValidGender("Female")); // Capitalized full word Female
+        assertTrue(Gender.isValidGender("fEmAlE")); // Mixed case full word Female
 
-        assertTrue(Gender.isValidGender("other"));   // Lowercase full word Other
-        assertTrue(Gender.isValidGender("OTHER"));   // Uppercase full word Other
-        assertTrue(Gender.isValidGender("Other"));   // Capitalized full word Other
-        assertTrue(Gender.isValidGender("oThEr"));   // Mixed case full word Other
+        assertTrue(Gender.isValidGender("other")); // Lowercase full word Other
+        assertTrue(Gender.isValidGender("OTHER")); // Uppercase full word Other
+        assertTrue(Gender.isValidGender("Other")); // Capitalized full word Other
+        assertTrue(Gender.isValidGender("oThEr")); // Mixed case full word Other
     }
 
     @Test
