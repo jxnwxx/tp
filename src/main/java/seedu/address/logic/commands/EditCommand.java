@@ -208,9 +208,11 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
-        public void setDob(Dob dob) { this.dob = dob; }
+        public void setDob(Dob dob) {
+            this.dob = dob; }
 
-        public Optional<Dob> getDob() { return Optional.ofNullable(dob); }
+        public Optional<Dob> getDob() {
+            return Optional.ofNullable(dob); }
 
         public void setAddress(Address address) {
             this.address = address;

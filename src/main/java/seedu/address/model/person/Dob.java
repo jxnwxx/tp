@@ -3,6 +3,10 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 /**
  * Represents a Person's DOB in the address book
  * Guarantees: immutable; is valid as declared in {@link #isValidDob(String)}
@@ -12,12 +16,15 @@ public class Dob {
     public static final String MESSAGE_CONSTRAINTS =
             "DOB must be in DD-MM-YYYY format.";
 
+    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
     /*
      * Regex for DOB
      */
-    public static final String VALIDATION_REGEX = "^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-(\\d{4})$";
+    // public static final String VALIDATION_REGEX = "^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-(\\d{4})$";
 
     public final String value;
+    public final LocalDate date;
 
     /**
      * Constructs a {@code Dob}.
@@ -28,6 +35,7 @@ public class Dob {
         requireNonNull(dob);
         checkArgument(isValidDob(dob), MESSAGE_CONSTRAINTS);
         value = dob;
+        date = LocalDate.parse(dob, FORMATTER);
     }
 
     /**
@@ -37,8 +45,14 @@ public class Dob {
      * @return true if a given string is a valid dob
      */
     public static boolean isValidDob(String test) {
-        return test.matches(VALIDATION_REGEX);
+        try {
+            LocalDate.parse(test, FORMATTER);
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+        return true;
     }
+
 
     @Override
     public String toString() {

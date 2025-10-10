@@ -50,7 +50,8 @@ public class Person {
         return nric;
     }
 
-    public Dob getDob() { return dob; }
+    public Dob getDob() {
+        return dob; }
 
     public Name getName() {
         return name;
