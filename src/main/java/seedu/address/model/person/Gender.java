@@ -37,7 +37,7 @@ public class Gender {
          * This method performs a case-insensitive comparison and accepts both the short form
          * (e.g., "m", "f", "o") and the full form (e.g., "male", "female", "other") of a gender.
          * Leading and trailing whitespace are ignored.
-         * 
+         *
          * @param value the input string representing a gender; may be a short or full form
          * @return the matching {@code GenderType} constant
          * @throws IllegalArgumentException if {@code value} is {@code null} or does not correspond
