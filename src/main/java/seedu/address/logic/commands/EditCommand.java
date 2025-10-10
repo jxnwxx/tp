@@ -205,7 +205,7 @@ public class EditCommand extends Command {
         public Optional<Gender> getGender() {
             return Optional.ofNullable(gender);
         }
-      
+
         public void setPhone(Phone phone) {
             this.phone = phone;
         }

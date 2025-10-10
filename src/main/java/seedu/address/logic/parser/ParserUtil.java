@@ -67,7 +67,7 @@ public class ParserUtil {
         }
         return new Nric(trimmedNric);
     }
-  
+
     /**
      * Parses a {@code String gender} into a {@code Gender}.
      * Leading and trailing whitespaces will be trimmed.
@@ -82,7 +82,7 @@ public class ParserUtil {
         }
         return new Gender(trimmedGender);
     }
-  
+
     /**
      * Parses a {@code String dob} into a {@code Dob}.
      * Leading and trailing whitespaces will be trimmed.

@@ -102,7 +102,7 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
         final Name modelName = new Name(name);
-      
+
         if (nric == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Nric.class.getSimpleName()));
@@ -119,7 +119,7 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Gender.MESSAGE_CONSTRAINTS);
         }
         final Gender modelGender = new Gender(gender);
-           
+
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
         }
