@@ -12,6 +12,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.Title;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Dob;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
@@ -31,6 +32,7 @@ public class SampleDataUtil {
                 new Nric("S2743251D"),
                 new Phone("87438807"),
                 new Email("alexyeoh@example.com"),
+                new Dob("12-12-2001"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
                 getTagSet("friends"),
                 new ArrayList<>(List.of(
@@ -53,6 +55,7 @@ public class SampleDataUtil {
                 new Nric("S7101271I"),
                 new Phone("99272758"),
                 new Email("berniceyu@example.com"),
+                new Dob("30-06-1999"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
                 getTagSet("colleagues", "friends"),
                 new ArrayList<>(List.of(
@@ -67,6 +70,7 @@ public class SampleDataUtil {
                 new Nric("T3726790I"),
                 new Phone("93210283"),
                 new Email("charlotte@example.com"),
+                new Dob("01-01-2000"),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
                 getTagSet("neighbours"),
                 new ArrayList<>(List.of(
@@ -81,6 +85,7 @@ public class SampleDataUtil {
                 new Nric("F0512458K"),
                 new Phone("91031282"),
                 new Email("lidavid@example.com"),
+                new Dob("10-12-2015"),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
                 getTagSet("family"),
                 new ArrayList<>(List.of(
@@ -95,6 +100,7 @@ public class SampleDataUtil {
                 new Nric("G4160131R"),
                 new Phone("92492021"),
                 new Email("irfan@example.com"),
+                new Dob("02-08-2003"),
                 new Address("Blk 47 Tampines Street 20, #17-35"),
                 getTagSet("classmates"),
                 new ArrayList<>(List.of(
@@ -109,6 +115,7 @@ public class SampleDataUtil {
                 new Nric("M1902102L"),
                 new Phone("92624417"),
                 new Email("royb@example.com"),
+                new Dob("18-02-2001"),
                 new Address("Blk 45 Aljunied Street 85, #11-31"),
                 getTagSet("colleagues"),
                 new ArrayList<>(List.of(

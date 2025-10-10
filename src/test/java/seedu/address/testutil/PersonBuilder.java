@@ -6,6 +6,7 @@ import java.util.Set;
 
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Dob;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
@@ -23,12 +24,14 @@ public class PersonBuilder {
     public static final String DEFAULT_NRIC = "T7060267E";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
+    public static final String DEFAULT_DOB = "12-12-2002";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
     private Nric nric;
     private Phone phone;
     private Email email;
+    private Dob dob;
     private Address address;
     private Set<Tag> tags;
     private ArrayList<Appointment> appointments;
@@ -41,6 +44,7 @@ public class PersonBuilder {
         nric = new Nric(DEFAULT_NRIC);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
+        dob = new Dob(DEFAULT_DOB);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
         appointments = new ArrayList<>();
@@ -54,6 +58,7 @@ public class PersonBuilder {
         nric = personToCopy.getNric();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
+        dob = personToCopy.getDob();
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
         appointments = new ArrayList<>(personToCopy.getAppointments());
@@ -108,6 +113,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Dob} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withDob(String dob) {
+        this.dob = new Dob(dob);
+        return this;
+    }
+
+    /**
      * Sets the {@code Appointment} of the {@code Person} that we are building.
      */
     public PersonBuilder withAppointments(ArrayList<Appointment> appointments) {
@@ -120,7 +133,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, nric, phone, email, address, tags, appointments);
+        return new Person(name, nric, phone, email, dob, address, tags, appointments);
     }
 
 }

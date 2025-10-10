@@ -23,6 +23,7 @@ public class Person {
     private final Nric nric;
     private final Phone phone;
     private final Email email;
+    private final Dob dob;
 
     // Data fields
     private final Address address;
@@ -32,13 +33,14 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Nric nric, Phone phone, Email email, Address address, Set<Tag> tags,
+    public Person(Name name, Nric nric, Phone phone, Email email, Dob dob, Address address, Set<Tag> tags,
                   ArrayList<Appointment> appointments) {
-        requireAllNonNull(name, nric, phone, email, address, tags, appointments);
+        requireAllNonNull(name, nric, phone, email, dob, address, tags, appointments);
         this.name = name;
         this.nric = nric;
         this.phone = phone;
         this.email = email;
+        this.dob = dob;
         this.address = address;
         this.tags.addAll(tags);
         this.appointments = appointments;
@@ -47,6 +49,8 @@ public class Person {
     public Nric getNric() {
         return nric;
     }
+
+    public Dob getDob() { return dob; }
 
     public Name getName() {
         return name;
@@ -109,6 +113,7 @@ public class Person {
                 && nric.equals(otherPerson.nric)
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
+                && dob.equals(otherPerson.dob)
                 && address.equals(otherPerson.address)
                 && tags.equals(otherPerson.tags);
     }
@@ -116,7 +121,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, nric, phone, email, address, tags);
+        return Objects.hash(name, nric, phone, email, dob, address, tags);
     }
 
     @Override
@@ -126,6 +131,7 @@ public class Person {
                 .add("nric", nric)
                 .add("phone", phone)
                 .add("email", email)
+                .add("dob", dob)
                 .add("address", address)
                 .add("tags", tags)
                 .toString();

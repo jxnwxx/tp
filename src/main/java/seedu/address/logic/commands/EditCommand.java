@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DOB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
@@ -25,6 +26,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Dob;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
@@ -47,6 +49,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NRIC + "NRIC] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_DOB + "DOB] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -104,11 +107,12 @@ public class EditCommand extends Command {
         Nric updatedNric = editPersonDescriptor.getNric().orElse(personToEdit.getNric());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
+        Dob updatedDob = editPersonDescriptor.getDob().orElse(personToEdit.getDob());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         ArrayList<Appointment> updatedAppointments = personToEdit.getAppointments();
 
-        return new Person(updatedName, updatedNric, updatedPhone, updatedEmail, updatedAddress,
+        return new Person(updatedName, updatedNric, updatedPhone, updatedEmail, updatedDob, updatedAddress,
                 updatedTags, updatedAppointments);
     }
 
@@ -145,6 +149,7 @@ public class EditCommand extends Command {
         private Nric nric;
         private Phone phone;
         private Email email;
+        private Dob dob;
         private Address address;
         private Set<Tag> tags;
 
@@ -159,6 +164,7 @@ public class EditCommand extends Command {
             setNric(toCopy.nric);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
+            setDob(toCopy.dob);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
         }
@@ -167,7 +173,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, nric, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, nric, phone, email, dob, address, tags);
         }
 
         public void setName(Name name) {
@@ -201,6 +207,10 @@ public class EditCommand extends Command {
         public Optional<Email> getEmail() {
             return Optional.ofNullable(email);
         }
+
+        public void setDob(Dob dob) { this.dob = dob; }
+
+        public Optional<Dob> getDob() { return Optional.ofNullable(dob); }
 
         public void setAddress(Address address) {
             this.address = address;
@@ -243,6 +253,7 @@ public class EditCommand extends Command {
                     && Objects.equals(nric, otherEditPersonDescriptor.nric)
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
+                    && Objects.equals(dob, otherEditPersonDescriptor.dob)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags);
         }
@@ -254,6 +265,7 @@ public class EditCommand extends Command {
                     .add("nric", nric)
                     .add("phone", phone)
                     .add("email", email)
+                    .add("dob", dob)
                     .add("address", address)
                     .add("tags", tags)
                     .toString();
