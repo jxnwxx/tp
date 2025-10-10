@@ -10,9 +10,11 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Nric;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -52,6 +54,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String nric} into a {@code Nric}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static Nric parseNric(String nric) throws ParseException {
+        requireNonNull(nric);
+        String trimmedNric = nric.trim();
+        if (!Nric.isValidNric(trimmedNric)) {
+            throw new ParseException(Nric.MESSAGE_CONSTRAINTS);
+        }
+        return new Nric(trimmedNric);
+    }
+  
+    /**
      * Parses a {@code String gender} into a {@code Gender}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -64,6 +81,21 @@ public class ParserUtil {
             throw new ParseException(Gender.MESSAGE_CONSTRAINTS);
         }
         return new Gender(trimmedGender);
+    }
+  
+    /**
+     * Parses a {@code String dob} into a {@code Dob}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static DateOfBirth parseDob(String dob) throws ParseException {
+        requireNonNull(dob);
+        String trimmedDob = dob.trim();
+        if (!DateOfBirth.isValidDateOfBirth(trimmedDob)) {
+            throw new ParseException(DateOfBirth.MESSAGE_CONSTRAINTS);
+        }
+        return new DateOfBirth(trimmedDob);
     }
 
     /**
