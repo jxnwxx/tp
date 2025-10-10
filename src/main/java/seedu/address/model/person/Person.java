@@ -23,6 +23,7 @@ public class Person {
     private final Nric nric;
     private final Phone phone;
     private final Email email;
+    private final DateOfBirth dateOfBirth;
 
     // Data fields
     private final Address address;
@@ -32,13 +33,14 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Nric nric, Phone phone, Email email, Address address, Set<Tag> tags,
-                  ArrayList<Appointment> appointments) {
-        requireAllNonNull(name, nric, phone, email, address, tags, appointments);
+    public Person(Name name, Nric nric, Phone phone, Email email, DateOfBirth dateOfBirth,
+                  Address address, Set<Tag> tags, ArrayList<Appointment> appointments) {
+        requireAllNonNull(name, nric, phone, email, dateOfBirth, address, tags, appointments);
         this.name = name;
         this.nric = nric;
         this.phone = phone;
         this.email = email;
+        this.dateOfBirth = dateOfBirth;
         this.address = address;
         this.tags.addAll(tags);
         this.appointments = appointments;
@@ -46,6 +48,10 @@ public class Person {
 
     public Nric getNric() {
         return nric;
+    }
+
+    public DateOfBirth getDob() {
+        return dateOfBirth;
     }
 
     public Name getName() {
@@ -109,6 +115,7 @@ public class Person {
                 && nric.equals(otherPerson.nric)
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
+                && dateOfBirth.equals(otherPerson.dateOfBirth)
                 && address.equals(otherPerson.address)
                 && tags.equals(otherPerson.tags);
     }
@@ -116,7 +123,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, nric, phone, email, address, tags);
+        return Objects.hash(name, nric, phone, email, dateOfBirth, address, tags);
     }
 
     @Override
@@ -126,6 +133,7 @@ public class Person {
                 .add("nric", nric)
                 .add("phone", phone)
                 .add("email", email)
+                .add("dob", dateOfBirth)
                 .add("address", address)
                 .add("tags", tags)
                 .toString();

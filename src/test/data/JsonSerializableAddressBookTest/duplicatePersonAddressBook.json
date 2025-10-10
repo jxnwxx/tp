@@ -4,6 +4,7 @@
     "nric": "S8052802G",
     "phone": "94351253",
     "email": "alice@example.com",
+    "dob": "02-02-2002",
     "address": "123, Jurong West Ave 6, #08-111",
     "tags": [ "friends" ]
   }, {
@@ -11,6 +12,7 @@
     "nric": "S8052802G",
     "phone": "94351253",
     "email": "pauline@example.com",
+    "dob": "02-02-2002",
     "address": "4th street"
   } ]
 }
