@@ -114,7 +114,7 @@ public class AddCommandParserTest {
                 validExpectedPersonString + PHONE_DESC_AMY + GENDER_DESC_AMY
                         + EMAIL_DESC_AMY + NAME_DESC_AMY + ADDRESS_DESC_AMY
                         + validExpectedPersonString,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME, PREFIX_NRIC, 
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME, PREFIX_NRIC,
                         PREFIX_GENDER, PREFIX_ADDRESS, PREFIX_EMAIL, PREFIX_DOB, PREFIX_PHONE));
 
         // invalid value followed by valid value
@@ -178,15 +178,15 @@ public class AddCommandParserTest {
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_BOB + NRIC_DESC_BOB + GENDER_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + DOB_DESC_BOB
                         + ADDRESS_DESC_BOB, expectedMessage);
-      
+
         // missing nric prefix
         assertParseFailure(parser, NAME_DESC_BOB + VALID_NRIC_BOB + GENDER_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + DOB_DESC_BOB
                         + ADDRESS_DESC_BOB, expectedMessage);
-      
+
         // missing gender prefix
         assertParseFailure(parser, NAME_DESC_BOB + NRIC_DESC_BOB + VALID_GENDER_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + DOB_DESC_BOB
                         + ADDRESS_DESC_BOB, expectedMessage);
-      
+
         // missing phone prefix
         assertParseFailure(parser, NAME_DESC_BOB + NRIC_DESC_BOB + GENDER_DESC_BOB + VALID_PHONE_BOB + EMAIL_DESC_BOB + DOB_DESC_BOB
                         + ADDRESS_DESC_BOB, expectedMessage);
@@ -194,11 +194,11 @@ public class AddCommandParserTest {
         // missing email prefix
         assertParseFailure(parser, NAME_DESC_BOB + NRIC_DESC_BOB + GENDER_DESC_BOB + PHONE_DESC_BOB + VALID_EMAIL_BOB + DOB_DESC_BOB
                 + ADDRESS_DESC_BOB, expectedMessage);
-      
+
         // missing dob prefix
         assertParseFailure(parser, NAME_DESC_BOB + NRIC_DESC_BOB + GENDER_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + VALID_DOB_BOB
                 + ADDRESS_DESC_BOB, expectedMessage);
-      
+
         // missing address prefix
         assertParseFailure(parser, NAME_DESC_BOB + NRIC_DESC_BOB + GENDER_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + DOB_DESC_BOB
                 + VALID_ADDRESS_BOB, expectedMessage);
