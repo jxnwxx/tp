@@ -6,7 +6,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Dob;
+import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
@@ -79,7 +79,7 @@ public class EditPersonDescriptorBuilder {
      * Sets the {@code Dob} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withDob(String dob) {
-        descriptor.setDob(new Dob(dob));
+        descriptor.setDob(new DateOfBirth(dob));
         return this;
     }
 

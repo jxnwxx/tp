@@ -9,9 +9,9 @@ import java.time.format.DateTimeParseException;
 
 /**
  * Represents a Person's DOB in the address book
- * Guarantees: immutable; is valid as declared in {@link #isValidDob(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidDateOfBirth(String)}
  */
-public class Dob {
+public class DateOfBirth {
 
     public static final String MESSAGE_CONSTRAINTS =
             "DOB must be in DD-MM-YYYY format.";
@@ -31,9 +31,9 @@ public class Dob {
      *
      * @param dob A valid dob
      */
-    public Dob(String dob) {
+    public DateOfBirth(String dob) {
         requireNonNull(dob);
-        checkArgument(isValidDob(dob), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidDateOfBirth(dob), MESSAGE_CONSTRAINTS);
         value = dob;
         date = LocalDate.parse(dob, FORMATTER);
     }
@@ -44,7 +44,7 @@ public class Dob {
      * @param test given dob to test
      * @return true if a given string is a valid dob
      */
-    public static boolean isValidDob(String test) {
+    public static boolean isValidDateOfBirth(String test) {
         try {
             LocalDate.parse(test, FORMATTER);
         } catch (DateTimeParseException e) {
@@ -56,7 +56,7 @@ public class Dob {
 
     @Override
     public String toString() {
-        return value;
+        return date.format(FORMATTER);
     }
 
     @Override
@@ -65,12 +65,12 @@ public class Dob {
             return true;
         }
 
-        if (!(other instanceof Dob)) {
+        if (!(other instanceof DateOfBirth)) {
             return false;
         }
 
-        Dob otherDob = (Dob) other;
-        return value.equals(otherDob.value);
+        DateOfBirth otherDateOfBirth = (DateOfBirth) other;
+        return value.equals(otherDateOfBirth.value);
     }
 
     @Override

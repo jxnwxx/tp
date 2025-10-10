@@ -47,7 +47,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Dob;
+import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
@@ -198,7 +198,8 @@ public class AddCommandParserTest {
 
         // invalid dob
         assertParseFailure(parser, NAME_DESC_BOB + NRIC_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + INVALID_DOB_DESC + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Dob.MESSAGE_CONSTRAINTS);
+                + INVALID_DOB_DESC + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND
+                + TAG_DESC_FRIEND, DateOfBirth.MESSAGE_CONSTRAINTS);
 
         // invalid address
         assertParseFailure(parser, NAME_DESC_BOB + NRIC_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB

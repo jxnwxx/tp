@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Dob;
+import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
@@ -31,7 +31,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String nric;
-    private final String dob;
+    private final String dateOfBirth;
     private final String address;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final List<JsonAdaptedAppointment> appointments = new ArrayList<>();
@@ -42,14 +42,14 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("nric") String nric,
             @JsonProperty("phone") String phone, @JsonProperty("email") String email,
-            @JsonProperty("dob") String dob, @JsonProperty("address") String address,
+            @JsonProperty("dob") String dateOfBirth, @JsonProperty("address") String address,
             @JsonProperty("tags") List<JsonAdaptedTag> tags,
             @JsonProperty("appointments") List<JsonAdaptedAppointment> appointments) {
         this.name = name;
         this.nric = nric;
         this.phone = phone;
         this.email = email;
-        this.dob = dob;
+        this.dateOfBirth = dateOfBirth;
         this.address = address;
         if (tags != null) {
             this.tags.addAll(tags);
@@ -67,7 +67,7 @@ class JsonAdaptedPerson {
         nric = source.getNric().value;
         phone = source.getPhone().value;
         email = source.getEmail().value;
-        dob = source.getDob().value;
+        dateOfBirth = source.getDob().value;
         address = source.getAddress().value;
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -124,13 +124,14 @@ class JsonAdaptedPerson {
         }
         final Email modelEmail = new Email(email);
 
-        if (dob == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Dob.class.getSimpleName()));
+        if (dateOfBirth == null) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, DateOfBirth.class.getSimpleName()));
         }
-        if (!Dob.isValidDob(dob)) {
-            throw new IllegalValueException(Dob.MESSAGE_CONSTRAINTS);
+        if (!DateOfBirth.isValidDateOfBirth(dateOfBirth)) {
+            throw new IllegalValueException(DateOfBirth.MESSAGE_CONSTRAINTS);
         }
-        final Dob modelDob = new Dob(dob);
+        final DateOfBirth modelDateOfBirth = new DateOfBirth(dateOfBirth);
 
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
@@ -145,7 +146,7 @@ class JsonAdaptedPerson {
         final ArrayList<Appointment> modelAppointments = new ArrayList<>(personAppointments);
 
         return new Person(modelName, modelNric, modelPhone,
-                modelEmail, modelDob, modelAddress, modelTags, modelAppointments);
+                modelEmail, modelDateOfBirth, modelAddress, modelTags, modelAppointments);
     }
 
 }

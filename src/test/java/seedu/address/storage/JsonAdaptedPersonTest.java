@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Dob;
+import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
@@ -120,7 +120,7 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_NRIC, VALID_PHONE, VALID_EMAIL, INVALID_DOB,
                         VALID_ADDRESS, VALID_TAGS, VALID_APPOINTMENTS);
-        String expectedMessage = Dob.MESSAGE_CONSTRAINTS;
+        String expectedMessage = DateOfBirth.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
@@ -128,7 +128,7 @@ public class JsonAdaptedPersonTest {
     public void toModelType_nullDob_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_NRIC, VALID_PHONE, VALID_EMAIL, null,
                 VALID_ADDRESS, VALID_TAGS, VALID_APPOINTMENTS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Dob.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, DateOfBirth.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 

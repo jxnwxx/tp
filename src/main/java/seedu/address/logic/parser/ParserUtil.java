@@ -10,7 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Dob;
+import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
@@ -73,13 +73,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static Dob parseDob(String dob) throws ParseException {
+    public static DateOfBirth parseDob(String dob) throws ParseException {
         requireNonNull(dob);
         String trimmedDob = dob.trim();
-        if (!Dob.isValidDob(trimmedDob)) {
-            throw new ParseException(Dob.MESSAGE_CONSTRAINTS);
+        if (!DateOfBirth.isValidDateOfBirth(trimmedDob)) {
+            throw new ParseException(DateOfBirth.MESSAGE_CONSTRAINTS);
         }
-        return new Dob(trimmedDob);
+        return new DateOfBirth(trimmedDob);
     }
 
     /**

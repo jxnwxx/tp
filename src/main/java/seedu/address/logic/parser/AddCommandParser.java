@@ -17,7 +17,7 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Dob;
+import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
@@ -52,12 +52,12 @@ public class AddCommandParser implements Parser<AddCommand> {
         Nric nric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        Dob dob = ParserUtil.parseDob(argMultimap.getValue(PREFIX_DOB).get());
+        DateOfBirth dateOfBirth = ParserUtil.parseDob(argMultimap.getValue(PREFIX_DOB).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         ArrayList<Appointment> appointments = new ArrayList<>();
 
-        Person person = new Person(name, nric, phone, email, dob, address, tagList, appointments);
+        Person person = new Person(name, nric, phone, email, dateOfBirth, address, tagList, appointments);
 
         return new AddCommand(person);
     }
