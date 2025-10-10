@@ -9,26 +9,57 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Gender {
 
+    public static final String VALIDATION_REGEX = "(?i)\\s*(male|female|other|m|f|o)\\s*";
+
     public static final String MESSAGE_CONSTRAINTS =
-            "Gender should be one of: m (male), f (female), or o (other).";
+            "Gender should be one of: Male (m), Female (f), or Other (o).";
 
-    /*
-     * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
+    public final GenderType gender;
+
+    /**
+     * Enum representing valid gender types.
      */
-    public static final String VALIDATION_REGEX = "[m|f|o]";;
+    public enum GenderType {
+        MALE("Male", "m"),
+        FEMALE("Female", "f"),
+        OTHER("Other", "o");
 
-    private final String gender;
+        private final String full;
+        private final String shortForm;
+
+        GenderType(String full, String shortForm) {
+            this.full = full;
+            this.shortForm = shortForm;
+        }
+
+        public static GenderType fromString(String value) {
+            if (value == null) {
+                throw new IllegalArgumentException("Gender cannot be null");
+            }
+            String v = value.trim().toLowerCase();
+            for (GenderType g : GenderType.values()) {
+                if (g.full.toLowerCase().equals(v) || g.shortForm.equals(v)) {
+                    return g;
+                }
+            }
+            throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
+        }
+
+        @Override
+        public String toString() {
+            return full;
+        }
+    }
 
     /**
      * Constructs a {@code Gender}.
      *
-     * @param Gender A valid gender.
+     * @param gender A valid gender.
      */
     public Gender(String gender) {
         requireNonNull(gender);
         checkArgument(isValidGender(gender), MESSAGE_CONSTRAINTS);
-        this.gender = gender;
+        this.gender = GenderType.fromString(gender);
     }
 
     /**
@@ -41,7 +72,7 @@ public class Gender {
 
     @Override
     public String toString() {
-        return this.gender;
+        return this.gender.toString();
     }
 
     @Override
@@ -51,12 +82,12 @@ public class Gender {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof Name)) {
+        if (!(other instanceof Gender)) {
             return false;
         }
 
-        Name otherName = (Name) other;
-        return this.gender.equals(otherName.fullName);
+        Gender otherGender = (Gender) other;
+        return this.gender.equals(otherGender.gender);
     }
 
     @Override
