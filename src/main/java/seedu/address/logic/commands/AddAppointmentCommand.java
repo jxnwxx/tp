@@ -2,9 +2,11 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_DATETIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_TITLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
+
+import java.util.ArrayList;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -12,8 +14,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
-
-import java.util.ArrayList;
 
 /**
  * Adds an appointment to the person specified in the address book.
@@ -91,8 +91,8 @@ public class AddAppointmentCommand extends Command {
         }
 
         AddAppointmentCommand otherAddAppointmentCommand = (AddAppointmentCommand) other;
-        return toAdd.equals(otherAddAppointmentCommand.toAdd) &&
-                targetNric.equals(otherAddAppointmentCommand.targetNric);
+        return toAdd.equals(otherAddAppointmentCommand.toAdd)
+                && targetNric.equals(otherAddAppointmentCommand.targetNric);
     }
 
     @Override
