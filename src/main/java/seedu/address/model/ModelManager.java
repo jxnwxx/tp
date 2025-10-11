@@ -145,4 +145,14 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }
 
+    @Override
+    public Person findPersonByNric(String targetNric) {
+        requireNonNull(targetNric);
+        for (Person person : addressBook.getPersonList()) {
+            if (person.getNric().toString().equalsIgnoreCase(targetNric)) {
+                return person;
+            }
+        }
+        return null;
+    }
 }
