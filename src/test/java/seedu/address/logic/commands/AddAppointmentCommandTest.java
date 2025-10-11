@@ -32,8 +32,10 @@ public class AddAppointmentCommandTest {
 
     @Test
     public void constructor_nullArguments_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddAppointmentCommand(null, new Appointment(new Title("A"), LocalDateTime.now())));
-        assertThrows(NullPointerException.class, () -> new AddAppointmentCommand("S1234567A", null));
+        assertThrows(NullPointerException.class, () -> new AddAppointmentCommand(
+                null, new Appointment(new Title("A"), LocalDateTime.now())));
+        assertThrows(NullPointerException.class, () -> new AddAppointmentCommand(
+                "S1234567A", null));
     }
 
     @Test
