@@ -14,6 +14,7 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
@@ -28,6 +29,7 @@ class JsonAdaptedPerson {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
     private final String name;
+    private final String gender;
     private final String phone;
     private final String email;
     private final String nric;
@@ -41,12 +43,13 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("nric") String nric,
-            @JsonProperty("phone") String phone, @JsonProperty("email") String email,
-            @JsonProperty("dob") String dateOfBirth, @JsonProperty("address") String address,
-            @JsonProperty("tags") List<JsonAdaptedTag> tags,
-            @JsonProperty("appointments") List<JsonAdaptedAppointment> appointments) {
+                             @JsonProperty("gender") String gender, @JsonProperty("phone") String phone,
+                             @JsonProperty("email") String email, @JsonProperty("dob") String dateOfBirth,
+                             @JsonProperty("address") String address, @JsonProperty("tags") List<JsonAdaptedTag> tags,
+                             @JsonProperty("appointments") List<JsonAdaptedAppointment> appointments) {
         this.name = name;
         this.nric = nric;
+        this.gender = gender;
         this.phone = phone;
         this.email = email;
         this.dateOfBirth = dateOfBirth;
@@ -65,6 +68,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
         nric = source.getNric().value;
+        gender = source.getGender().gender.toString();
         phone = source.getPhone().value;
         email = source.getEmail().value;
         dateOfBirth = source.getDob().value;
@@ -108,6 +112,14 @@ class JsonAdaptedPerson {
         }
         final Nric modelNric = new Nric(nric);
 
+        if (gender == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Gender.class.getSimpleName()));
+        }
+        if (!Gender.isValidGender(gender)) {
+            throw new IllegalValueException(Gender.MESSAGE_CONSTRAINTS);
+        }
+        final Gender modelGender = new Gender(gender);
+
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
         }
@@ -145,7 +157,7 @@ class JsonAdaptedPerson {
 
         final ArrayList<Appointment> modelAppointments = new ArrayList<>(personAppointments);
 
-        return new Person(modelName, modelNric, modelPhone,
+        return new Person(modelName, modelNric, modelGender, modelPhone,
                 modelEmail, modelDateOfBirth, modelAddress, modelTags, modelAppointments);
     }
 

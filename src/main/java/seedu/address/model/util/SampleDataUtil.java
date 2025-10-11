@@ -14,6 +14,7 @@ import seedu.address.model.appointment.Title;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
@@ -30,6 +31,7 @@ public class SampleDataUtil {
             new Person(
                 new Name("Alex Yeoh"),
                 new Nric("S2743251D"),
+                new Gender("m"),
                 new Phone("87438807"),
                 new Email("alexyeoh@example.com"),
                 new DateOfBirth("12-12-2001"),
@@ -53,6 +55,7 @@ public class SampleDataUtil {
             new Person(
                 new Name("Bernice Yu"),
                 new Nric("S7101271I"),
+                new Gender("f"),
                 new Phone("99272758"),
                 new Email("berniceyu@example.com"),
                 new DateOfBirth("30-06-1999"),
@@ -68,6 +71,7 @@ public class SampleDataUtil {
             new Person(
                 new Name("Charlotte Oliveiro"),
                 new Nric("T3726790I"),
+                new Gender("f"),
                 new Phone("93210283"),
                 new Email("charlotte@example.com"),
                 new DateOfBirth("01-01-2000"),
@@ -83,6 +87,7 @@ public class SampleDataUtil {
             new Person(
                 new Name("David Li"),
                 new Nric("F0512458K"),
+                new Gender("m"),
                 new Phone("91031282"),
                 new Email("lidavid@example.com"),
                 new DateOfBirth("10-12-2015"),
@@ -98,6 +103,7 @@ public class SampleDataUtil {
             new Person(
                 new Name("Irfan Ibrahim"),
                 new Nric("G4160131R"),
+                new Gender("m"),
                 new Phone("92492021"),
                 new Email("irfan@example.com"),
                 new DateOfBirth("02-08-2003"),
@@ -113,6 +119,7 @@ public class SampleDataUtil {
             new Person(
                 new Name("Roy Balakrishnan"),
                 new Nric("M1902102L"),
+                new Gender("m"),
                 new Phone("92624417"),
                 new Email("royb@example.com"),
                 new DateOfBirth("18-02-2001"),

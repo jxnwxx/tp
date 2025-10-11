@@ -8,6 +8,7 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
@@ -22,6 +23,7 @@ public class PersonBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_NRIC = "T7060267E";
+    public static final String DEFAULT_GENDER = "Female";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_DOB = "12-12-2002";
@@ -29,6 +31,7 @@ public class PersonBuilder {
 
     private Name name;
     private Nric nric;
+    private Gender gender;
     private Phone phone;
     private Email email;
     private DateOfBirth dateOfBirth;
@@ -42,6 +45,7 @@ public class PersonBuilder {
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
         nric = new Nric(DEFAULT_NRIC);
+        gender = new Gender(DEFAULT_GENDER);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         dateOfBirth = new DateOfBirth(DEFAULT_DOB);
@@ -56,6 +60,7 @@ public class PersonBuilder {
     public PersonBuilder(Person personToCopy) {
         name = personToCopy.getName();
         nric = personToCopy.getNric();
+        gender = personToCopy.getGender();
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         dateOfBirth = personToCopy.getDob();
@@ -77,6 +82,14 @@ public class PersonBuilder {
      */
     public PersonBuilder withNric(String nric) {
         this.nric = new Nric(nric);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Gender} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withGender(String gender) {
+        this.gender = new Gender(gender);
         return this;
     }
 
@@ -133,7 +146,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, nric, phone, email, dateOfBirth, address, tags, appointments);
+        return new Person(name, nric, gender, phone, email, dateOfBirth, address, tags, appointments);
     }
 
 }

@@ -2,6 +2,7 @@
   "persons": [ {
     "name": "Alice Pauline",
     "nric": "S8052802G",
+    "gender": "f",
     "phone": "94351253",
     "email": "alice@example.com",
     "dob": "02-02-2002",
@@ -10,6 +11,7 @@
   }, {
     "name": "Alice Pauline",
     "nric": "S8052802G",
+    "gender": "f",
     "phone": "94351253",
     "email": "pauline@example.com",
     "dob": "02-02-2002",
