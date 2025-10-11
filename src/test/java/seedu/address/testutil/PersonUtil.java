@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DOB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -34,6 +35,7 @@ public class PersonUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + person.getName().fullName + " ");
         sb.append(PREFIX_NRIC + person.getNric().value + " ");
+        sb.append(PREFIX_GENDER + person.getGender().gender.toString() + " ");
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_DOB + person.getDob().value + " ");
@@ -51,6 +53,8 @@ public class PersonUtil {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getNric().ifPresent(nric -> sb.append(PREFIX_NRIC).append(nric.value).append(" "));
+        descriptor.getGender().ifPresent(gender -> sb.append(PREFIX_GENDER)
+                .append(gender.gender.toString()).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getDob().ifPresent(dob -> sb.append(PREFIX_DOB).append(dob.value).append(" "));
