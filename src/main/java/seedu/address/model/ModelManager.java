@@ -6,11 +6,13 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
+import java.util.ArrayList;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
 
 /**
@@ -145,4 +147,14 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }
 
+    @Override
+    public Person findPersonByNric(String targetNric) {
+        requireNonNull(targetNric);
+        for (Person person : addressBook.getPersonList()) {
+            if (person.getNric().toString().equalsIgnoreCase(targetNric)) {
+                return person;
+            }
+        }
+        return null;
+    }
 }
