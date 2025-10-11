@@ -66,6 +66,7 @@ public class AddAppointmentCommand extends Command {
         Person newPerson = new Person(
                 targetPerson.getName(),
                 targetPerson.getNric(),
+                targetPerson.getGender(),
                 targetPerson.getPhone(),
                 targetPerson.getEmail(),
                 targetPerson.getDob(),
