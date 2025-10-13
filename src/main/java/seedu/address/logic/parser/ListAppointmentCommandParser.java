@@ -10,12 +10,12 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Nric;
 
 /**
- * Parses input arguments and creates a new AddAppointmentCommand object
+ * Parses input arguments and creates a new ListAppointmentCommand object
  */
 public class ListAppointmentCommandParser implements Parser<ListAppointmentCommand> {
     /**
-     * Parses the given {@code String} of arguments in the context of the AddAppointmentCommand
-     * and returns an AddAppointmentCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the ListAppointmentCommand
+     * and returns an ListAppointmentCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public ListAppointmentCommand parse(String args) throws ParseException {

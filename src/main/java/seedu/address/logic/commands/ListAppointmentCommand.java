@@ -30,8 +30,7 @@ public class ListAppointmentCommand extends Command {
     private final String targetNric;
 
     /**
-     * Creates an AddAppointmentCommand to add the specified {@code Appointment} to the person with the given NRIC.
-     *
+     * Creates an ListAppointmentCommand to list appointments to the specified to the person with the given NRIC.
      */
     public ListAppointmentCommand(String targetNric) {
         requireNonNull(targetNric);
