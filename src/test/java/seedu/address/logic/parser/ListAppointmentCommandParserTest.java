@@ -2,15 +2,13 @@ package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NRIC_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.NRIC_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NRIC_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NRIC_BOB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.NRIC_DESC_AMY;
-
 
 import org.junit.jupiter.api.Test;
 
