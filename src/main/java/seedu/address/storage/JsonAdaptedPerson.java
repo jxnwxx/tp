@@ -45,7 +45,8 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("nric") String nric,
                              @JsonProperty("gender") String gender, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("dob") String dateOfBirth,
-                             @JsonProperty("address") String address, @JsonProperty("tags") List<JsonAdaptedTag> tags,
+                             @JsonProperty("address") String address,
+                             @JsonProperty("medicalhistory") List<JsonAdaptedTag> medicalhistory,
                              @JsonProperty("appointments") List<JsonAdaptedAppointment> appointments) {
         this.name = name;
         this.nric = nric;
@@ -54,8 +55,8 @@ class JsonAdaptedPerson {
         this.email = email;
         this.dateOfBirth = dateOfBirth;
         this.address = address;
-        if (tags != null) {
-            this.tags.addAll(tags);
+        if (medicalhistory != null) {
+            this.tags.addAll(medicalhistory);
         }
         if (appointments != null) {
             this.appointments.addAll(appointments);
