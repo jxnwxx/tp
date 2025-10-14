@@ -5,10 +5,15 @@ title: User Guide
 
 # DoctorBase
 
-DoctorBase is a **desktop app for managing patient details and appointments, optimized for use via a keyboard input** which still having the benefits of a visual interface.
+DoctorBase is a **desktop app for managing patient details and appointments, optimized for use via a keyboard input** which still having the benefits of a visual interface. <br>
+This is the **perfect product** for solo doctors who take care of numerous patients with little assistance!
 
-* Table of Contents
-{:toc}
+# Table of Contents
+1. [Quick start](#quick-start)
+2. [Features](#features)
+3. [FAQ](#faq)
+4. [Known issues](#known-issues)
+5. [Command summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
