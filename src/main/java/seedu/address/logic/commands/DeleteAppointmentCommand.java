@@ -28,7 +28,7 @@ public class DeleteAppointmentCommand extends Command {
             + PREFIX_INDEX + " INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_NRIC + " S1234567A " + PREFIX_INDEX + " 1";
 
-    public static final String MESSAGE_SUCCESS = "Appointment for %1$s: %2$s deleted";
+    public static final String MESSAGE_DELETE_APPOINTMENT_SUCCESS = "Appointment for %1$s: %2$s deleted";
     public static final String MESSAGE_PERSON_NOT_FOUND = "No person with this NRIC exists in the address book.";
     public static final String MESSAGE_APPOINTMENT_NOT_FOUND = "No apppointment for this NRIC at index %1$s "
             + "exists in the address book";
@@ -62,7 +62,8 @@ public class DeleteAppointmentCommand extends Command {
         }
 
         Appointment deletedAppointment = targetPersonAppointments.remove(targetIndex.getZeroBased());
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(targetPerson), deletedAppointment));
+        return new CommandResult(String.format(MESSAGE_DELETE_APPOINTMENT_SUCCESS,
+                Messages.format(targetPerson), deletedAppointment));
     }
 
     @Override
