@@ -45,8 +45,8 @@ public class CommandTestUtil {
     public static final String VALID_NRIC_BOB = "T7060267E";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_TAG_ECZEMA = "eczema";
+    public static final String VALID_TAG_DIABETES = "diabetes";
     public static final String VALID_TITLE_DENTAL = "Dental";
     public static final String VALID_TITLE_FLU_SHOT = "Flu Shot";
     public static final String VALID_DATETIME_DENTAL = "20-02-2020, 1400";
@@ -66,8 +66,8 @@ public class CommandTestUtil {
     public static final String NRIC_DESC_BOB = " " + PREFIX_NRIC + VALID_NRIC_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_DIABETES;
+    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_ECZEMA;
     public static final String TITLE_DESC_DENTAL = " " + PREFIX_APPOINTMENT_TITLE + VALID_TITLE_DENTAL;
     public static final String TITLE_DESC_FLU_SHOT = " " + PREFIX_APPOINTMENT_TITLE + VALID_TITLE_FLU_SHOT;
     public static final String DATETIME_DESC_DENTAL = " " + PREFIX_APPOINTMENT_DATETIME + VALID_DATETIME_DENTAL;
@@ -96,12 +96,12 @@ public class CommandTestUtil {
                 .withGender(VALID_GENDER_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY)
                 .withDob(VALID_DOB_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
+                .withTags(VALID_TAG_DIABETES).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).withNric(VALID_NRIC_BOB)
                 .withGender(VALID_GENDER_AMY)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withDob(VALID_DOB_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withTags(VALID_TAG_ECZEMA, VALID_TAG_DIABETES).build();
     }
 
     /**

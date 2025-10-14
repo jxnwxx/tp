@@ -8,7 +8,7 @@
     "email" : "alice@example.com",
     "dob": "12-12-2003",
     "address" : "123, Jurong West Ave 6, #08-111",
-    "medicalhistory": [ "friends" ]
+    "medicalhistory": [ "eczema" ]
   }, {
     "name" : "Benson Meier",
     "nric" : "S9599208J",
@@ -17,7 +17,7 @@
     "email" : "johnd@example.com",
     "dob": "08-10-2001",
     "address" : "311, Clementi Ave 2, #02-25",
-    "medicalhistory": [ "owesMoney", "friends" ],
+    "medicalhistory": [ "diabetes", "asthma" ],
     "appointments": [
       { "title": "Dentist Appointment", "dateTimeString": "07-10-2025, 1430" }
     ]
@@ -38,7 +38,7 @@
     "email" : "cornelia@example.com",
     "dob": "18-12-2002",
     "address" : "10th street",
-    "medicalhistory": [ "friends" ]
+    "medicalhistory": [ "high blood pressure", "covid-19" ]
   }, {
     "name" : "Elle Meyer",
     "nric" : "F2827236R",

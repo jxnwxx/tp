@@ -1,0 +1,90 @@
+package seedu.address.logic.commands;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Person;
+
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for ListAppointmentCommand.
+ */
+public class ListAppointmentCommandTest {
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+
+    @Test
+    public void constructor_nullArguments_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new ListAppointmentCommand(null));
+    }
+
+    @Test
+    public void execute_personExists_success() throws Exception {
+        ListAppointmentCommand command = new ListAppointmentCommand(BENSON.getNric().toString());
+        Person person = model.findPersonByNric(BENSON.getNric().toString());
+
+        // Benson has 1 appointment
+        String expectedMessage = String.format(ListAppointmentCommand.MESSAGE_SUCCESS, person.getName(),
+                "1. " + person.getAppointments().get(0));
+        Model expectedModel = new ModelManager(model.getAddressBook(), model.getUserPrefs());
+
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+
+        command = new ListAppointmentCommand(ALICE.getNric().toString());
+        person = model.findPersonByNric(ALICE.getNric().toString());
+
+        // Alice has no appointment
+        expectedMessage = String.format(ListAppointmentCommand.MESSAGE_SUCCESS, person.getName(),
+                ListAppointmentCommand.MESSAGE_NO_APPOINTMENTS);
+        expectedModel = new ModelManager(model.getAddressBook(), model.getUserPrefs());
+
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_personNotFound_throwsCommandException() {
+        ListAppointmentCommand command = new ListAppointmentCommand("S1234567Z");
+
+        assertCommandFailure(command, model, ListAppointmentCommand.MESSAGE_PERSON_NOT_FOUND);
+    }
+
+    @Test
+    public void equals() {
+        ListAppointmentCommand cmd1 = new ListAppointmentCommand("S1234567A");
+        ListAppointmentCommand cmd2 = new ListAppointmentCommand("S1234567A");
+        ListAppointmentCommand cmd3 = new ListAppointmentCommand("S1234567B");
+
+        // same object -> true
+        assertTrue(cmd1.equals(cmd1));
+
+        // same values -> true
+        assertTrue(cmd1.equals(cmd2));
+
+        // null -> false
+        assertFalse(cmd1.equals(null));
+
+        // different type -> false
+        assertFalse(cmd1.equals(1));
+
+        // different NRIC -> false
+        assertFalse(cmd1.equals(cmd3));
+    }
+
+    @Test
+    public void toStringMethod() {
+        ListAppointmentCommand command = new ListAppointmentCommand("S1234567A");
+        String expected = ListAppointmentCommand.class.getCanonicalName()
+                + "{targetNric=S1234567A}";
+        assertEquals(expected, command.toString());
+    }
+}

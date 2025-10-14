@@ -30,7 +30,7 @@ public class AddCommand extends Command {
             + PREFIX_GENDER + "GENDER "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_DOB + "DOB"
+            + PREFIX_DOB + "14-10-2025 "
             + PREFIX_ADDRESS + "ADDRESS "
             + "[" + PREFIX_TAG + "MEDICALHISTORY]...\n"
             + "Example: " + COMMAND_WORD + " "
