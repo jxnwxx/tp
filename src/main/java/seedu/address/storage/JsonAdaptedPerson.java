@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.medicalhistory.MedicalHistory;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
@@ -19,7 +20,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -87,9 +87,9 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
+        final List<MedicalHistory> personMedicalHistories = new ArrayList<>();
         for (JsonAdaptedTag tag : tags) {
-            personTags.add(tag.toModelType());
+            personMedicalHistories.add(tag.toModelType());
         }
         final List<Appointment> personAppointments = new ArrayList<>();
         for (JsonAdaptedAppointment appointment : appointments) {
@@ -153,12 +153,12 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
+        final Set<MedicalHistory> modelMedicalHistories = new HashSet<>(personMedicalHistories);
 
         final ArrayList<Appointment> modelAppointments = new ArrayList<>(personAppointments);
 
         return new Person(modelName, modelNric, modelGender, modelPhone,
-                modelEmail, modelDateOfBirth, modelAddress, modelTags, modelAppointments);
+                modelEmail, modelDateOfBirth, modelAddress, modelMedicalHistories, modelAppointments);
     }
 
 }
