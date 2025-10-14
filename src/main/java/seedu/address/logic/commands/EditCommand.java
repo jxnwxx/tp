@@ -2,7 +2,9 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DOB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -25,7 +27,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
@@ -45,8 +49,10 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_NRIC + "NRIC] "
+            + "[" + PREFIX_GENDER + "GENDER] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_DOB + "DOB] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -102,14 +108,16 @@ public class EditCommand extends Command {
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Nric updatedNric = editPersonDescriptor.getNric().orElse(personToEdit.getNric());
+        Gender updatedGender = editPersonDescriptor.getGender().orElse(personToEdit.getGender());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
+        DateOfBirth updatedDateOfBirth = editPersonDescriptor.getDob().orElse(personToEdit.getDob());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         ArrayList<Appointment> updatedAppointments = personToEdit.getAppointments();
 
-        return new Person(updatedName, updatedNric, updatedPhone, updatedEmail, updatedAddress,
-                updatedTags, updatedAppointments);
+        return new Person(updatedName, updatedNric, updatedGender, updatedPhone,
+                updatedEmail, updatedDateOfBirth, updatedAddress, updatedTags, updatedAppointments);
     }
 
     @Override
@@ -143,8 +151,10 @@ public class EditCommand extends Command {
     public static class EditPersonDescriptor {
         private Name name;
         private Nric nric;
+        private Gender gender;
         private Phone phone;
         private Email email;
+        private DateOfBirth dateOfBirth;
         private Address address;
         private Set<Tag> tags;
 
@@ -157,8 +167,10 @@ public class EditCommand extends Command {
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
             setNric(toCopy.nric);
+            setGender(toCopy.gender);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
+            setDob(toCopy.dateOfBirth);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
         }
@@ -167,7 +179,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, nric, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, nric, phone, email, dateOfBirth, address, tags);
         }
 
         public void setName(Name name) {
@@ -186,6 +198,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(nric);
         }
 
+        public void setGender(Gender gender) {
+            this.gender = gender;
+        }
+
+        public Optional<Gender> getGender() {
+            return Optional.ofNullable(gender);
+        }
+
         public void setPhone(Phone phone) {
             this.phone = phone;
         }
@@ -200,6 +220,14 @@ public class EditCommand extends Command {
 
         public Optional<Email> getEmail() {
             return Optional.ofNullable(email);
+        }
+
+        public void setDob(DateOfBirth dateOfBirth) {
+            this.dateOfBirth = dateOfBirth;
+        }
+
+        public Optional<DateOfBirth> getDob() {
+            return Optional.ofNullable(dateOfBirth);
         }
 
         public void setAddress(Address address) {
@@ -241,8 +269,10 @@ public class EditCommand extends Command {
             EditPersonDescriptor otherEditPersonDescriptor = (EditPersonDescriptor) other;
             return Objects.equals(name, otherEditPersonDescriptor.name)
                     && Objects.equals(nric, otherEditPersonDescriptor.nric)
+                    && Objects.equals(gender, otherEditPersonDescriptor.gender)
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
+                    && Objects.equals(dateOfBirth, otherEditPersonDescriptor.dateOfBirth)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags);
         }
@@ -252,8 +282,10 @@ public class EditCommand extends Command {
             return new ToStringBuilder(this)
                     .add("name", name)
                     .add("nric", nric)
+                    .add("gender", gender)
                     .add("phone", phone)
                     .add("email", email)
+                    .add("dob", dateOfBirth)
                     .add("address", address)
                     .add("tags", tags)
                     .toString();

@@ -9,7 +9,7 @@
 
 
 ## Overview
-DoctorBase is a desktop application with a text-based interface, designed for doctors who want to manage both patient records and clinic administration tasks quickly using the keyboard.
+DoctorBase is a desktop application with a keyboard-first, command-driven interface, designed for doctors to manage patient records and clinic administration tasks efficiently.
 
 ### Target User
 DoctorBase is made for doctors who wish to handle both medical practice and administrative tasks on their own.
