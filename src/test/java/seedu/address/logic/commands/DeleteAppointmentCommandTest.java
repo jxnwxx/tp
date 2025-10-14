@@ -5,15 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.logic.commands.DeleteAppointmentCommand.MESSAGE_APPOINTMENT_NOT_FOUND;
 import static seedu.address.logic.commands.DeleteAppointmentCommand.MESSAGE_PERSON_NOT_FOUND;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
@@ -27,10 +24,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.UserPrefs;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
 
@@ -114,7 +109,7 @@ public class DeleteAppointmentCommandTest {
         String targetNric = BENSON.getNric().toString();
         Index targetIndex = Index.fromOneBased(1);
         DeleteAppointmentCommand deleteAppointmentCommand = new DeleteAppointmentCommand(targetNric, targetIndex);
-        String expected = DeleteAppointmentCommand.class.getCanonicalName() + "{targetNric=" + targetNric
+        String expected = DeleteAppointmentCommand.class.getCanonicalName() + "{targetNric=" + targetNric + ", "
                 + "targetIndex=" + targetIndex + "}";
         assertEquals(expected, deleteAppointmentCommand.toString());
     }
