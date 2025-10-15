@@ -15,6 +15,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -32,6 +33,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private AppointmentListPanel appointmentListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -43,6 +45,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane appointmentListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -151,6 +156,22 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.show();
     }
 
+    public void showPersonList() {
+        personListPanelPlaceholder.setVisible(true);
+        appointmentListPanelPlaceholder.setVisible(false);
+    }
+
+    public void showAppointmentList() {
+        personListPanelPlaceholder.setVisible(false);
+        appointmentListPanelPlaceholder.setVisible(true);
+    }
+
+    @FXML
+    public void handleListAppointment() {
+        showAppointmentList();
+    }
+
+
     /**
      * Closes the application.
      */
@@ -180,6 +201,12 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.isShowAppointment()) {
+                handleListAppointment();
+            } else {
+                showPersonList();
             }
 
             if (commandResult.isExit()) {
