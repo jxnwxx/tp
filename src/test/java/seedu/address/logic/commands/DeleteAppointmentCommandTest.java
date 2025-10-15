@@ -13,6 +13,9 @@ import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 
 import java.nio.file.Path;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -27,7 +30,9 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.Title;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.PersonBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -37,15 +42,18 @@ public class DeleteAppointmentCommandTest {
 
     @Test
     public void execute_validNricValidIndex_success() throws Exception {
+        Person personWithAppointment = createPersonWithAppointment();
+
         DeleteAppointmentCommand deleteAppointmentCommand = new DeleteAppointmentCommand(
-                BENSON.getNric().toString(),
+                personWithAppointment.getNric().toString(),
                 INDEX_FIRST_PERSON);
 
-        Appointment appointmentToDelete = BENSON.getAppointments().get(INDEX_FIRST_PERSON.getZeroBased());
+        Appointment appointmentToDelete = personWithAppointment.getAppointments()
+                .get(INDEX_FIRST_PERSON.getZeroBased());
         String expectedMessage = String.format(DeleteAppointmentCommand.MESSAGE_DELETE_APPOINTMENT_SUCCESS,
-                Messages.format(BENSON), appointmentToDelete);
+                Messages.format(personWithAppointment), appointmentToDelete);
 
-        ModelStubWithPerson modelStub = new ModelStubWithPerson(BENSON);
+        ModelStubWithPerson modelStub = new ModelStubWithPerson(personWithAppointment);
         CommandResult commandResult = deleteAppointmentCommand.execute(modelStub);
 
         Person updatedPerson = modelStub.person;
@@ -112,6 +120,23 @@ public class DeleteAppointmentCommandTest {
         String expected = DeleteAppointmentCommand.class.getCanonicalName() + "{targetNric=" + targetNric + ", "
                 + "targetIndex=" + targetIndex + "}";
         assertEquals(expected, deleteAppointmentCommand.toString());
+    }
+
+    private Person createPersonWithAppointment() {
+        return new PersonBuilder().withName("Benson Meier")
+                .withNric("S9599208J")
+                .withGender("Male")
+                .withAddress("311, Clementi Ave 2, #02-25")
+                .withEmail("johnd@example.com")
+                .withDob("08-10-2001")
+                .withPhone("98765432")
+                .withTags("owesMoney", "friends")
+                .withAppointments(new ArrayList<>(List.of(
+                        new Appointment(
+                                new Title("Dentist Appointment"),
+                                LocalDateTime.of(2025, 10, 7, 14, 30)
+                        )
+                ))).build();
     }
 
     /**
