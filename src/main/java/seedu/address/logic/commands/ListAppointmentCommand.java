@@ -22,7 +22,6 @@ public class ListAppointmentCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all appointments for %1$s [%2$s]";
     public static final String MESSAGE_PERSON_NOT_FOUND = "No person with this NRIC exists in the address book.";
-    public static final String MESSAGE_NO_APPOINTMENTS = "No appointments found";
 
     private final String targetNric;
 
