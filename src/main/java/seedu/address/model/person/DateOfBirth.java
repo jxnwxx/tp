@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
@@ -51,6 +52,16 @@ public class DateOfBirth {
             return false;
         }
         return true;
+    }
+
+    /**
+     * Method to obtain age of patient
+     *
+     * @return Age of patient as a String
+     */
+    public String getAge() {
+        Period period = Period.between(this.date, LocalDate.now());
+        return String.valueOf(period.getYears());
     }
 
 

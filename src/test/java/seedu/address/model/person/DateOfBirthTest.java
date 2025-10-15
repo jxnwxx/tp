@@ -1,8 +1,13 @@
 package seedu.address.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 
 import org.junit.jupiter.api.Test;
 
@@ -35,6 +40,21 @@ public class DateOfBirthTest {
     }
 
     @Test
+    public void getAgeTest() {
+        // valid date
+        DateOfBirth dob = new DateOfBirth("20-12-2002");
+        assertEquals(dob.getAge(), String.valueOf(Period
+                .between(LocalDate.parse("20-12-2002", DateTimeFormatter
+                        .ofPattern("dd-MM-yyyy")), LocalDate.now()).getYears()));
+    }
+
+    @Test
+    public void toStringTest() {
+        DateOfBirth dob = new DateOfBirth("20-12-2002");
+        assertEquals("20-12-2002", dob.toString());
+    }
+
+    @Test
     public void equals() {
         DateOfBirth dateOfBirth = new DateOfBirth("20-12-2002");
 
@@ -52,5 +72,11 @@ public class DateOfBirthTest {
 
         // different values -> return false
         assertFalse(dateOfBirth.equals("02-02-1999"));
+    }
+
+    @Test
+    public void hashCodeTest() {
+        DateOfBirth dob = new DateOfBirth("20-12-2002");
+        assertEquals("20-12-2002".hashCode(), dob.hashCode());
     }
 }
