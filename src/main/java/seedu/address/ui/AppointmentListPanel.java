@@ -21,9 +21,9 @@ public class AppointmentListPanel extends UiPart<Region> {
     /**
      * Creates a {@code AppointmentListPanel} with an empty list.
      */
-    public AppointmentListPanel() {
+    public AppointmentListPanel(ObservableList<Appointment> appointments) {
         super(FXML);
-        appointmentListView.setItems(FXCollections.observableArrayList());
+        appointmentListView.setItems(appointments);
         appointmentListView.setCellFactory(listView -> new AppointmentListViewCell());
     }
 

@@ -89,4 +89,7 @@ public interface Model {
      * Returns person with the given NRIC
      */
     Person findPersonByNric(String targetNric);
+
+    Person getSelectedPerson();
+    void setSelectedPerson(Person person);
 }

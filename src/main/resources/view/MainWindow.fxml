@@ -41,15 +41,17 @@
           </padding>
         </StackPane>
 
-        <VBox fx:id="personList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-          <padding>
-            <Insets bottom="10" left="10" right="10" top="10" />
-          </padding>
-          <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
-          <StackPane fx:id="appointmentListPanelPlaceholder" visible="false" VBox.vgrow="ALWAYS" />
-        </VBox>
+          <StackPane fx:id="listPanelStack" VBox.vgrow="ALWAYS" styleClass="pane-with-border">
+              <padding>
+                  <Insets top="10" right="10" bottom="10" left="10" />
+              </padding>
 
-        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
+              <StackPane fx:id="personListPanelPlaceholder" visible="true" />
+              <StackPane fx:id="appointmentListPanelPlaceholder" visible="false" />
+          </StackPane>
+
+
+          <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
     </Scene>
   </scene>

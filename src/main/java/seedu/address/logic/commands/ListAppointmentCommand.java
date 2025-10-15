@@ -46,7 +46,7 @@ public class ListAppointmentCommand extends Command {
             throw new CommandException(MESSAGE_PERSON_NOT_FOUND);
         }
 
-        // AtomicInteger counter = new AtomicInteger(1);
+        model.setSelectedPerson(targetPerson);
         return new CommandResult(String.format(MESSAGE_SUCCESS, targetPerson.getName(),
                 targetPerson.getNric()), false, true, false);
     }
