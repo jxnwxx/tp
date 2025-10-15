@@ -76,7 +76,6 @@ public class LogicManager implements Logic {
         return model.getSelectedPerson();
     }
 
-
     @Override
     public Path getAddressBookFilePath() {
         return model.getAddressBookFilePath();
