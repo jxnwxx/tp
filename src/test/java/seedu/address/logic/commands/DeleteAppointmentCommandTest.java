@@ -217,6 +217,16 @@ public class DeleteAppointmentCommandTest {
         public Person findPersonByNric(String targetNric) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public Person getSelectedPerson() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setSelectedPerson(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
@@ -253,5 +263,7 @@ public class DeleteAppointmentCommandTest {
         public ReadOnlyAddressBook getAddressBook() {
             return new AddressBook();
         }
+
+
     }
 }

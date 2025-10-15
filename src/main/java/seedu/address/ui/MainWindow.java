@@ -16,7 +16,6 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -157,21 +156,38 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.show();
     }
 
+    /**
+     * Enable showing Person list and hides Appointment list
+     */
     public void showPersonList() {
         personListPanelPlaceholder.setVisible(true);
         appointmentListPanelPlaceholder.setVisible(false);
+
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
     }
 
+    /**
+     * Enable showing Appointment list and hides Person list
+     */
     public void showAppointmentList() {
         personListPanelPlaceholder.setVisible(false);
         appointmentListPanelPlaceholder.setVisible(true);
     }
 
+    /**
+     * Set Appointment list content and displays it
+     */
     @FXML
     public void handleListAppointment() {
         appointmentListPanel =
                 new AppointmentListPanel(FXCollections.observableList(logic.getSelectedPerson().getAppointments()));
         appointmentListPanelPlaceholder.getChildren().add(appointmentListPanel.getRoot());
+
+        StatusBarFooter statusBarFooter =
+                new StatusBarFooter(logic.getAddressBookFilePath(), logic.getSelectedPerson());
+        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+
         showAppointmentList();
     }
 

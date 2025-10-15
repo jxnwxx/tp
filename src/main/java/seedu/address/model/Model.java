@@ -90,6 +90,13 @@ public interface Model {
      */
     Person findPersonByNric(String targetNric);
 
+    /**
+     * Returns selected Person for Appointment commands
+     */
     Person getSelectedPerson();
+
+    /**
+     * Sets Person for Appointment commands
+     */
     void setSelectedPerson(Person person);
 }
