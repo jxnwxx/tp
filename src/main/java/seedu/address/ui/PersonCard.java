@@ -35,8 +35,6 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label name;
     @FXML
-    private Label nric;
-    @FXML
     private Label gender;
     @FXML
     private Label id;
@@ -60,13 +58,13 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName);
-        nric.setText("NRIC : " + person.getNric().value);
+        name.setText(person.getName().fullName + ", " + person.getDob().getAge()
+                + " [" + person.getNric().value + "]");
         gender.setText(person.getGender().gender.toString());
-        phone.setText("ph : " + person.getPhone().value);
+        phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-        dob.setText("Age : " + person.getDob().getAge());
+        dob.setText("DOB : " + person.getDob().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
