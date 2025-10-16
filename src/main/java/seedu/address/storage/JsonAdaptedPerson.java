@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.medicalhistory.MedicalHistory;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
@@ -19,7 +20,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -45,7 +45,8 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("nric") String nric,
                              @JsonProperty("gender") String gender, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("dob") String dateOfBirth,
-                             @JsonProperty("address") String address, @JsonProperty("tags") List<JsonAdaptedTag> tags,
+                             @JsonProperty("address") String address,
+                             @JsonProperty("medicalhistory") List<JsonAdaptedTag> medicalhistory,
                              @JsonProperty("appointments") List<JsonAdaptedAppointment> appointments) {
         this.name = name;
         this.nric = nric;
@@ -54,8 +55,8 @@ class JsonAdaptedPerson {
         this.email = email;
         this.dateOfBirth = dateOfBirth;
         this.address = address;
-        if (tags != null) {
-            this.tags.addAll(tags);
+        if (medicalhistory != null) {
+            this.tags.addAll(medicalhistory);
         }
         if (appointments != null) {
             this.appointments.addAll(appointments);
@@ -87,9 +88,9 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
+        final List<MedicalHistory> personMedicalHistories = new ArrayList<>();
         for (JsonAdaptedTag tag : tags) {
-            personTags.add(tag.toModelType());
+            personMedicalHistories.add(tag.toModelType());
         }
         final List<Appointment> personAppointments = new ArrayList<>();
         for (JsonAdaptedAppointment appointment : appointments) {
@@ -153,12 +154,12 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
+        final Set<MedicalHistory> modelMedicalHistories = new HashSet<>(personMedicalHistories);
 
         final ArrayList<Appointment> modelAppointments = new ArrayList<>(personAppointments);
 
         return new Person(modelName, modelNric, modelGender, modelPhone,
-                modelEmail, modelDateOfBirth, modelAddress, modelTags, modelAppointments);
+                modelEmail, modelDateOfBirth, modelAddress, modelMedicalHistories, modelAppointments);
     }
 
 }

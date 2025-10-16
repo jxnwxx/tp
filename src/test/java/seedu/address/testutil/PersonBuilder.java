@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.medicalhistory.MedicalHistory;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
@@ -13,7 +14,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -36,7 +36,7 @@ public class PersonBuilder {
     private Email email;
     private DateOfBirth dateOfBirth;
     private Address address;
-    private Set<Tag> tags;
+    private Set<MedicalHistory> medicalHistories;
     private ArrayList<Appointment> appointments;
 
     /**
@@ -50,7 +50,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         dateOfBirth = new DateOfBirth(DEFAULT_DOB);
         address = new Address(DEFAULT_ADDRESS);
-        tags = new HashSet<>();
+        medicalHistories = new HashSet<>();
         appointments = new ArrayList<>();
     }
 
@@ -65,7 +65,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         dateOfBirth = personToCopy.getDob();
         address = personToCopy.getAddress();
-        tags = new HashSet<>(personToCopy.getTags());
+        medicalHistories = new HashSet<>(personToCopy.getTags());
         appointments = new ArrayList<>(personToCopy.getAppointments());
     }
 
@@ -97,7 +97,7 @@ public class PersonBuilder {
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
     public PersonBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+        this.medicalHistories = SampleDataUtil.getTagSet(tags);
         return this;
     }
 
@@ -146,7 +146,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, nric, gender, phone, email, dateOfBirth, address, tags, appointments);
+        return new Person(name, nric, gender, phone, email, dateOfBirth, address, medicalHistories, appointments);
     }
 
 }

@@ -26,6 +26,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.medicalhistory.MedicalHistory;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
@@ -34,7 +35,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -54,7 +54,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_DOB + "DOB] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "MEDICALHISTORY]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -113,11 +113,11 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         DateOfBirth updatedDateOfBirth = editPersonDescriptor.getDob().orElse(personToEdit.getDob());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Set<MedicalHistory> updatedMedicalHistories = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         ArrayList<Appointment> updatedAppointments = personToEdit.getAppointments();
 
         return new Person(updatedName, updatedNric, updatedGender, updatedPhone,
-                updatedEmail, updatedDateOfBirth, updatedAddress, updatedTags, updatedAppointments);
+                updatedEmail, updatedDateOfBirth, updatedAddress, updatedMedicalHistories, updatedAppointments);
     }
 
     @Override
@@ -156,7 +156,7 @@ public class EditCommand extends Command {
         private Email email;
         private DateOfBirth dateOfBirth;
         private Address address;
-        private Set<Tag> tags;
+        private Set<MedicalHistory> medicalHistories;
 
         public EditPersonDescriptor() {}
 
@@ -172,14 +172,14 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setDob(toCopy.dateOfBirth);
             setAddress(toCopy.address);
-            setTags(toCopy.tags);
+            setTags(toCopy.medicalHistories);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, nric, phone, email, dateOfBirth, address, tags);
+            return CollectionUtil.isAnyNonNull(name, nric, phone, email, dateOfBirth, address, medicalHistories);
         }
 
         public void setName(Name name) {
@@ -242,8 +242,8 @@ public class EditCommand extends Command {
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
          */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public void setTags(Set<MedicalHistory> medicalHistories) {
+            this.medicalHistories = (medicalHistories != null) ? new HashSet<>(medicalHistories) : null;
         }
 
         /**
@@ -251,8 +251,9 @@ public class EditCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Optional<Set<MedicalHistory>> getTags() {
+            return (medicalHistories != null)
+                    ? Optional.of(Collections.unmodifiableSet(medicalHistories)) : Optional.empty();
         }
 
         @Override
@@ -274,7 +275,7 @@ public class EditCommand extends Command {
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(dateOfBirth, otherEditPersonDescriptor.dateOfBirth)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
-                    && Objects.equals(tags, otherEditPersonDescriptor.tags);
+                    && Objects.equals(medicalHistories, otherEditPersonDescriptor.medicalHistories);
         }
 
         @Override
@@ -287,7 +288,7 @@ public class EditCommand extends Command {
                     .add("email", email)
                     .add("dob", dateOfBirth)
                     .add("address", address)
-                    .add("tags", tags)
+                    .add("medicalhistory", medicalHistories)
                     .toString();
         }
     }

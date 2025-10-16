@@ -11,6 +11,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.Title;
+import seedu.address.model.medicalhistory.MedicalHistory;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
@@ -19,7 +20,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Nric;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
@@ -36,7 +36,7 @@ public class SampleDataUtil {
                 new Email("alexyeoh@example.com"),
                 new DateOfBirth("12-12-2001"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("friends"),
+                getTagSet("overweight"),
                 new ArrayList<>(List.of(
                     new Appointment(
                         new Title("Dentist Appointment"),
@@ -60,7 +60,7 @@ public class SampleDataUtil {
                 new Email("berniceyu@example.com"),
                 new DateOfBirth("30-06-1999"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("colleagues", "friends"),
+                getTagSet("low sugar", "high blood pressure"),
                 new ArrayList<>(List.of(
                     new Appointment(
                         new Title("Flu Jab"),
@@ -76,7 +76,7 @@ public class SampleDataUtil {
                 new Email("charlotte@example.com"),
                 new DateOfBirth("01-01-2000"),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("neighbours"),
+                getTagSet("irregular heart rate"),
                 new ArrayList<>(List.of(
                     new Appointment(
                         new Title("Room 2B"),
@@ -92,7 +92,7 @@ public class SampleDataUtil {
                 new Email("lidavid@example.com"),
                 new DateOfBirth("10-12-2015"),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet("family"),
+                getTagSet("covid"),
                 new ArrayList<>(List.of(
                     new Appointment(
                         new Title("Follow-Up, Eczema"),
@@ -108,7 +108,7 @@ public class SampleDataUtil {
                 new Email("irfan@example.com"),
                 new DateOfBirth("02-08-2003"),
                 new Address("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet("classmates"),
+                getTagSet("hepatitis B"),
                 new ArrayList<>(List.of(
                     new Appointment(
                         new Title("Covid-19"),
@@ -124,7 +124,7 @@ public class SampleDataUtil {
                 new Email("royb@example.com"),
                 new DateOfBirth("18-02-2001"),
                 new Address("Blk 45 Aljunied Street 85, #11-31"),
-                getTagSet("colleagues"),
+                getTagSet("Eczema"),
                 new ArrayList<>(List.of(
                     new Appointment(
                         new Title("Covid-19"),
@@ -146,9 +146,9 @@ public class SampleDataUtil {
     /**
      * Returns a tag set containing the list of strings given.
      */
-    public static Set<Tag> getTagSet(String... strings) {
+    public static Set<MedicalHistory> getTagSet(String... strings) {
         return Arrays.stream(strings)
-                .map(Tag::new)
+                .map(MedicalHistory::new)
                 .collect(Collectors.toSet());
     }
 

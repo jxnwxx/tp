@@ -10,7 +10,7 @@ import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.medicalhistory.MedicalHistory;
 
 /**
  * Represents a Person in the address book.
@@ -28,15 +28,15 @@ public class Person {
 
     // Data fields
     private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Set<MedicalHistory> medicalHistories = new HashSet<>();
     private final ArrayList<Appointment> appointments;
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Nric nric, Gender gender, Phone phone, Email email, DateOfBirth dateOfBirth,
-                  Address address, Set<Tag> tags, ArrayList<Appointment> appointments) {
-        requireAllNonNull(name, nric, gender, phone, email, dateOfBirth, address, tags, appointments);
+                  Address address, Set<MedicalHistory> medicalHistories, ArrayList<Appointment> appointments) {
+        requireAllNonNull(name, nric, gender, phone, email, dateOfBirth, address, medicalHistories, appointments);
         this.name = name;
         this.nric = nric;
         this.gender = gender;
@@ -44,7 +44,7 @@ public class Person {
         this.email = email;
         this.dateOfBirth = dateOfBirth;
         this.address = address;
-        this.tags.addAll(tags);
+        this.medicalHistories.addAll(medicalHistories);
         this.appointments = appointments;
     }
 
@@ -80,8 +80,8 @@ public class Person {
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Set<MedicalHistory> getTags() {
+        return Collections.unmodifiableSet(medicalHistories);
     }
 
     public ArrayList<Appointment> getAppointments() {
@@ -124,13 +124,13 @@ public class Person {
                 && email.equals(otherPerson.email)
                 && dateOfBirth.equals(otherPerson.dateOfBirth)
                 && address.equals(otherPerson.address)
-                && tags.equals(otherPerson.tags);
+                && medicalHistories.equals(otherPerson.medicalHistories);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, nric, gender, phone, email, dateOfBirth, address, tags);
+        return Objects.hash(name, nric, gender, phone, email, dateOfBirth, address, medicalHistories);
     }
 
     @Override
@@ -143,7 +143,7 @@ public class Person {
                 .add("email", email)
                 .add("dob", dateOfBirth)
                 .add("address", address)
-                .add("tags", tags)
+                .add("medicalhistory", medicalHistories)
                 .toString();
     }
 

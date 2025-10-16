@@ -1,4 +1,4 @@
-package seedu.address.model.tag;
+package seedu.address.model.medicalhistory;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Tag in the address book.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
-public class Tag {
+public class MedicalHistory {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Tag names should be alphanumeric and may contain hyphens or underscores";
@@ -20,7 +20,7 @@ public class Tag {
      *
      * @param tagName A valid tag name.
      */
-    public Tag(String tagName) {
+    public MedicalHistory(String tagName) {
         requireNonNull(tagName);
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
         this.tagName = tagName;
@@ -40,12 +40,12 @@ public class Tag {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof Tag)) {
+        if (!(other instanceof MedicalHistory)) {
             return false;
         }
 
-        Tag otherTag = (Tag) other;
-        return tagName.equals(otherTag.tagName);
+        MedicalHistory otherMedicalHistory = (MedicalHistory) other;
+        return tagName.equals(otherMedicalHistory.tagName);
     }
 
     @Override
