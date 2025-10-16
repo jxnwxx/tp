@@ -7,6 +7,11 @@
 <GridPane styleClass="status-bar" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10" />
+    <ColumnConstraints hgrow="NEVER" />
   </columnConstraints>
-  <Label fx:id="saveLocationStatus" />
+  <!-- Left side -->
+  <Label fx:id="saveLocationStatus" GridPane.columnIndex="0" style="-fx-alignment: center-left;" />
+
+  <!-- Right side -->
+  <Label fx:id="listStatus" GridPane.columnIndex="1" style="-fx-alignment: center-right;" />
 </GridPane>

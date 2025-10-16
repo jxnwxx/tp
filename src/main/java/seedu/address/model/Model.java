@@ -89,4 +89,14 @@ public interface Model {
      * Returns person with the given NRIC
      */
     Person findPersonByNric(String targetNric);
+
+    /**
+     * Returns selected Person for Appointment commands
+     */
+    Person getSelectedPerson();
+
+    /**
+     * Sets Person for Appointment commands
+     */
+    void setSelectedPerson(Person person);
 }
