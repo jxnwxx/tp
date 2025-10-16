@@ -175,4 +175,6 @@ public class LogicManagerTest {
         expectedModel.addPerson(expectedPerson);
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
+
+
 }

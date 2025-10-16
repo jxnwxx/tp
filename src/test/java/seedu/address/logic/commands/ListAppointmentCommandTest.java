@@ -35,7 +35,7 @@ public class ListAppointmentCommandTest {
 
         // Benson has 1 appointment
         String expectedMessage = String.format(ListAppointmentCommand.MESSAGE_SUCCESS, person.getName(),
-                "1. " + person.getAppointments().get(0));
+                person.getNric());
         Model expectedModel = new ModelManager(model.getAddressBook(), model.getUserPrefs());
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -45,7 +45,7 @@ public class ListAppointmentCommandTest {
 
         // Alice has no appointment
         expectedMessage = String.format(ListAppointmentCommand.MESSAGE_SUCCESS, person.getName(),
-                ListAppointmentCommand.MESSAGE_NO_APPOINTMENTS);
+                person.getNric());
         expectedModel = new ModelManager(model.getAddressBook(), model.getUserPrefs());
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);

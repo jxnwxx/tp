@@ -3,12 +3,9 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
 
 /**
@@ -23,9 +20,8 @@ public class ListAppointmentCommand extends Command {
             + PREFIX_NRIC + "NRIC\n"
             + "Example: " + COMMAND_WORD + " i/S1234567A";
 
-    public static final String MESSAGE_SUCCESS = "Listed all appointments for %1$s:\n %2$s";
+    public static final String MESSAGE_SUCCESS = "Listed all appointments for %1$s [%2$s]";
     public static final String MESSAGE_PERSON_NOT_FOUND = "No person with this NRIC exists in the address book.";
-    public static final String MESSAGE_NO_APPOINTMENTS = "No appointments found";
 
     private final String targetNric;
 
@@ -46,13 +42,9 @@ public class ListAppointmentCommand extends Command {
             throw new CommandException(MESSAGE_PERSON_NOT_FOUND);
         }
 
-        AtomicInteger counter = new AtomicInteger(1);
+        model.setSelectedPerson(targetPerson);
         return new CommandResult(String.format(MESSAGE_SUCCESS, targetPerson.getName(),
-                targetPerson.getAppointments().stream()
-                        .map(Appointment::toString)
-                        .map(appt -> counter.getAndIncrement() + ". " + appt)
-                        .reduce((a, b) -> a + "\n" + b)
-                        .orElse(MESSAGE_NO_APPOINTMENTS)));
+                targetPerson.getNric()), false, true, false);
     }
 
     @Override

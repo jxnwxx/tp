@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -32,6 +33,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private AppointmentListPanel appointmentListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -43,6 +45,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane appointmentListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -152,6 +157,42 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Enable showing Person list and hides Appointment list
+     */
+    public void showPersonList() {
+        personListPanelPlaceholder.setVisible(true);
+        appointmentListPanelPlaceholder.setVisible(false);
+
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+    }
+
+    /**
+     * Enable showing Appointment list and hides Person list
+     */
+    public void showAppointmentList() {
+        personListPanelPlaceholder.setVisible(false);
+        appointmentListPanelPlaceholder.setVisible(true);
+    }
+
+    /**
+     * Set Appointment list content and displays it
+     */
+    @FXML
+    public void handleListAppointment() {
+        appointmentListPanel =
+                new AppointmentListPanel(FXCollections.observableList(logic.getSelectedPerson().getAppointments()));
+        appointmentListPanelPlaceholder.getChildren().add(appointmentListPanel.getRoot());
+
+        StatusBarFooter statusBarFooter =
+                new StatusBarFooter(logic.getAddressBookFilePath(), logic.getSelectedPerson());
+        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+
+        showAppointmentList();
+    }
+
+
+    /**
      * Closes the application.
      */
     @FXML
@@ -180,6 +221,12 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.isShowAppointment()) {
+                handleListAppointment();
+            } else {
+                showPersonList();
             }
 
             if (commandResult.isExit()) {

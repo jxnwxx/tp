@@ -63,7 +63,7 @@ public class DeleteAppointmentCommand extends Command {
 
         Appointment deletedAppointment = targetPersonAppointments.remove(targetIndex.getZeroBased());
         return new CommandResult(String.format(MESSAGE_DELETE_APPOINTMENT_SUCCESS,
-                Messages.format(targetPerson), deletedAppointment));
+                Messages.format(targetPerson), deletedAppointment), false, true, false);
     }
 
     @Override
