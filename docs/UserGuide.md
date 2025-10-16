@@ -3,40 +3,70 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+# DoctorBase
 
-* Table of Contents
-{:toc}
+DoctorBase is a **desktop app for managing patient details and appointments, optimized for use via a keyboard input** which still having the benefits of a visual interface. <br>
+This is the **perfect product** for solo doctors who take care of numerous patients with little assistance!
+
+# Table of Contents
+1. [Quick start](#quick-start)
+2. [Features](#features)
+3. [FAQ](#faq)
+4. [Known issues](#known-issues)
+5. [Command summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
 
 1. Ensure you have Java `17` or above installed in your Computer.<br>
-   **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
+   * To check your Java version, in your computer's search bar, type `terminal` <br>
+   * Then within the shell, type out this command and press enter: <br>
+   ```
+   java -version
+   ```
+   * If you do not have java 17 installed, please download it using these links
+     * [**Windows**](https://se-education.org/guides/tutorials/javaInstallationWindows.html)
+     * [**Mac OS**](https://se-education.org/guides/tutorials/javaInstallationMac.html)
+     * [**Linux**](https://se-education.org/guides/tutorials/javaInstallationLinux.html)
 
-1. Download the latest `.jar` file from [here](https://github.com/se-edu/addressbook-level3/releases).
+2. Download the latest `.jar` file (release) from [here](https://github.com/se-edu/addressbook-level3/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+3. Copy the file to the folder you want to use as the _home folder_ for your DoctorBase.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+4. To get started, open your computer’s command prompt (also called the terminal). Then, go to the folder where you saved the .jar file <br>
+   * you can do this by typing `cd` followed by the `folder’s path`.
+   * eg. file is located at home/documents/test
+   ````
+   cd home/documents/test
+   ````
+5. Once you're in the right folder, type this command and press Enter:
+   ```
+   java -jar DoctorBase.jar
+   ```
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `list-appt S8052802G` : Lists all appointments of patient with nric S8052802G
+
+   * `add n/John Doe i/S8052802G g/m p/98765432 e/johnd@example.com d/12-12-2002 a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+
+   * `add-appt i/S8052802G at/flu jab ad/29-02-2025, 0900` : Adds an appointment called `flu jab` to the patient with nric S8052802G
 
    * `delete 3` : Deletes the 3rd contact shown in the current list.
+
+   * `delete-appt i/S8052802G id/2` : Deletes the 2nd appointment of patient of nric S8052802G
 
    * `clear` : Deletes all contacts.
 
    * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+7. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
