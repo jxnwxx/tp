@@ -12,7 +12,6 @@ import java.time.format.DateTimeFormatter;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.Messages;
 import seedu.address.logic.commands.EditAppointmentCommand.EditAppointmentDescriptor;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
@@ -27,6 +26,18 @@ public class EditAppointmentCommandTest {
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy, HHmm");
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+
+    @Test
+    public void nricTest() {
+        // not found
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Patient targetPatient = expectedModel.findPatientByNric("S1231232D");
+        assertTrue(targetPatient == null);
+
+        // found
+        Patient foundPatient = expectedModel.findPatientByNric("S3216508G");
+        assertTrue(foundPatient != null);
+    }
 
     @Test
     public void execute_allFieldsSpecified_success() {
@@ -48,7 +59,7 @@ public class EditAppointmentCommandTest {
 
         String expectedMessage = String.format(
                 EditAppointmentCommand.MESSAGE_SUCCESS,
-                Messages.format(newPatient)
+                editedAppointment
         );
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
@@ -77,7 +88,7 @@ public class EditAppointmentCommandTest {
 
         String expectedMessage = String.format(
                 EditAppointmentCommand.MESSAGE_SUCCESS,
-                Messages.format(newPatient)
+                editedAppointment
         );
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
@@ -105,7 +116,7 @@ public class EditAppointmentCommandTest {
 
         String expectedMessage = String.format(
                 EditAppointmentCommand.MESSAGE_SUCCESS,
-                Messages.format(newPatient)
+                editedAppointment
         );
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());

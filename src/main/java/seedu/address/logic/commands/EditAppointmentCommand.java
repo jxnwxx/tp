@@ -95,7 +95,7 @@ public class EditAppointmentCommand extends Command {
 
         model.setPatient(targetPerson, newPerson);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(newPerson)));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, editedAppointment));
     }
 
     /**
@@ -127,6 +127,14 @@ public class EditAppointmentCommand extends Command {
         return targetNric.equals(otherEditAppointmentCommand.targetNric)
                 && index.equals(otherEditAppointmentCommand.index)
                 && editAppointmentDescriptor.equals(otherEditAppointmentCommand.editAppointmentDescriptor);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("index", index)
+                .add("editPatientDescriptor", editAppointmentDescriptor)
+                .toString();
     }
 
     /**
@@ -181,6 +189,11 @@ public class EditAppointmentCommand extends Command {
             }
 
             EditAppointmentDescriptor otherEditAppointmentDescriptor = (EditAppointmentDescriptor) other;
+            if (dateTime == null && otherEditAppointmentDescriptor.dateTime == null) {
+                return title.equals(otherEditAppointmentDescriptor.title);
+            } else if (title == null && otherEditAppointmentDescriptor.title == null) {
+                return dateTime.equals(otherEditAppointmentDescriptor.dateTime);
+            }
             return title.equals(otherEditAppointmentDescriptor.title)
                     && dateTime.equals(otherEditAppointmentDescriptor.dateTime);
         }
@@ -189,9 +202,11 @@ public class EditAppointmentCommand extends Command {
         public String toString() {
             return new ToStringBuilder(this)
                     .add("title", title)
-                    .add("date", dateTime.toString())
+                    .add("date", dateTime)
                     .toString();
         }
+
     }
+
 
 }

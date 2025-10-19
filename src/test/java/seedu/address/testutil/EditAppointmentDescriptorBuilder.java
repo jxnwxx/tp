@@ -11,7 +11,7 @@ import seedu.address.model.appointment.Title;
  * A utility class to help with building EditAppointmentDescriptor objects.
  */
 public class EditAppointmentDescriptorBuilder {
-    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy, HHmm");
 
     private EditAppointmentDescriptor descriptor;
 
