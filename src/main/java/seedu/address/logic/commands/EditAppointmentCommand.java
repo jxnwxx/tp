@@ -19,7 +19,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.Title;
-import seedu.address.model.person.Person;
+import seedu.address.model.patient.Patient;
 
 /**
  * Edits the details of an existing patient's appointment in DoctorBase.
@@ -67,7 +67,7 @@ public class EditAppointmentCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        Person targetPerson = model.findPersonByNric(targetNric);
+        Patient targetPerson = model.findPatientByNric(targetNric);
         if (targetPerson == null) {
             throw new CommandException(MESSAGE_PERSON_NOT_FOUND);
         }
@@ -76,7 +76,7 @@ public class EditAppointmentCommand extends Command {
                 targetPerson.getAppointments());
 
         if (index.getZeroBased() >= updatedAppointments.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
         }
 
         Appointment appointmentToEdit = updatedAppointments.get(index.getZeroBased());
@@ -84,7 +84,7 @@ public class EditAppointmentCommand extends Command {
 
         updatedAppointments.set(index.getZeroBased(), editedAppointment);
 
-        Person newPerson = new Person(targetPerson.getName(),
+        Patient newPerson = new Patient(targetPerson.getName(),
                 targetPerson.getNric(),
                 targetPerson.getGender(),
                 targetPerson.getPhone(),
@@ -94,7 +94,7 @@ public class EditAppointmentCommand extends Command {
                 targetPerson.getTags(),
                 updatedAppointments);
 
-        model.setPerson(targetPerson, newPerson);
+        model.setPatient(targetPerson, newPerson);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(newPerson)));
     }
@@ -154,13 +154,21 @@ public class EditAppointmentCommand extends Command {
             return CollectionUtil.isAnyNonNull(title, dateTime);
         }
 
-        public void setTitle(Title title) { this.title = title; }
+        public void setTitle(Title title) {
+            this.title = title;
+        }
 
-        public Optional<Title> getTitle() { return Optional.ofNullable(title); }
+        public Optional<Title> getTitle() {
+            return Optional.ofNullable(title);
+        }
 
-        public void setDateTime(LocalDateTime dateTime) { this.dateTime = dateTime; }
+        public void setDateTime(LocalDateTime dateTime) {
+            this.dateTime = dateTime;
+        }
 
-        public Optional<LocalDateTime> getDateTime() { return Optional.ofNullable(dateTime); }
+        public Optional<LocalDateTime> getDateTime() {
+            return Optional.ofNullable(dateTime);
+        }
 
         @Override
         public boolean equals(Object other) {

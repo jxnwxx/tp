@@ -12,7 +12,7 @@ import seedu.address.logic.commands.EditAppointmentCommand;
 import seedu.address.logic.commands.EditAppointmentCommand.EditAppointmentDescriptor;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Nric;
+import seedu.address.model.patient.Nric;
 
 /**
  * Parses input arguments and creates a new EditAppointmentCommand object
