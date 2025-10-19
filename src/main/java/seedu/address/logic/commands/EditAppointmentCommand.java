@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Objects;
 import java.util.Optional;
 
 import seedu.address.commons.core.index.Index;
@@ -120,12 +119,13 @@ public class EditAppointmentCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
+        if (!(other instanceof EditAppointmentCommand)) {
             return false;
         }
 
         EditAppointmentCommand otherEditAppointmentCommand = (EditAppointmentCommand) other;
-        return index.equals(otherEditAppointmentCommand.index)
+        return targetNric.equals(otherEditAppointmentCommand.targetNric)
+                && index.equals(otherEditAppointmentCommand.index)
                 && editAppointmentDescriptor.equals(otherEditAppointmentCommand.editAppointmentDescriptor);
     }
 
@@ -181,8 +181,8 @@ public class EditAppointmentCommand extends Command {
             }
 
             EditAppointmentDescriptor otherEditAppointmentDescriptor = (EditAppointmentDescriptor) other;
-            return Objects.equals(title, otherEditAppointmentDescriptor.title)
-                    && Objects.equals(dateTime, otherEditAppointmentDescriptor.dateTime);
+            return title.equals(otherEditAppointmentDescriptor.title)
+                    && dateTime.equals(otherEditAppointmentDescriptor.dateTime);
         }
 
         @Override
