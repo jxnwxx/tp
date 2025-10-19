@@ -228,7 +228,7 @@ Furthermore, certain edits can cause the AddressBook to behave in unexpected way
 
 **Q**: The application does not start<br>
 **A**: Please check your current version of java is 17, following the requirements specified by step 1 of [QuickStart](#quick-start) <br>
-If that does not solve the issue, please redownload the latest `.jar` file (release) from [here](https://github.com/se-edu/addressbook-level3/releases) and try again.
+If that does not solve the issue, please redownload the latest `.jar` file (release) from [here](https://github.com/AY2526S1-CS2103T-W10-3/tp/releases) and try again.
 
 --------------------------------------------------------------------------------------------------------------------
 
