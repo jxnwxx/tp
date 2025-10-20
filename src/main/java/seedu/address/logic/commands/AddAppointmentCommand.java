@@ -4,10 +4,11 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_TITLE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -22,13 +23,11 @@ public class AddAppointmentCommand extends Command {
 
     public static final String COMMAND_WORD = "add-appt";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an appointment to the address book. "
-            + "Parameters: "
-            + PREFIX_NRIC + "NRIC "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an appointment to the address book.\n"
+            + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_APPOINTMENT_TITLE + "TITLE "
             + PREFIX_APPOINTMENT_DATETIME + "DATE_TIME (dd-MM-yyyy, HHmm)\n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NRIC + "S1234567A "
+            + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_APPOINTMENT_TITLE + "Dental Checkup "
             + PREFIX_APPOINTMENT_DATETIME + "10-10-2010, 0900\n";
 
@@ -36,27 +35,27 @@ public class AddAppointmentCommand extends Command {
     public static final String MESSAGE_PATIENT_NOT_FOUND = "No patient with this NRIC exists in the address book.";
 
     private final Appointment toAdd;
-    private final String targetNric;
+    private final Index index;
 
     /**
      * Creates an AddAppointmentCommand to add the specified {@code Appointment} to the patient with the given NRIC.
      *
      */
-    public AddAppointmentCommand(String targetNric, Appointment appointment) {
-        requireAllNonNull(targetNric, appointment);
-        requireNonNull(appointment);
-        this.targetNric = targetNric;
+    public AddAppointmentCommand(Index index, Appointment appointment) {
+        requireAllNonNull(index, appointment);
+        this.index = index;
         this.toAdd = appointment;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        List<Patient> lastShownList = model.getFilteredPatientList();
 
-        Patient targetPatient = model.findPatientByNric(targetNric);
-        if (targetPatient == null) {
-            throw new CommandException(MESSAGE_PATIENT_NOT_FOUND);
+        if (index.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
         }
+        Patient targetPatient = lastShownList.get(index.getZeroBased());
 
         ArrayList<Appointment> updatedAppointments = new ArrayList<>(
                 targetPatient.getAppointments()
@@ -93,13 +92,13 @@ public class AddAppointmentCommand extends Command {
 
         AddAppointmentCommand otherAddAppointmentCommand = (AddAppointmentCommand) other;
         return toAdd.equals(otherAddAppointmentCommand.toAdd)
-                && targetNric.equals(otherAddAppointmentCommand.targetNric);
+                && index.equals(otherAddAppointmentCommand.index);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("targetNric", targetNric)
+                .add("index", index)
                 .add("toAdd", toAdd)
                 .toString();
     }
