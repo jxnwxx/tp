@@ -45,7 +45,7 @@ public class DeleteAppointmentCommandTest {
     }
 
     @Test
-    public void execute_ValidIndex_success() {
+    public void execute_validIndex_success() {
         Patient patient = model.getFilteredPatientList().get(INDEX_SECOND_PATIENT.getZeroBased());
 
         model.setSelectedPatient(patient);
@@ -67,7 +67,7 @@ public class DeleteAppointmentCommandTest {
     }
 
     @Test
-    public void execute_InvalidIndex_throwsCommandException() {
+    public void execute_invalidIndex_throwsCommandException() {
         Patient patient = model.getFilteredPatientList().get(INDEX_FIRST_PATIENT.getZeroBased());
         Index outOfBoundsIndex = Index.fromOneBased(patient.getAppointments().size() + 1);
         DeleteAppointmentCommand deleteAppointmentCommand = new DeleteAppointmentCommand(outOfBoundsIndex);

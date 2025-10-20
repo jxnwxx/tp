@@ -17,7 +17,7 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.patient.Patient;
 
 /**
- * Adds an appointment to the patient specified in the address book.
+ * Adds an appointment to the patient specified in Doctorbase.
  */
 public class AddAppointmentCommand extends Command {
 
