@@ -39,7 +39,7 @@ public class EditAppointmentCommand extends Command {
             + PREFIX_APPOINTMENT_TITLE + "Dental Checkup "
             + PREFIX_APPOINTMENT_DATETIME + "10-10-2010, 0900\n";
 
-    public static final String MESSAGE_SUCCESS = "appointment edited for %1$s";
+    public static final String MESSAGE_SUCCESS = "Appointment edited for %1$s";
     public static final String MESSAGE_PERSON_NOT_FOUND = "No person with this NRIC exists in the address book.";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
