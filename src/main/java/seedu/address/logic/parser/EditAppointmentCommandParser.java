@@ -36,11 +36,8 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
                     MESSAGE_INVALID_COMMAND_FORMAT, EditAppointmentCommand.MESSAGE_USAGE));
         }
 
-        Nric nric;
-        Index index;
-
-        nric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC).get());
-        index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
+        Nric nric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC).get());
+        Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NRIC, PREFIX_INDEX, PREFIX_APPOINTMENT_TITLE,
                 PREFIX_APPOINTMENT_DATETIME);

@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
@@ -53,9 +54,7 @@ public class EditAppointmentCommand extends Command {
      * @param editAppointmentDescriptor details to edit the appointment with
      */
     public EditAppointmentCommand(String targetNric, Index index, EditAppointmentDescriptor editAppointmentDescriptor) {
-        requireNonNull(index);
-        requireNonNull(targetNric);
-        requireNonNull(editAppointmentDescriptor);
+        requireAllNonNull(index, targetNric, editAppointmentDescriptor);
 
         this.targetNric = targetNric;
         this.index = index;
