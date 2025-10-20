@@ -60,15 +60,19 @@ Whether you're a solo doctor managing many patients or just looking to streamlin
 
     * `list` : Lists all contacts.
 
-    * `list-appt i/S8052802G` : Lists all appointments of patient with nric S8052802G
+    * `list-appt 2` : Lists all appointments of patient at index 2
 
     * `add n/John Doe i/S8052802G g/m p/98765432 e/johnd@example.com d/12-12-2002 a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the patient list.
 
-    * `add-appt i/S8052802G at/flu jab ad/29-02-2025, 0900` : Adds an appointment called `flu jab` to the patient with nric S8052802G
+    * `add-appt 2 at/flu jab ad/29-02-2025, 0900` : Adds an appointment called `flu jab` to the patient at `INDEX` 2
+
+    * `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
+
+    * `edit-appt 1 at/dental ad/02-02-2002, 0900` : Edit an appointment at `INDEX` 1 of the currently selected patient's appointment list to `dental`
 
     * `delete 3` : Deletes the 3rd contact shown in the current list.
 
-    * `delete-appt i/S8052802G id/2` : Deletes the 2nd appointment of patient of nric S8052802G
+    * `delete-appt 2` : Deletes the 2nd appointment of currently selected patient
 
     * `clear` : Deletes all contacts.
 
@@ -134,11 +138,13 @@ Examples:
 Adds an appointment to a patient's appointment list. <br>
 Useful when you want to record a patient's upcoming appointment
 
-Format: `add-appt i/NRIC at/APPOINTMENT TITLE ad/APPOINTMENT DATE`
+Format: `add-appt INDEX at/APPOINTMENT TITLE ad/APPOINTMENT DATE`
+
+* The `INDEX` refers to the index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `add-appt i/S8052802G at/flu jab ad/29-02-2025, 0900`
-* `add-appt i/T0321323S at/full body checkup ad/18-12-2025, 1000`
+* `add-appt 2 at/flu jab ad/29-02-2025, 0900`
+* `add-appt 1 at/full body checkup ad/18-12-2025, 1000`
 <br>
 <br>
 <br>
@@ -155,16 +161,15 @@ Format: `list`
 
 ### Listing all appointments of patient : `list-appt`
 
-Shows a list of all appointments a patient. <br>
+Shows a list of all appointments of the patient. <br>
 Useful when you want to check the upcoming appointments of a patient
 
-Format: `list-appt i/NRIC`
+Format: `list-appt INDEX`
 
-* Shows a list of all appointments a patient with the specified `NRIC`
+* Shows a list of all appointments a patient with the specified `INDEX`
 
 Examples:
-* `list-appt i/S8052802G`
-* `list-appt i/T0231512Z`
+* `list-appt 1`
 <br>
 <br>
 <br>
@@ -191,17 +196,16 @@ Examples:
 
 ### Editing an appointment : `edit-appt`
 
-Edits an existing appointment from a patient's appointment list
+Edits an existing appointment from the currently selected patient's appointment list
 
-Format: `edit-appt i/NRIC id/INDEX [at/APPOINTMENT TITLE] [ad/APPOINTMENT DATE]`
+Format: `edit-appt INDEX [at/APPOINTMENT TITLE] [ad/APPOINTMENT DATE]`
 
-* Edits the patient at the specified `NRIC`.
 * Edits the appointment at the specified `INDEX`.The index refers to the index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
 * Existing values will be updated to the input values
 
 Examples:
-* `edit-appt i/S1234567D id/1 at/dental ad/02-02-2002, 0900`
-* `edit-appt i/S3241232A id/2 ad/20-12-2025, 1200`
+* `edit-appt 1 at/dental ad/02-02-2002, 0900`
+* `edit-appt 2 ad/20-12-2025, 1200`
 <br>
 <br>
 <br>
@@ -247,10 +251,10 @@ Examples:
 
 ### Deleting an appointment : `delete-appt`
 
-Deletes the specified appointment from specified patient's appointment list. <br>
+Deletes the specified appointment from the currently selected patient's appointment list. <br>
 Useful when a patient cancels their appointment
 
-Format: `delete-appt i/NRIC id/INDEX`
+Format: `delete-appt INDEX`
 
 * Deletes an appointment of patient with specified `NRIC`
 * The index refers the index number shown in the patient's appointment list
@@ -332,13 +336,13 @@ If that does not solve the issue, please redownload the latest `.jar` file (rele
 | Action                 | Format, Examples                                                                                                                                                                                                         |
 |------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add Patient**        | `add n/NAME i/NRIC g/GENDER p/PHONE_NUMBER e/EMAIL d/DATEOFBITH a/ADDRESS [mh/MEDICALHISTORY]…​`<br> e.g., `add n/John Doe i/S8052802G g/m p/98765432 e/johnd@example.com d/12-12-2002 a/John street, block 123, #01-01` |
-| **Add Appointment**    | `add-appt i/NRIC at/APPOINTMENT TITLE ad/APPOINTMENT DATE`<br> e.g., `add-appt i/S8052802G at/flu jab ad/29-02-2025, 0900`                                                                                               |
+| **Add Appointment**    | `add-appt INDEX at/APPOINTMENT TITLE ad/APPOINTMENT DATE`<br> e.g., `add-appt i/S8052802G at/flu jab ad/29-02-2025, 0900`                                                                                                |
 | **Clear List**         | `clear`                                                                                                                                                                                                                  |
 | **Delete Patient**     | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                      |
-| **Delete Appointment** | `delete-appt i/NRIC id/INDEX`<br> e.g., `delete-appt i/S8052802G id/2`                                                                                                                                                   |
+| **Delete Appointment** | `delete-appt INDEX`<br> e.g., `delete-appt i/S8052802G id/2`                                                                                                                                                             |
 | **Edit Patient**       | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                              |
-| **Edit Appointment**   | `edit-appt i/NRIC id/INDEX [at/APPOINTMENT TITLE] [ad/APPOINTMENT DATE]` <br> e.g., `edit-appt i/S1234567D id/1 at/dental ad/02-02-2002, 0900`                                                                           |
+| **Edit Appointment**   | `edit-appt INDEX [at/APPOINTMENT TITLE] [ad/APPOINTMENT DATE]` <br> e.g., `edit-appt i/S1234567D id/1 at/dental ad/02-02-2002, 0900`                                                                                     |
 | **Find Patient**       | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                               |
 | **List Patient**       | `list`                                                                                                                                                                                                                   |
-| **List Appointment**   | `list-appt i/NRIC`<br> e.g., `list-appt i/S8052802G`                                                                                                                                                                     |
+| **List Appointment**   | `list-appt INDEX`<br> e.g., `list-appt i/S8052802G`                                                                                                                                                                      |
 | **Help**               | `help`                                                                                                                                                                                                                   |
