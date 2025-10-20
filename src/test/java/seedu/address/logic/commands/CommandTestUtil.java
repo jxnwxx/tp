@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DOB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -22,9 +23,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.model.patient.NameContainsKeywordsPredicate;
+import seedu.address.model.patient.Patient;
+import seedu.address.testutil.EditPatientDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -45,12 +46,13 @@ public class CommandTestUtil {
     public static final String VALID_NRIC_BOB = "T7060267E";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_TAG_ECZEMA = "eczema";
+    public static final String VALID_TAG_DIABETES = "diabetes";
     public static final String VALID_TITLE_DENTAL = "Dental";
     public static final String VALID_TITLE_FLU_SHOT = "Flu Shot";
     public static final String VALID_DATETIME_DENTAL = "20-02-2020, 1400";
     public static final String VALID_DATETIME_FLU_SHOT = "10-10-2025, 1000";
+    public static final String VALID_INDEX = "1";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -66,12 +68,13 @@ public class CommandTestUtil {
     public static final String NRIC_DESC_BOB = " " + PREFIX_NRIC + VALID_NRIC_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_DIABETES;
+    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_ECZEMA;
     public static final String TITLE_DESC_DENTAL = " " + PREFIX_APPOINTMENT_TITLE + VALID_TITLE_DENTAL;
     public static final String TITLE_DESC_FLU_SHOT = " " + PREFIX_APPOINTMENT_TITLE + VALID_TITLE_FLU_SHOT;
     public static final String DATETIME_DESC_DENTAL = " " + PREFIX_APPOINTMENT_DATETIME + VALID_DATETIME_DENTAL;
     public static final String DATETIME_DESC_FLU_SHOT = " " + PREFIX_APPOINTMENT_DATETIME + VALID_DATETIME_FLU_SHOT;
+    public static final String INDEX_DESC_FIRST = " " + PREFIX_INDEX + VALID_INDEX;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_GENDER_DESC = " " + PREFIX_GENDER + "mal"; // must be male, female or other
@@ -84,24 +87,25 @@ public class CommandTestUtil {
     public static final String INVALID_TITLE_DESC = " " + PREFIX_APPOINTMENT_TITLE + "!"; // Does not follow the regex
     public static final String INVALID_DATETIME_DESC = " " + PREFIX_APPOINTMENT_DATETIME
             + "99-99-9999, 9999"; // Out of possible datetime ranges
+    public static final String INVALID_INDEX_DESC = " " + PREFIX_INDEX + "a"; // Not a positive integer
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditPersonDescriptor DESC_AMY;
-    public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditCommand.EditPatientDescriptor DESC_AMY;
+    public static final EditCommand.EditPatientDescriptor DESC_BOB;
 
     static {
-        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY).withNric(VALID_NRIC_AMY)
+        DESC_AMY = new EditPatientDescriptorBuilder().withName(VALID_NAME_AMY).withNric(VALID_NRIC_AMY)
                 .withGender(VALID_GENDER_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY)
                 .withDob(VALID_DOB_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).withNric(VALID_NRIC_BOB)
+                .withTags(VALID_TAG_DIABETES).build();
+        DESC_BOB = new EditPatientDescriptorBuilder().withName(VALID_NAME_BOB).withNric(VALID_NRIC_BOB)
                 .withGender(VALID_GENDER_AMY)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withDob(VALID_DOB_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withTags(VALID_TAG_ECZEMA, VALID_TAG_DIABETES).build();
     }
 
     /**
@@ -134,30 +138,30 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered person list and selected person in {@code actualModel} remain unchanged
+     * - the address book, filtered patient list and selected patient in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
-        List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
+        List<Patient> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPatientList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
-        assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
+        assertEquals(expectedFilteredList, actualModel.getFilteredPatientList());
     }
     /**
-     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
+     * Updates {@code model}'s filtered list to show only the patient at the given {@code targetIndex} in the
      * {@code model}'s address book.
      */
-    public static void showPersonAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
+    public static void showPatientAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredPatientList().size());
 
-        Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
-        final String[] splitName = person.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        Patient patient = model.getFilteredPatientList().get(targetIndex.getZeroBased());
+        final String[] splitName = patient.getName().fullName.split("\\s+");
+        model.updateFilteredPatientList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
-        assertEquals(1, model.getFilteredPersonList().size());
+        assertEquals(1, model.getFilteredPatientList().size());
     }
 
 }

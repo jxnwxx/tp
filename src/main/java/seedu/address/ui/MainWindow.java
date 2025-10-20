@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -31,7 +32,8 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private PatientListPanel patientListPanel;
+    private AppointmentListPanel appointmentListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -42,7 +44,10 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane patientListPanelPlaceholder;
+
+    @FXML
+    private StackPane appointmentListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -110,8 +115,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        patientListPanel = new PatientListPanel(logic.getFilteredPatientList());
+        patientListPanelPlaceholder.getChildren().add(patientListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -152,6 +157,42 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Enable showing Patient list and hides Appointment list
+     */
+    public void showPatientList() {
+        patientListPanelPlaceholder.setVisible(true);
+        appointmentListPanelPlaceholder.setVisible(false);
+
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+    }
+
+    /**
+     * Enable showing Appointment list and hides Patient list
+     */
+    public void showAppointmentList() {
+        patientListPanelPlaceholder.setVisible(false);
+        appointmentListPanelPlaceholder.setVisible(true);
+    }
+
+    /**
+     * Set Appointment list content and displays it
+     */
+    @FXML
+    public void handleListAppointment() {
+        appointmentListPanel =
+                new AppointmentListPanel(FXCollections.observableList(logic.getSelectedPatient().getAppointments()));
+        appointmentListPanelPlaceholder.getChildren().add(appointmentListPanel.getRoot());
+
+        StatusBarFooter statusBarFooter =
+                new StatusBarFooter(logic.getAddressBookFilePath(), logic.getSelectedPatient());
+        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+
+        showAppointmentList();
+    }
+
+
+    /**
      * Closes the application.
      */
     @FXML
@@ -163,8 +204,8 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public PatientListPanel getPatientListPanel() {
+        return patientListPanel;
     }
 
     /**
@@ -180,6 +221,12 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.isShowAppointment()) {
+                handleListAppointment();
+            } else {
+                showPatientList();
             }
 
             if (commandResult.isExit()) {
