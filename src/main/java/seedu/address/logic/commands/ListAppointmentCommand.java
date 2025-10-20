@@ -28,9 +28,10 @@ public class ListAppointmentCommand extends Command {
     private final Index targetIndex;
 
     /**
-     * Creates an ListAppointmentCommand to list appointments to the specified to the patient with the given NRIC.
+     * Creates a ListAppointmentCommand to list appointments of the patient at the specified index.
      */
     public ListAppointmentCommand(Index targetIndex) {
+        requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
     }
 

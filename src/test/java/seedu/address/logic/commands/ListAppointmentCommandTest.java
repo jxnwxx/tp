@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PATIENT;
 import static seedu.address.testutil.TypicalPatients.getTypicalAddressBook;
@@ -23,6 +24,11 @@ import seedu.address.model.patient.Patient;
  */
 public class ListAppointmentCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+
+    @Test
+    public void constructor_nullArguments_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new ListAppointmentCommand(null));
+    }
 
     @Test
     public void execute_patientExists_success() throws Exception {

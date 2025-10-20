@@ -27,7 +27,11 @@ public class DeleteCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Creates an DeleteCommand to delete the specified patient at the given index.
+     */
     public DeleteCommand(Index targetIndex) {
+        requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
     }
 
