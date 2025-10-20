@@ -94,6 +94,14 @@ This is the **perfect product** for solo doctors who take care of numerous patie
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
+### Viewing help : `help`
+
+Shows a message explaining how to access the help page.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
+
 ### Adding a patient : `add`
 
 Adds a patient to the patient list. <br>
@@ -102,7 +110,6 @@ Useful when you take a new patient under your care
 Format: `add n/NAME i/NRIC g/GENDER p/PHONE_NUMBER e/EMAIL d/DATEOFBITH a/ADDRESS [mh/MEDICALHISTORY]…​`
 
 * **Tip:** A patient can have any number of medicalHistories (including 0)
-
 
 Examples:
 * `add n/John Doe i/S8052802G g/m p/98765432 e/johnd@example.com d/12-12-2002 a/John street, block 123, #01-01`
@@ -243,6 +250,9 @@ If your changes to the data file makes its format invalid, DoctorBase will disca
 Furthermore, certain edits can cause the DoctorBase to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
+### Archiving data files `[coming in v2.0]`
+
+_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -250,6 +260,17 @@ Furthermore, certain edits can cause the DoctorBase to behave in unexpected ways
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous DoctorBase home folder.
+
+**Q**: What happens if I accidentally type in the wrong parameters? <br>
+**A**: Do not worry, the application will pick up invalid parameters and tell you what was the issue and will not update the patient/appointment list
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Troubleshooting
+
+**Q**: The application does not start<br>
+**A**: Please check your current version of java is 17, following the requirements specified by step 1 of [QuickStart](#quick-start) <br>
+If that does not solve the issue, please redownload the latest `.jar` file (release) from [here](https://github.com/AY2526S1-CS2103T-W10-3/tp/releases) and try again.
 
 --------------------------------------------------------------------------------------------------------------------
 
