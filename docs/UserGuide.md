@@ -156,6 +156,20 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower mh/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing medicalHistories.
 
+### Editing an appointment : `edit-appt`
+
+Edits an existing appointment from a patient's appointment list
+
+Format: `edit-appt i/NRIC id/INDEX [at/APPOINTMENT TITLE] [ad/APPOINTMENT DATE]`
+
+* Edits the patient at the specified `NRIC`.
+* Edits the appointment at the specified `INDEX`.The index refers to the index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
+* Existing values will be updated to the input values
+
+Examples:
+* `edit-appt i/S1234567D id/1 at/dental ad/02-02-2002, 0900`
+* `edit-appt i/S3241232A id/2 ad/20-12-2025, 1200`
+
 ### Locating patients by name: `find`
 
 Finds patients whose names contain any of the given keywords.
@@ -256,6 +270,7 @@ Furthermore, certain edits can cause the DoctorBase to behave in unexpected ways
 | **Delete Patient**     | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                      |
 | **Delete Appointment** | `delete-appt i/NRIC id/INDEX`<br> e.g., `delete-appt i/S8052802G id/2`                                                                                                                                                   |
 | **Edit Patient**       | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                              |
+| **Edit Appointment**   | `edit-appt i/NRIC id/INDEX [at/APPOINTMENT TITLE] [ad/APPOINTMENT DATE]` <br> e.g., `edit-appt i/S1234567D id/1 at/dental ad/02-02-2002, 0900`                                                                                                                                     |
 | **Find Patient**       | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                               |
 | **List Patient**       | `list`                                                                                                                                                                                                                   |
 | **List Appointment**   | `list-appt i/NRIC`<br> e.g., `list-appt i/S8052802G`                                                                                                                                                                     |
