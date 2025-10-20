@@ -34,19 +34,23 @@ public class ListAppointmentCommandTest {
     public void execute_patientExists_success() throws Exception {
         Patient patient = model.getFilteredPatientList().get(INDEX_FIRST_PATIENT.getZeroBased());
         ListAppointmentCommand command = new ListAppointmentCommand(INDEX_FIRST_PATIENT);
+        model.setSelectedPatient(patient);
 
         String expectedMessage = String.format(ListAppointmentCommand.MESSAGE_SUCCESS, patient.getName(),
                 patient.getNric());
         Model expectedModel = new ModelManager(model.getAddressBook(), model.getUserPrefs());
+        expectedModel.setSelectedPatient(patient);
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
 
         patient = model.getFilteredPatientList().get(INDEX_SECOND_PATIENT.getZeroBased());
         command = new ListAppointmentCommand(INDEX_SECOND_PATIENT);
+        model.setSelectedPatient(patient);
 
         expectedMessage = String.format(ListAppointmentCommand.MESSAGE_SUCCESS, patient.getName(),
                 patient.getNric());
         expectedModel = new ModelManager(model.getAddressBook(), model.getUserPrefs());
+        expectedModel.setSelectedPatient(patient);
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }

@@ -33,16 +33,14 @@ public class EditAppointmentCommandParserTest {
         // all fields present
         EditAppointmentDescriptor descriptor = new EditAppointmentDescriptorBuilder().withTitle(VALID_TITLE_DENTAL)
                         .withDateTime(VALID_DATETIME_DENTAL).build();
-        assertParseSuccess(parser, NRIC_DESC_AMY + INDEX_DESC_FIRST + TITLE_DESC_DENTAL + DATETIME_DESC_DENTAL,
-                new EditAppointmentCommand(VALID_NRIC_AMY,
-                        INDEX_FIRST_APPOINTMENT,
-                        descriptor));
+        assertParseSuccess(parser, "1" + TITLE_DESC_DENTAL + DATETIME_DESC_DENTAL,
+                new EditAppointmentCommand(INDEX_FIRST_APPOINTMENT, descriptor));
     }
 
     @Test
     public void parse_noDescriptor_fail() {
         // no descriptor
-        assertParseFailure(parser, NRIC_DESC_AMY + INDEX_DESC_FIRST, EditAppointmentCommand.MESSAGE_NOT_EDITED);
+        assertParseFailure(parser, "1", EditAppointmentCommand.MESSAGE_NOT_EDITED);
     }
 
     @Test
@@ -50,14 +48,14 @@ public class EditAppointmentCommandParserTest {
         // no dateTime
         EditAppointmentDescriptor descriptor = new EditAppointmentDescriptorBuilder()
                 .withTitle(VALID_TITLE_DENTAL).build();
-        assertParseSuccess(parser, NRIC_DESC_AMY + INDEX_DESC_FIRST + TITLE_DESC_DENTAL,
-                new EditAppointmentCommand(VALID_NRIC_AMY, INDEX_FIRST_APPOINTMENT, descriptor));
+        assertParseSuccess(parser, "1" + TITLE_DESC_DENTAL,
+                new EditAppointmentCommand(INDEX_FIRST_APPOINTMENT, descriptor));
 
         // no title
         EditAppointmentDescriptor descriptor2 = new EditAppointmentDescriptorBuilder()
                 .withDateTime(VALID_DATETIME_DENTAL).build();
-        assertParseSuccess(parser, NRIC_DESC_AMY + INDEX_DESC_FIRST + DATETIME_DESC_DENTAL,
-                new EditAppointmentCommand(VALID_NRIC_AMY, INDEX_FIRST_APPOINTMENT, descriptor2));
+        assertParseSuccess(parser, "1" + DATETIME_DESC_DENTAL,
+                new EditAppointmentCommand(INDEX_FIRST_APPOINTMENT, descriptor2));
     }
 
     @Test
@@ -65,11 +63,8 @@ public class EditAppointmentCommandParserTest {
         // no fields specified
         assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
 
-        // missing index
-        assertParseFailure(parser, NRIC_DESC_AMY, MESSAGE_INVALID_FORMAT);
-
-        // missing nric
-        assertParseFailure(parser, INDEX_DESC_FIRST, MESSAGE_INVALID_FORMAT);
+        // invalid index
+        assertParseFailure(parser, "a", MESSAGE_INVALID_FORMAT);
     }
 
 }
