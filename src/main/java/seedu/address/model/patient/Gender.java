@@ -80,6 +80,12 @@ public class Gender {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns Short Form version.
+     */
+    public String toStringShort() {
+        return this.gender.shortForm.toUpperCase();
+    }
 
     @Override
     public String toString() {

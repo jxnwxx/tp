@@ -136,9 +136,9 @@
     -fx-font-family: "Segoe UI Semibold";
     -fx-font-size: 13px;
     -fx-border-color: #e0e0e0;
-    -fx-border-radius: 5px;
+    -fx-border-radius: 6px;
     -fx-border-width: 2px;
-    -fx-padding: 3px;
+    -fx-padding: 8px;
 }
 
 .stack-pane {
