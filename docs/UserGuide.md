@@ -1,12 +1,11 @@
----
-layout: page
-title: User Guide
----
 
 # DoctorBase
 
-DoctorBase is a **desktop app for managing patient details and appointments, optimized for use via a keyboard input** which still having the benefits of a visual interface. <br>
-This is the **perfect product** for solo doctors who take care of numerous patients with little assistance!
+Hi there, and welcome to **DoctorBase** — your new desktop assistant for managing patient information and appointments!
+
+DoctorBase is built with **keyboard-loving efficiency** in mind, but still gives you a visual interface so you're not stuck in a wall of text.
+
+Whether you're a solo doctor managing many patients or just looking to streamline your workflow, DoctorBase is designed to help you stay on top of everything — with less clicking and more doing.
 
 # Table of Contents
 1. [Quick start](#quick-start)
@@ -19,7 +18,8 @@ This is the **perfect product** for solo doctors who take care of numerous patie
 
 ## Quick start
 
-1. Ensure you have Java `17` or above installed in your Computer.<br>
+1. Check your java version
+   * DoctorBase needs **Java 17** to run.
    * To check your Java version, in your computer's search bar, type `terminal` <br>
    * Then within the shell, type out this command and press enter: <br>
    ```
@@ -30,41 +30,49 @@ This is the **perfect product** for solo doctors who take care of numerous patie
      * [**Mac OS**](https://se-education.org/guides/tutorials/javaInstallationMac.html)
      * [**Linux**](https://se-education.org/guides/tutorials/javaInstallationLinux.html)
 
-2. Download the latest `.jar` file (release) from [here](https://github.com/AY2526S1-CS2103T-W10-3/tp/releases).
+2. Download DoctorBase 
+   * Download the latest `.jar` file (release) from [here](https://github.com/AY2526S1-CS2103T-W10-3/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your DoctorBase.
+3. Choose a Home Folder
+   * Move the .jar file to the folder where you’d like DoctorBase to save your data.
 
-4. To get started, open your computer’s command prompt (also called the terminal). Then, go to the folder where you saved the .jar file <br>
-   * you can do this by typing `cd` followed by the `folder’s path`.
-   * eg. file is located at home/documents/test
-   ````
-   cd home/documents/test
-   ````
-5. Once you're in the right folder, type this command and press Enter:
+4. Open the terminal and navigate to that folder
+   * Open Terminal (Mac/Linux) or Command Prompt (Windows)
+   * Navigate to your folder using cd, like this:
+     ````
+     cd path/to/your/folder
+     ````
+   Eg.
+   ```
+   cd home/documents/doctorbase
+   ```
+5. Run the app!
+   * Once you're in the right folder, type this command and press Enter:
    ```
    java -jar DoctorBase.jar
    ```
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+6. Try Your First Command!
+  * Type the command in the command box and press `Enter` to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+    Some example commands you can try:
 
-   * `list` : Lists all contacts.
+    * `list` : Lists all contacts.
 
-   * `list-appt i/S8052802G` : Lists all appointments of patient with nric S8052802G
+    * `list-appt i/S8052802G` : Lists all appointments of patient with nric S8052802G
 
-   * `add n/John Doe i/S8052802G g/m p/98765432 e/johnd@example.com d/12-12-2002 a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the patient list.
+    * `add n/John Doe i/S8052802G g/m p/98765432 e/johnd@example.com d/12-12-2002 a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the patient list.
 
-   * `add-appt i/S8052802G at/flu jab ad/29-02-2025, 0900` : Adds an appointment called `flu jab` to the patient with nric S8052802G
+    * `add-appt i/S8052802G at/flu jab ad/29-02-2025, 0900` : Adds an appointment called `flu jab` to the patient with nric S8052802G
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+    * `delete 3` : Deletes the 3rd contact shown in the current list.
 
-   * `delete-appt i/S8052802G id/2` : Deletes the 2nd appointment of patient of nric S8052802G
+    * `delete-appt i/S8052802G id/2` : Deletes the 2nd appointment of patient of nric S8052802G
 
-   * `clear` : Deletes all contacts.
+    * `clear` : Deletes all contacts.
 
-   * `exit` : Exits the app.
+    * `exit` : Exits the app.
 
 7. Refer to the [Features](#features) below for details of each command.
 
@@ -101,6 +109,9 @@ Shows a message explaining how to access the help page.
 ![help message](images/helpMessage.png)
 
 Format: `help`
+<br>
+<br>
+<br>
 
 ### Adding a patient : `add`
 
@@ -114,6 +125,9 @@ Format: `add n/NAME i/NRIC g/GENDER p/PHONE_NUMBER e/EMAIL d/DATEOFBITH a/ADDRES
 Examples:
 * `add n/John Doe i/S8052802G g/m p/98765432 e/johnd@example.com d/12-12-2002 a/John street, block 123, #01-01`
 * `add n/Betsy Crowe i/T0231512Z mh/covid e/betsycrowe@example.com a/Newgate Prison p/1234567 mh/leg fracture`
+<br>
+<br>
+<br>
 
 ### Adding an appointment : `add-appt`
 
@@ -125,6 +139,9 @@ Format: `add-appt i/NRIC at/APPOINTMENT TITLE ad/APPOINTMENT DATE`
 Examples:
 * `add-appt i/S8052802G at/flu jab ad/29-02-2025, 0900`
 * `add-appt i/T0321323S at/full body checkup ad/18-12-2025, 1000`
+<br>
+<br>
+<br>
 
 ### Listing all patients : `list`
 
@@ -132,6 +149,9 @@ Shows a list of all patients in the patient list. <br>
 Useful when you want to view all the patients currently under your care
 
 Format: `list`
+<br>
+<br>
+<br>
 
 ### Listing all appointments of patient : `list-appt`
 
@@ -145,6 +165,9 @@ Format: `list-appt i/NRIC`
 Examples:
 * `list-appt i/S8052802G`
 * `list-appt i/T0231512Z`
+<br>
+<br>
+<br>
 
 ### Editing a patient : `edit`
 
@@ -162,6 +185,9 @@ Format: `edit INDEX [n/NAME] [i/NRIC] [g/GENDER] [p/PHONE] [e/EMAIL] d/[DATEOFBI
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower mh/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing medicalHistories.
+<br>
+<br>
+<br>
 
 ### Editing an appointment : `edit-appt`
 
@@ -176,6 +202,9 @@ Format: `edit-appt i/NRIC id/INDEX [at/APPOINTMENT TITLE] [ad/APPOINTMENT DATE]`
 Examples:
 * `edit-appt i/S1234567D id/1 at/dental ad/02-02-2002, 0900`
 * `edit-appt i/S3241232A id/2 ad/20-12-2025, 1200`
+<br>
+<br>
+<br>
 
 ### Locating patients by name: `find`
 
@@ -194,6 +223,9 @@ Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
+<br>
+<br>
+<br>
 
 ### Deleting a patient : `delete`
 
@@ -209,6 +241,9 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd patient in the patient list.
 * `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
+<br>
+<br>
+<br>
 
 ### Deleting an appointment : `delete-appt`
 
@@ -224,22 +259,34 @@ Format: `delete-appt i/NRIC id/INDEX`
 Examples:
 * `delete-appt i/S8052802G id/2`
 * `delete-appt i/T0213123S, id/1`
+<br>
+<br>
+<br>
 
 ### Clearing all entries : `clear`
 
 Clears all entries from the patient list.
 
 Format: `clear`
+<br>
+<br>
+<br>
 
 ### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
+<br>
+<br>
+<br>
 
 ### Saving the data
 
 DoctorBase data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+<br>
+<br>
+<br>
 
 ### Editing the data file
 
@@ -249,10 +296,9 @@ DoctorBase data are saved automatically as a JSON file `[JAR file location]/data
 If your changes to the data file makes its format invalid, DoctorBase will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the DoctorBase to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
+<br>
+<br>
+<br>
 
 --------------------------------------------------------------------------------------------------------------------
 
