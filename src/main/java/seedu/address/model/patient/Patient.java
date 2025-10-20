@@ -48,6 +48,14 @@ public class Patient {
         this.appointments = appointments;
     }
 
+    public Patient(Patient other) {
+        this(other.getName(), other.getNric(), other.getGender(),
+                other.getPhone(), other.getEmail(), other.getDob(),
+                other.getAddress(), other.getTags(),
+                new ArrayList<>(other.getAppointments()));
+    }
+
+
     public Nric getNric() {
         return nric;
     }
