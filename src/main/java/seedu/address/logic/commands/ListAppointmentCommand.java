@@ -24,6 +24,8 @@ public class ListAppointmentCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_SUCCESS = "Listed all appointments for %1$s [%2$s]";
+    public static final String MESSAGE_ALREADY_LISTING = "Already listing appointments for %1$s [%2$s]";
+
 
     private final Index targetIndex;
 
@@ -39,6 +41,11 @@ public class ListAppointmentCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Patient> lastShownList = model.getFilteredPatientList();
+
+        if (model.getSelectedPatient() != null) {
+            throw new CommandException(String.format(MESSAGE_ALREADY_LISTING, model.getSelectedPatient().getName(),
+                    model.getSelectedPatient().getNric()));
+        }
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
