@@ -4,9 +4,7 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.DATETIME_DESC_DENTAL;
 import static seedu.address.logic.commands.CommandTestUtil.DATETIME_DESC_FLU_SHOT;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATETIME_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_NRIC_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TITLE_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.NRIC_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.TITLE_DESC_DENTAL;
 import static seedu.address.logic.commands.CommandTestUtil.TITLE_DESC_FLU_SHOT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_DENTAL;
@@ -22,7 +20,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.Title;
-import seedu.address.model.patient.Nric;
 import seedu.address.testutil.AppointmentBuilder;
 
 public class AddAppointmentCommandParserTest {
