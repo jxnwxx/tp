@@ -33,6 +33,8 @@ public class AddAppointmentCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New appointment for %1$s: %2$s";
     public static final String MESSAGE_PATIENT_NOT_FOUND = "No patient with this NRIC exists in the address book.";
+    public static final String MESSAGE_APPOINTMENT_TIME_CLASH =
+            "The appointment has a clashing timing with another appointment.";
 
     private final Appointment toAdd;
     private final Index index;
@@ -56,6 +58,16 @@ public class AddAppointmentCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
         }
         Patient targetPatient = lastShownList.get(index.getZeroBased());
+
+        // Check for any clashing timings
+        ArrayList<Appointment> allAppointments = new ArrayList<>();
+        for (int i = 0; i < lastShownList.size(); i++) {
+            Index idx = Index.fromZeroBased(i);
+            allAppointments.addAll(lastShownList.get(idx.getZeroBased()).getAppointments());
+        }
+        if (allAppointments.stream().anyMatch(x -> x.clashTime(toAdd))) {
+            throw new CommandException(MESSAGE_APPOINTMENT_TIME_CLASH);
+        }
 
         ArrayList<Appointment> updatedAppointments = new ArrayList<>(
                 targetPatient.getAppointments()
