@@ -1,7 +1,7 @@
 
 # DoctorBase
 
-Hi there, and welcome to **DoctorBase** — your new desktop assistant for managing patient information and appointments!
+Hi there, and welcome to **DoctorBase**, your new desktop assistant for managing patient information and appointments!
 
 DoctorBase is built with **keyboard-loving efficiency** in mind, but still gives you a visual interface so you're not stuck in a wall of text.
 
