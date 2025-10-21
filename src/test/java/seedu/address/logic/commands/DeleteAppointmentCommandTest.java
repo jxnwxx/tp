@@ -67,6 +67,16 @@ public class DeleteAppointmentCommandTest {
     }
 
     @Test
+    public void execute_selectedPatientNull_throwsCommandException() {
+        // Set selectedPatient to null to indicate not viewing Appointments
+        model.setSelectedPatient(null);
+
+        DeleteAppointmentCommand deleteAppointmentCommand = new DeleteAppointmentCommand(INDEX_FIRST_APPOINTMENT);
+
+        assertCommandFailure(deleteAppointmentCommand, model, EditAppointmentCommand.MESSAGE_NOT_VIEWING_APPOINTMENT);
+    }
+
+    @Test
     public void execute_invalidIndex_throwsCommandException() {
         Patient patient = model.getFilteredPatientList().get(INDEX_FIRST_PATIENT.getZeroBased());
         Index outOfBoundsIndex = Index.fromOneBased(patient.getAppointments().size() + 1);

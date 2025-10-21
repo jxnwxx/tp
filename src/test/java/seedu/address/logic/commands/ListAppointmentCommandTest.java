@@ -31,7 +31,7 @@ public class ListAppointmentCommandTest {
     }
 
     @Test
-    public void execute_patientExists_success() throws Exception {
+    public void execute_validIndex_success() {
         Patient patient = model.getFilteredPatientList().get(INDEX_FIRST_PATIENT.getZeroBased());
         ListAppointmentCommand command = new ListAppointmentCommand(INDEX_FIRST_PATIENT);
 
@@ -41,6 +41,7 @@ public class ListAppointmentCommandTest {
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
 
+        // Reset for another test
         model.setSelectedPatient(null);
 
         patient = model.getFilteredPatientList().get(INDEX_SECOND_PATIENT.getZeroBased());
@@ -51,6 +52,17 @@ public class ListAppointmentCommandTest {
         expectedModel = new ModelManager(model.getAddressBook(), model.getUserPrefs());
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_selectedPatientNotNull_throwsCommandException() {
+        Patient patient = model.getFilteredPatientList().get(INDEX_FIRST_PATIENT.getZeroBased());
+        // Set selected patient to indicate already viewing
+        model.setSelectedPatient(patient);
+        ListAppointmentCommand command = new ListAppointmentCommand(INDEX_FIRST_PATIENT);
+
+        assertCommandFailure(command, model,
+                String.format(ListAppointmentCommand.MESSAGE_ALREADY_LISTING, patient.getName(), patient.getNric()));
     }
 
     @Test

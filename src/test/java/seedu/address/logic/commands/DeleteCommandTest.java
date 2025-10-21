@@ -48,6 +48,16 @@ public class DeleteCommandTest {
     }
 
     @Test
+    public void execute_selectedPatientNotNull_throwsCommandException() {
+        Patient patient = model.getFilteredPatientList().get(INDEX_FIRST_PATIENT.getZeroBased());
+        // Set selected patient to indicate already viewing
+        model.setSelectedPatient(patient);
+        DeleteCommand command = new DeleteCommand(INDEX_FIRST_PATIENT);
+
+        assertCommandFailure(command, model, DeleteCommand.MESSAGE_NOT_VIEWING_PATIENT_LIST);
+    }
+
+    @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPatientList().size() + 1);
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);

@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_APPOINTMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_APPOINTMENT;
@@ -110,6 +111,18 @@ public class EditAppointmentCommandTest {
         expectedModel.setPatient(model.getFilteredPatientList().get(1), newPatient);
 
         assertCommandSuccess(editAppointmentCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_selectedPatientNull_throwsCommandException() {
+        // Set selectedPatient to null to indicate not viewing Appointments
+        model.setSelectedPatient(null);
+
+        Appointment editedAppointment = new AppointmentBuilder().build();
+        EditAppointmentDescriptor descriptor = new EditAppointmentDescriptorBuilder(editedAppointment).build();
+        EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(INDEX_FIRST_APPOINTMENT, descriptor);
+
+        assertCommandFailure(editAppointmentCommand, model, EditAppointmentCommand.MESSAGE_NOT_VIEWING_APPOINTMENT);
     }
 
     @Test
