@@ -1,9 +1,12 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 
+import java.util.List;
+
+import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.patient.Patient;
@@ -15,32 +18,39 @@ public class ListAppointmentCommand extends Command {
 
     public static final String COMMAND_WORD = "list-appt";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": List appointments of a specified patient."
-            + "Parameters: "
-            + PREFIX_NRIC + "NRIC\n"
-            + "Example: " + COMMAND_WORD + " i/S1234567A";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": List appointments of a patient identified by the index number used in the displayed patient list.\n."
+            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_SUCCESS = "Listed all appointments for %1$s [%2$s]";
-    public static final String MESSAGE_PATIENT_NOT_FOUND = "No patient with this NRIC exists in the address book.";
+    public static final String MESSAGE_ALREADY_LISTING = "Already listing appointments for %1$s [%2$s]";
 
-    private final String targetNric;
+
+    private final Index targetIndex;
 
     /**
-     * Creates an ListAppointmentCommand to list appointments to the specified to the patient with the given NRIC.
+     * Creates a ListAppointmentCommand to list appointments of the patient at the specified index.
      */
-    public ListAppointmentCommand(String targetNric) {
-        requireNonNull(targetNric);
-        this.targetNric = targetNric;
+    public ListAppointmentCommand(Index targetIndex) {
+        requireNonNull(targetIndex);
+        this.targetIndex = targetIndex;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        List<Patient> lastShownList = model.getFilteredPatientList();
 
-        Patient targetPatient = model.findPatientByNric(targetNric);
-        if (targetPatient == null) {
-            throw new CommandException(MESSAGE_PATIENT_NOT_FOUND);
+        if (model.getSelectedPatient() != null) {
+            throw new CommandException(String.format(MESSAGE_ALREADY_LISTING, model.getSelectedPatient().getName(),
+                    model.getSelectedPatient().getNric()));
         }
+
+        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
+        }
+        Patient targetPatient = lastShownList.get(targetIndex.getZeroBased());
 
         model.setSelectedPatient(targetPatient);
         return new CommandResult(String.format(MESSAGE_SUCCESS, targetPatient.getName(),
@@ -59,13 +69,13 @@ public class ListAppointmentCommand extends Command {
         }
 
         ListAppointmentCommand otherListAppointmentCommand = (ListAppointmentCommand) other;
-        return targetNric.equals(otherListAppointmentCommand.targetNric);
+        return targetIndex.equals(otherListAppointmentCommand.targetIndex);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("targetNric", targetNric)
+                .add("targetIndex", targetIndex)
                 .toString();
     }
 }

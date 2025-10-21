@@ -4,8 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_TITLE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 
 import java.util.stream.Stream;
 
@@ -13,7 +11,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditAppointmentCommand;
 import seedu.address.logic.commands.EditAppointmentCommand.EditAppointmentDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.patient.Nric;
 
 /**
  * Parses input arguments and creates a new EditAppointmentCommand object
@@ -28,19 +25,18 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
     public EditAppointmentCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NRIC, PREFIX_INDEX,
-                        PREFIX_APPOINTMENT_TITLE, PREFIX_APPOINTMENT_DATETIME);
+                ArgumentTokenizer.tokenize(args, PREFIX_APPOINTMENT_TITLE, PREFIX_APPOINTMENT_DATETIME);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NRIC, PREFIX_INDEX)) {
-            throw new ParseException(String.format(
-                    MESSAGE_INVALID_COMMAND_FORMAT, EditAppointmentCommand.MESSAGE_USAGE));
+        Index index;
+
+        try {
+            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditAppointmentCommand.MESSAGE_USAGE), pe);
         }
 
-        Nric nric = ParserUtil.parseNric(argMultimap.getValue(PREFIX_NRIC).get());
-        Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
-
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NRIC, PREFIX_INDEX, PREFIX_APPOINTMENT_TITLE,
-                PREFIX_APPOINTMENT_DATETIME);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_APPOINTMENT_TITLE, PREFIX_APPOINTMENT_DATETIME);
 
         EditAppointmentDescriptor editAppointmentDescriptor = new EditAppointmentDescriptor();
 
@@ -58,7 +54,7 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
             throw new ParseException(EditAppointmentCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditAppointmentCommand(nric.toString(), index, editAppointmentDescriptor);
+        return new EditAppointmentCommand(index, editAppointmentDescriptor);
     }
 
     /**

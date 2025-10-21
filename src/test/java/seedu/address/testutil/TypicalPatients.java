@@ -120,7 +120,7 @@ public class TypicalPatients {
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
         for (Patient patient : getTypicalPatients()) {
-            ab.addPatient(patient);
+            ab.addPatient(new Patient(patient));
         }
         return ab;
     }

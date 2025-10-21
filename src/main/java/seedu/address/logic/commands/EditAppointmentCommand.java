@@ -40,23 +40,21 @@ public class EditAppointmentCommand extends Command {
             + PREFIX_APPOINTMENT_DATETIME + "10-10-2010, 0900\n";
 
     public static final String MESSAGE_SUCCESS = "Appointment edited for %1$s";
-    public static final String MESSAGE_PERSON_NOT_FOUND = "No person with this NRIC exists in the address book.";
+    public static final String MESSAGE_NOT_VIEWING_APPOINTMENT = "Command only works when displaying appointments.\n"
+            + "Use the following command first: list-appt";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
 
-    private final String targetNric;
     private final Index index;
     private final EditAppointmentDescriptor editAppointmentDescriptor;
 
     /**
-     * @param targetNric nric of patient to change appointment
      * @param index index of appointment in patient's appointment list
      * @param editAppointmentDescriptor details to edit the appointment with
      */
-    public EditAppointmentCommand(String targetNric, Index index, EditAppointmentDescriptor editAppointmentDescriptor) {
-        requireAllNonNull(index, targetNric, editAppointmentDescriptor);
+    public EditAppointmentCommand(Index index, EditAppointmentDescriptor editAppointmentDescriptor) {
+        requireAllNonNull(index, editAppointmentDescriptor);
 
-        this.targetNric = targetNric;
         this.index = index;
         this.editAppointmentDescriptor = new EditAppointmentDescriptor(editAppointmentDescriptor);
     }
@@ -65,13 +63,13 @@ public class EditAppointmentCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        Patient targetPerson = model.findPatientByNric(targetNric);
-        if (targetPerson == null) {
-            throw new CommandException(MESSAGE_PERSON_NOT_FOUND);
+        Patient targetPatient = model.getSelectedPatient();
+        if (targetPatient == null) {
+            throw new CommandException(MESSAGE_NOT_VIEWING_APPOINTMENT);
         }
 
         ArrayList<Appointment> updatedAppointments = new ArrayList<>(
-                targetPerson.getAppointments());
+                targetPatient.getAppointments());
 
         if (index.getZeroBased() >= updatedAppointments.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
@@ -82,19 +80,21 @@ public class EditAppointmentCommand extends Command {
 
         updatedAppointments.set(index.getZeroBased(), editedAppointment);
 
-        Patient newPerson = new Patient(targetPerson.getName(),
-                targetPerson.getNric(),
-                targetPerson.getGender(),
-                targetPerson.getPhone(),
-                targetPerson.getEmail(),
-                targetPerson.getDob(),
-                targetPerson.getAddress(),
-                targetPerson.getTags(),
+        Patient newPatient = new Patient(targetPatient.getName(),
+                targetPatient.getNric(),
+                targetPatient.getGender(),
+                targetPatient.getPhone(),
+                targetPatient.getEmail(),
+                targetPatient.getDob(),
+                targetPatient.getAddress(),
+                targetPatient.getTags(),
                 updatedAppointments);
 
-        model.setPatient(targetPerson, newPerson);
+        model.setPatient(targetPatient, newPatient);
+        model.setSelectedPatient(newPatient);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, editedAppointment));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, editedAppointment),
+                false, true, false);
     }
 
     /**
@@ -123,8 +123,7 @@ public class EditAppointmentCommand extends Command {
         }
 
         EditAppointmentCommand otherEditAppointmentCommand = (EditAppointmentCommand) other;
-        return targetNric.equals(otherEditAppointmentCommand.targetNric)
-                && index.equals(otherEditAppointmentCommand.index)
+        return index.equals(otherEditAppointmentCommand.index)
                 && editAppointmentDescriptor.equals(otherEditAppointmentCommand.editAppointmentDescriptor);
     }
 
@@ -138,7 +137,7 @@ public class EditAppointmentCommand extends Command {
 
     /**
      * Stores the details to edit the appointment with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * corresponding field value of the patient.
      */
     public static class EditAppointmentDescriptor {
         private Title title;

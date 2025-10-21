@@ -2,13 +2,12 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_APPOINTMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_APPOINTMENT;
 import static seedu.address.testutil.TypicalPatients.BENSON;
 import static seedu.address.testutil.TypicalPatients.getTypicalAddressBook;
-
-import java.time.format.DateTimeFormatter;
 
 import org.junit.jupiter.api.Test;
 
@@ -23,30 +22,17 @@ import seedu.address.testutil.AppointmentBuilder;
 import seedu.address.testutil.EditAppointmentDescriptorBuilder;
 
 public class EditAppointmentCommandTest {
-    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy, HHmm");
-
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    public void nricTest() {
-        // not found
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        Patient targetPatient = expectedModel.findPatientByNric("S1231232D");
-        assertTrue(targetPatient == null);
-
-        // found
-        Patient foundPatient = expectedModel.findPatientByNric("S3216508G");
-        assertTrue(foundPatient != null);
-    }
-
-    @Test
     public void execute_allFieldsSpecified_success() {
+        model.setSelectedPatient(BENSON);
+
         // change both title and dateTime
         Appointment editedAppointment = new AppointmentBuilder().withTitle("new disease")
                 .withDateTime("20-02-2002, 0900").build();
         EditAppointmentDescriptor descriptor = new EditAppointmentDescriptorBuilder(editedAppointment).build();
-        EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(
-                BENSON.getNric().toString(), INDEX_FIRST_APPOINTMENT, descriptor);
+        EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(INDEX_FIRST_APPOINTMENT, descriptor);
         Patient newPatient = new Patient(BENSON.getName(),
                 BENSON.getNric(),
                 BENSON.getGender(),
@@ -70,12 +56,13 @@ public class EditAppointmentCommandTest {
 
     @Test
     public void execute_someFieldsSpecified_success() {
+        model.setSelectedPatient(BENSON);
+
         // only change dateTime
         Appointment editedAppointment = new AppointmentBuilder()
                 .withDateTime("20-02-2002, 1000").build();
         EditAppointmentDescriptor descriptor = new EditAppointmentDescriptorBuilder(editedAppointment).build();
-        EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(
-                BENSON.getNric().toString(), INDEX_FIRST_APPOINTMENT, descriptor);
+        EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(INDEX_FIRST_APPOINTMENT, descriptor);
         Patient newPatient = new Patient(BENSON.getName(),
                 BENSON.getNric(),
                 BENSON.getGender(),
@@ -99,11 +86,12 @@ public class EditAppointmentCommandTest {
 
     @Test
     public void execute_noFieldSpecified_success() {
+        model.setSelectedPatient(BENSON);
+
         // no change
         Appointment editedAppointment = new AppointmentBuilder().build();
         EditAppointmentDescriptor descriptor = new EditAppointmentDescriptorBuilder(editedAppointment).build();
-        EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(
-                BENSON.getNric().toString(), INDEX_FIRST_APPOINTMENT, descriptor);
+        EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(INDEX_FIRST_APPOINTMENT, descriptor);
         Patient newPatient = new Patient(BENSON.getName(),
                 BENSON.getNric(),
                 BENSON.getGender(),
@@ -126,38 +114,46 @@ public class EditAppointmentCommandTest {
     }
 
     @Test
+    public void execute_selectedPatientNull_throwsCommandException() {
+        // Set selectedPatient to null to indicate not viewing Appointments
+        model.setSelectedPatient(null);
+
+        Appointment editedAppointment = new AppointmentBuilder().build();
+        EditAppointmentDescriptor descriptor = new EditAppointmentDescriptorBuilder(editedAppointment).build();
+        EditAppointmentCommand editAppointmentCommand = new EditAppointmentCommand(INDEX_FIRST_APPOINTMENT, descriptor);
+
+        assertCommandFailure(editAppointmentCommand, model, EditAppointmentCommand.MESSAGE_NOT_VIEWING_APPOINTMENT);
+    }
+
+    @Test
     public void equalsTest() {
         // same object
         Appointment appointment = new AppointmentBuilder().withTitle("new disease")
                 .withDateTime("20-02-2002, 0900").build();
         EditAppointmentDescriptor descriptor = new EditAppointmentDescriptorBuilder(appointment).build();
-        EditAppointmentCommand command = new EditAppointmentCommand("S1234567D", INDEX_FIRST_APPOINTMENT, descriptor);
+        EditAppointmentCommand command = new EditAppointmentCommand(INDEX_FIRST_APPOINTMENT, descriptor);
         assertTrue(command.equals(command));
 
         // wrong type
         String str = "wrong type";
         assertFalse(command.equals(str));
 
-        // wrong nric
-        EditAppointmentCommand cmd1 = new EditAppointmentCommand("S1244567D", INDEX_FIRST_APPOINTMENT, descriptor);
-        assertFalse(command.equals(cmd1));
-
         // wrong index
-        EditAppointmentCommand cmd2 = new EditAppointmentCommand("S1234567D", INDEX_SECOND_APPOINTMENT, descriptor);
-        assertFalse(command.equals(cmd2));
+        EditAppointmentCommand cmd1 = new EditAppointmentCommand(INDEX_SECOND_APPOINTMENT, descriptor);
+        assertFalse(command.equals(cmd1));
 
         // wrong appointment
         Appointment ppt = new AppointmentBuilder().withTitle("fake disease")
                 .withDateTime("20-02-2002, 0900").build();
         EditAppointmentDescriptor desc1 = new EditAppointmentDescriptorBuilder(ppt).build();
-        EditAppointmentCommand cmd3 = new EditAppointmentCommand("S1234567D", INDEX_FIRST_APPOINTMENT, desc1);
+        EditAppointmentCommand cmd3 = new EditAppointmentCommand(INDEX_FIRST_APPOINTMENT, desc1);
         assertFalse(command.equals(cmd3));
 
         // equal attributes
         Appointment appt = new AppointmentBuilder().withTitle("new disease")
                 .withDateTime("20-02-2002, 0900").build();
         EditAppointmentDescriptor desc = new EditAppointmentDescriptorBuilder(appt).build();
-        EditAppointmentCommand cmd4 = new EditAppointmentCommand("S1234567D", INDEX_FIRST_APPOINTMENT, desc);
+        EditAppointmentCommand cmd4 = new EditAppointmentCommand(INDEX_FIRST_APPOINTMENT, desc);
         assertTrue(command.equals(cmd4));
     }
 }

@@ -1,9 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 
 import java.util.ArrayList;
 
@@ -16,44 +13,40 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.patient.Patient;
 
 /**
- * Adds an appointment to the patient specified in the address book.
+ * Deletes an appointment to the patient specified in Doctorbase.
  */
 public class DeleteAppointmentCommand extends Command {
 
     public static final String COMMAND_WORD = "delete-appt";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes an appointment from the address book. "
-            + "Parameters: "
-            + PREFIX_NRIC + " NRIC "
-            + PREFIX_INDEX + " INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_NRIC + " S1234567A " + PREFIX_INDEX + " 1";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes an appointment from the address book.\n"
+            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_APPOINTMENT_SUCCESS = "Appointment for %1$s: %2$s deleted";
-    public static final String MESSAGE_PATIENT_NOT_FOUND = "No patient with this NRIC exists in the address book.";
-    public static final String MESSAGE_APPOINTMENT_NOT_FOUND = "No apppointment for this NRIC at index %1$s "
+    public static final String MESSAGE_NOT_VIEWING_APPOINTMENT = "Command only works when displaying appointments.\n"
+            + "Use the following command first: list-appt";
+    public static final String MESSAGE_APPOINTMENT_NOT_FOUND = "No apppointment at index %1$s "
             + "exists in the address book";
 
-    private final String targetNric;
     private final Index targetIndex;
 
     /**
      * Creates a DeleteAppointmentCommand to delete the specified {@code Appointment}
      * from the patient with the given NRIC.
-     *
      */
-    public DeleteAppointmentCommand(String targetNric, Index targetIndex) {
-        requireAllNonNull(targetNric, targetIndex);
-        this.targetNric = targetNric;
+    public DeleteAppointmentCommand(Index targetIndex) {
+        requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        Patient targetPatient = model.getSelectedPatient();
 
-        Patient targetPatient = model.findPatientByNric(targetNric);
         if (targetPatient == null) {
-            throw new CommandException(MESSAGE_PATIENT_NOT_FOUND);
+            throw new CommandException(MESSAGE_NOT_VIEWING_APPOINTMENT);
         }
 
         ArrayList<Appointment> targetPatientAppointments = targetPatient.getAppointments();
@@ -78,14 +71,12 @@ public class DeleteAppointmentCommand extends Command {
         }
 
         DeleteAppointmentCommand otherDeleteAppointmentCommand = (DeleteAppointmentCommand) other;
-        return targetIndex.equals(otherDeleteAppointmentCommand.targetIndex)
-                && targetNric.equals(otherDeleteAppointmentCommand.targetNric);
+        return targetIndex.equals(otherDeleteAppointmentCommand.targetIndex);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("targetNric", targetNric)
                 .add("targetIndex", targetIndex)
                 .toString();
     }

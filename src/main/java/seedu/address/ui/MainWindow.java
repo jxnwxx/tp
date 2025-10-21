@@ -191,7 +191,6 @@ public class MainWindow extends UiPart<Stage> {
         showAppointmentList();
     }
 
-
     /**
      * Closes the application.
      */
