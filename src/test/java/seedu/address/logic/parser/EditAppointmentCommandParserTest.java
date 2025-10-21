@@ -9,8 +9,6 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_APPOINTMENT;
 
-import java.time.format.DateTimeFormatter;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.EditAppointmentCommand;
@@ -18,7 +16,6 @@ import seedu.address.logic.commands.EditAppointmentCommand.EditAppointmentDescri
 import seedu.address.testutil.EditAppointmentDescriptorBuilder;
 
 public class EditAppointmentCommandParserTest {
-    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy, HHmm");
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditAppointmentCommand.MESSAGE_USAGE);
 
@@ -56,12 +53,19 @@ public class EditAppointmentCommandParserTest {
     }
 
     @Test
-    public void parse_missingParts_fail() {
-        // no fields specified
-        assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
+    public void parse_invalidIndex_fail() {
+        // empty index
+        assertParseFailure(parser, "" + TITLE_DESC_DENTAL + DATETIME_DESC_DENTAL, MESSAGE_INVALID_FORMAT);
 
-        // invalid index
-        assertParseFailure(parser, "a", MESSAGE_INVALID_FORMAT);
+        // non-integer
+        assertParseFailure(parser, "a" + TITLE_DESC_DENTAL + DATETIME_DESC_DENTAL, MESSAGE_INVALID_FORMAT);
+
+        // two valid index
+        assertParseFailure(parser, "1 1" + TITLE_DESC_DENTAL + DATETIME_DESC_DENTAL, MESSAGE_INVALID_FORMAT);
+
+        // one valid, one invalid, vice versa
+        assertParseFailure(parser, "1 a" + TITLE_DESC_DENTAL + DATETIME_DESC_DENTAL, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "a 1" + TITLE_DESC_DENTAL + DATETIME_DESC_DENTAL, MESSAGE_INVALID_FORMAT);
     }
 
 }

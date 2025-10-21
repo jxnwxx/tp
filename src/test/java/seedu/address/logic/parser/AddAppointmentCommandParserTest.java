@@ -23,6 +23,9 @@ import seedu.address.model.appointment.Title;
 import seedu.address.testutil.AppointmentBuilder;
 
 public class AddAppointmentCommandParserTest {
+    private static final String MESSAGE_INVALID_FORMAT =
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddAppointmentCommand.MESSAGE_USAGE);
+
     private AddAppointmentCommandParser parser = new AddAppointmentCommandParser();
 
     @Test
@@ -74,5 +77,24 @@ public class AddAppointmentCommandParserTest {
         // Multiple invalids - only first invalid reported
         assertParseFailure(parser, "1" + INVALID_TITLE_DESC + INVALID_DATETIME_DESC,
                 Title.MESSAGE_CONSTRAINTS);
+
+        // Invalid indexes
+        // empty string
+        assertParseFailure(parser, "" + TITLE_DESC_FLU_SHOT + DATETIME_DESC_FLU_SHOT,
+                MESSAGE_INVALID_FORMAT);
+
+        // non-integer
+        assertParseFailure(parser, "a" + TITLE_DESC_FLU_SHOT + DATETIME_DESC_FLU_SHOT,
+                MESSAGE_INVALID_FORMAT);
+
+        // two valid index
+        assertParseFailure(parser, "1 1" + TITLE_DESC_FLU_SHOT + DATETIME_DESC_FLU_SHOT,
+                MESSAGE_INVALID_FORMAT);
+
+        // one valid, one invalid, vice versa
+        assertParseFailure(parser, "1 a" + TITLE_DESC_FLU_SHOT + DATETIME_DESC_FLU_SHOT ,
+                MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "a 1" + TITLE_DESC_FLU_SHOT + DATETIME_DESC_FLU_SHOT,
+                MESSAGE_INVALID_FORMAT);
     }
 }

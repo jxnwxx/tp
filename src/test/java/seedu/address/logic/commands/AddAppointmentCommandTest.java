@@ -25,13 +25,13 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.Title;
 import seedu.address.model.patient.Patient;
+import seedu.address.testutil.AppointmentBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for AddAppointmentCommand.
  */
 public class AddAppointmentCommandTest {
-    private static final Appointment VALID_APPOINTMENT = new Appointment(new Title("Dental Checkup"),
-            LocalDateTime.of(2020, 02, 20, 20, 20));
+    private static final Appointment VALID_APPOINTMENT = new AppointmentBuilder().build();
 
     private Model model;
 
@@ -50,7 +50,7 @@ public class AddAppointmentCommandTest {
     }
 
     @Test
-    public void execute_patientExists_addSuccessful() throws Exception {
+    public void execute_validIndex_addSuccessful() throws Exception {
         Patient patient = model.getFilteredPatientList().get(INDEX_FIRST_PATIENT.getZeroBased());
         AddAppointmentCommand command = new AddAppointmentCommand(INDEX_FIRST_PATIENT, VALID_APPOINTMENT);
 
@@ -75,7 +75,7 @@ public class AddAppointmentCommandTest {
     }
 
     @Test
-    public void execute_patientNotFound_throwsCommandException() {
+    public void execute_invalidIndex_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPatientList().size() + 1);
         AddAppointmentCommand command = new AddAppointmentCommand(outOfBoundIndex, VALID_APPOINTMENT);
 

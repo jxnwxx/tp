@@ -10,6 +10,8 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.DeleteAppointmentCommand;
 
 public class DeleteAppointmentCommandParserTest {
+    private static final String MESSAGE_INVALID_FORMAT =
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteAppointmentCommand.MESSAGE_USAGE);
 
     private DeleteAppointmentCommandParser parser = new DeleteAppointmentCommandParser();
 
@@ -21,7 +23,18 @@ public class DeleteAppointmentCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        assertParseFailure(parser, "a",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteAppointmentCommand.MESSAGE_USAGE));
+        // empty string
+        assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
+
+        // non-integer
+        assertParseFailure(parser, "a", MESSAGE_INVALID_FORMAT);
+
+        // two valid index
+        assertParseFailure(parser, "1 1", MESSAGE_INVALID_FORMAT);
+
+        // one valid, one invalid, vice versa
+        assertParseFailure(parser, "1 a", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "a 1", MESSAGE_INVALID_FORMAT);
+
     }
 }
