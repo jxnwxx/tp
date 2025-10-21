@@ -80,7 +80,7 @@ public class EditAppointmentCommand extends Command {
 
         updatedAppointments.set(index.getZeroBased(), editedAppointment);
 
-        Patient newPerson = new Patient(targetPatient.getName(),
+        Patient newPatient = new Patient(targetPatient.getName(),
                 targetPatient.getNric(),
                 targetPatient.getGender(),
                 targetPatient.getPhone(),
@@ -90,8 +90,8 @@ public class EditAppointmentCommand extends Command {
                 targetPatient.getTags(),
                 updatedAppointments);
 
-        model.setPatient(targetPatient, newPerson);
-        model.setSelectedPatient(newPerson);
+        model.setPatient(targetPatient, newPatient);
+        model.setSelectedPatient(newPatient);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, editedAppointment),
                 false, true, false);
@@ -137,7 +137,7 @@ public class EditAppointmentCommand extends Command {
 
     /**
      * Stores the details to edit the appointment with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * corresponding field value of the patient.
      */
     public static class EditAppointmentDescriptor {
         private Title title;
