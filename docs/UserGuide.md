@@ -5,7 +5,7 @@ Hi there, and welcome to **DoctorBase** — your new desktop assistant for manag
 
 DoctorBase is built with **keyboard-loving efficiency** in mind, but still gives you a visual interface so you're not stuck in a wall of text.
 
-Whether you're a solo doctor managing many patients or just looking to streamline your workflow, DoctorBase is designed to help you stay on top of everything — with less clicking and more doing.
+Whether you're a solo doctor managing many patients or just looking to streamline your workflow, DoctorBase is designed to help you stay on top of everything with less clicking and more doing.
 
 # Table of Contents
 1. [Quick start](#quick-start)
@@ -68,13 +68,13 @@ Whether you're a solo doctor managing many patients or just looking to streamlin
 
     * `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
 
-    * `edit-appt 1 at/dental ad/02-02-2002, 0900` : Edit an appointment at `INDEX` 1 of the currently selected patient's appointment list to `dental`
+    * `edit-appt 1 at/dental ad/02-02-2002, 0900` : Edits an appointment at `INDEX` 1 of the currently selected patient's appointment list to `dental`
 
     * `delete 3` : Deletes the 3rd contact shown in the current list.
 
     * `delete-appt 2` : Deletes the 2nd appointment of currently selected patient
 
-    * `clear` : Deletes all contacts.
+    * `clear` : Deletes all patients.
 
     * `exit` : Exits the app.
 
