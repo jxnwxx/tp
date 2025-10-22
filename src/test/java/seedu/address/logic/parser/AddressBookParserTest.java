@@ -92,11 +92,10 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_listAppointment() throws Exception {
-        Patient patient = new PatientBuilder().build();
         ListAppointmentCommand command = (ListAppointmentCommand) parser.parseCommand(
                 ListAppointmentCommand.COMMAND_WORD + " "
-                        + PREFIX_NRIC + patient.getNric().toString());
-        assertEquals(new ListAppointmentCommand(patient.getNric().toString()), command);
+                        + INDEX_FIRST_PATIENT.getOneBased());
+        assertEquals(new ListAppointmentCommand(INDEX_FIRST_PATIENT), command);
     }
 
 
