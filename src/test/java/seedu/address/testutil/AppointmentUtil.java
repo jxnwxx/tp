@@ -2,12 +2,11 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_TITLE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.logic.commands.EditAppointmentCommand.EditAppointmentDescriptor;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.patient.Patient;
 
 /**
  * A utility class for Appointment.
@@ -17,8 +16,8 @@ public class AppointmentUtil {
     /**
      * Returns an add command string for adding the {@code appointment}.
      */
-    public static String getAddAppointmentCommand(Patient patient, Appointment appointment) {
-        return AddAppointmentCommand.COMMAND_WORD + " " + PREFIX_NRIC + patient.getNric().toString()
+    public static String getAddAppointmentCommand(Index index, Appointment appointment) {
+        return AddAppointmentCommand.COMMAND_WORD + " " + index.getOneBased()
                 + " " + getAppointmentDetails(appointment);
     }
 

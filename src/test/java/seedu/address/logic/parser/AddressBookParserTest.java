@@ -94,11 +94,10 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_addAppointment() throws Exception {
-        Patient patient = new PatientBuilder().build();
         Appointment appointment = new AppointmentBuilder().build();
         AddAppointmentCommand command = (AddAppointmentCommand) parser.parseCommand(
-                        AppointmentUtil.getAddAppointmentCommand(patient, appointment));
-        assertEquals(new AddAppointmentCommand(patient.getNric().toString(), appointment), command);
+                        AppointmentUtil.getAddAppointmentCommand(INDEX_FIRST_PATIENT, appointment));
+        assertEquals(new AddAppointmentCommand(INDEX_FIRST_PATIENT, appointment), command);
     }
 
     @Test void parseCommand_deleteAppointment() throws Exception {
