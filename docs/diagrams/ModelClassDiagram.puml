@@ -20,6 +20,7 @@ Class Name
 Class Phone
 Class Tag
 Class Nric
+Class Gender
 
 Class I #FFFFFF
 }
@@ -39,6 +40,7 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 AddressBook *--> "1" UniquePersonList
 UniquePersonList --> "~* all" Person
 Person *--> Name
+Person *--> Gender
 Person *--> Nric
 Person *--> Phone
 Person *--> Email
@@ -50,7 +52,8 @@ UniquePersonList -[hidden]right-> I
 
 
 Name -[hidden]right-> Nric
-Nric -[hidden]right-> Phone
+Nric -[hidden]right-> Gender
+Gender -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 
