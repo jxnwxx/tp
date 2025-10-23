@@ -24,16 +24,27 @@ public class DeleteCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_PATIENT_SUCCESS = "Deleted Patient: %1$s";
+    public static final String MESSAGE_NOT_VIEWING_PATIENT_LIST = "Command only works when displaying patients.\n"
+            + "Use the following command first: list";
 
     private final Index targetIndex;
 
+    /**
+     * Creates an DeleteCommand to delete the specified patient at the given index.
+     */
     public DeleteCommand(Index targetIndex) {
+        requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (model.getSelectedPatient() != null) {
+            throw new CommandException(MESSAGE_NOT_VIEWING_PATIENT_LIST);
+        }
+
         List<Patient> lastShownList = model.getFilteredPatientList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
