@@ -54,7 +54,7 @@ public class AddAppointmentCommandTest {
     }
 
     @Test
-    public void clashingTimingTest() {
+    public void duplicateTimingTestDifferentTitleSameTime_fail() {
         ObservableList<Patient> patientList = model.getFilteredPatientList();
         ArrayList<Appointment> allAppointments = new ArrayList<>();
         for (int i = 0; i < patientList.size(); i++) {
@@ -66,11 +66,23 @@ public class AddAppointmentCommandTest {
                 .withTitle(VALID_TITLE_DENTAL)
                 .withDateTime("07-10-2025, 1430").build();
 
+        AddAppointmentCommand command1 = new AddAppointmentCommand(INDEX_FIRST_PATIENT, clashTime);
+        assertCommandFailure(command1, model, MESSAGE_APPOINTMENT_TIME_CLASH);
+    }
+
+    @Test
+    public void duplicateTimingTestSameTitleNoClash_success() {
+        ObservableList<Patient> patientList = model.getFilteredPatientList();
+        ArrayList<Appointment> allAppointments = new ArrayList<>();
+        for (int i = 0; i < patientList.size(); i++) {
+            Index idx = Index.fromZeroBased(i);
+            allAppointments.addAll(patientList.get(idx.getZeroBased()).getAppointments());
+        }
+
         Appointment sameTitleNoClash = new AppointmentBuilder()
                 .withTitle("Dentist Appointment")
-                .withDateTime("07-10-2025, 1530").build();
+                .withDateTime("07-10-2025, 1730").build();
 
-        // For sameTitleNoClash
         Patient patient = model.getFilteredPatientList().get(INDEX_FIRST_PATIENT.getZeroBased());
         ArrayList<Appointment> updatedAppointments = new ArrayList<>(Stream.concat(patient.getAppointments().stream(),
                 Stream.of(sameTitleNoClash)).toList());
@@ -87,9 +99,6 @@ public class AddAppointmentCommandTest {
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.setPatient(expectedModel.getFilteredPatientList().get(INDEX_FIRST_PATIENT.getZeroBased()),
                 editedPatient);
-
-        AddAppointmentCommand command1 = new AddAppointmentCommand(INDEX_FIRST_PATIENT, clashTime);
-        assertCommandFailure(command1, model, MESSAGE_APPOINTMENT_TIME_CLASH);
 
         AddAppointmentCommand command2 = new AddAppointmentCommand(INDEX_FIRST_PATIENT, sameTitleNoClash);
         assertCommandSuccess(command2, model, expectedMessage, expectedModel);

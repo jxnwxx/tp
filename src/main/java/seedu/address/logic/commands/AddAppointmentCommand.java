@@ -59,11 +59,10 @@ public class AddAppointmentCommand extends Command {
         }
         Patient targetPatient = lastShownList.get(index.getZeroBased());
 
-        // Check for any clashing timings
+        // Check for any duplicate timings
         ArrayList<Appointment> allAppointments = new ArrayList<>();
         for (int i = 0; i < lastShownList.size(); i++) {
-            Index idx = Index.fromZeroBased(i);
-            allAppointments.addAll(lastShownList.get(idx.getZeroBased()).getAppointments());
+            allAppointments.addAll(lastShownList.get(i).getAppointments());
         }
         if (allAppointments.stream().anyMatch(x -> x.clashTime(toAdd))) {
             throw new CommandException(MESSAGE_APPOINTMENT_TIME_CLASH);
