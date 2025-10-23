@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
@@ -21,10 +22,14 @@ import seedu.address.logic.commands.EditCommand.EditPatientDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListAppointmentCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.patient.NameContainsKeywordsPredicate;
 import seedu.address.model.patient.Patient;
+import seedu.address.testutil.AppointmentBuilder;
+import seedu.address.testutil.AppointmentUtil;
 import seedu.address.testutil.EditPatientDescriptorBuilder;
 import seedu.address.testutil.PatientBuilder;
 import seedu.address.testutil.PatientUtil;
@@ -87,6 +92,23 @@ public class AddressBookParserTest {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
     }
+
+    @Test
+    public void parseCommand_addAppointment() throws Exception {
+        Appointment appointment = new AppointmentBuilder().build();
+        AddAppointmentCommand command = (AddAppointmentCommand) parser.parseCommand(
+                        AppointmentUtil.getAddAppointmentCommand(INDEX_FIRST_PATIENT, appointment));
+        assertEquals(new AddAppointmentCommand(INDEX_FIRST_PATIENT, appointment), command);
+    }
+
+    @Test
+    public void parseCommand_listAppointment() throws Exception {
+        ListAppointmentCommand command = (ListAppointmentCommand) parser.parseCommand(
+                ListAppointmentCommand.COMMAND_WORD + " "
+                        + INDEX_FIRST_PATIENT.getOneBased());
+        assertEquals(new ListAppointmentCommand(INDEX_FIRST_PATIENT), command);
+    }
+
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
