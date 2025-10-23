@@ -21,6 +21,7 @@ import seedu.address.logic.commands.EditCommand.EditPatientDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListAppointmentCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.patient.NameContainsKeywordsPredicate;
@@ -87,6 +88,15 @@ public class AddressBookParserTest {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
     }
+
+    @Test
+    public void parseCommand_listAppointment() throws Exception {
+        ListAppointmentCommand command = (ListAppointmentCommand) parser.parseCommand(
+                ListAppointmentCommand.COMMAND_WORD + " "
+                        + INDEX_FIRST_PATIENT.getOneBased());
+        assertEquals(new ListAppointmentCommand(INDEX_FIRST_PATIENT), command);
+    }
+
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
