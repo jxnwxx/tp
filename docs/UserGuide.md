@@ -39,9 +39,14 @@ Whether you're a solo doctor managing many patients or just looking to streamlin
 4. Open the terminal and navigate to that folder
    * Open Terminal (Mac/Linux) or Command Prompt (Windows)
    * Navigate to your folder using cd, like this:
-     ````
-     cd path/to/your/folder
-     ````
+     * macOS/Linux:
+       ````
+       cd ~/Documents/doctorbase
+       ````
+     * Windows (Command Prompt/Powershell):
+       ```
+       cd %USERPROFILE%\Documents\doctorbase
+       ```
    Eg.
    ```
    cd home/documents/doctorbase
@@ -51,7 +56,7 @@ Whether you're a solo doctor managing many patients or just looking to streamlin
    ```
    java -jar DoctorBase.jar
    ```
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   A GUI like the one shown below should appear within a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 6. Try Your First Command!
