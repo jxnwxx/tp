@@ -101,7 +101,7 @@ public class AddressBookParserTest {
         assertEquals(new AddAppointmentCommand(INDEX_FIRST_PATIENT, appointment), command);
     }
 
-    @Test 
+    @Test
     public void parseCommand_listAppointment() throws Exception {
         ListAppointmentCommand command = (ListAppointmentCommand) parser.parseCommand(
                 ListAppointmentCommand.COMMAND_WORD + " "
