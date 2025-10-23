@@ -16,6 +16,7 @@ Person -up-> "*" Tag
 
 Person *--> Name
 Person *--> Nric
+Person *--> Gender
 Person *--> Phone
 Person *--> Email
 Person *--> Address
