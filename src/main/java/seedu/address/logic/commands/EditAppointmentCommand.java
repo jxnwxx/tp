@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NRIC;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -65,7 +64,6 @@ public class EditAppointmentCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
 
         Patient targetPatient = model.getSelectedPatient();
         if (targetPatient == null) {
