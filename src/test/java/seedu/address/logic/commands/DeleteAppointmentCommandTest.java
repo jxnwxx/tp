@@ -11,7 +11,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_APPOINTMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_APPOINTMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PATIENT;
-import static seedu.address.testutil.TypicalPatients.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPatients.getTypicalDoctorBase;
 
 import java.util.ArrayList;
 
@@ -36,7 +36,7 @@ public class DeleteAppointmentCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalDoctorBase(), new UserPrefs());
     }
 
     @Test
@@ -60,7 +60,7 @@ public class DeleteAppointmentCommandTest {
         String expectedMessage = String.format(DeleteAppointmentCommand.MESSAGE_DELETE_APPOINTMENT_SUCCESS,
                 Messages.format(patient), deletedAppointment);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getDoctorBase(), new UserPrefs());
         expectedModel.setPatient(patient, editedPatient);
 
         assertCommandSuccess(deleteAppointmentCommand, model, expectedMessage, expectedModel);
