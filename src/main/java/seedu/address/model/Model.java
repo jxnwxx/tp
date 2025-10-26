@@ -1,10 +1,12 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -100,4 +102,9 @@ public interface Model {
      * Sets Patient for Appointment commands
      */
     void setSelectedPatient(Patient patient);
+
+    /**
+     * Returns an unmodifiable view of all upcoming appointments from all patients in the address book.
+     */
+    ObservableList<Appointment> getUpcomingAppointments();
 }

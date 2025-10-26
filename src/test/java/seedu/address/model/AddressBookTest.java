@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.exceptions.DuplicatePatientException;
 import seedu.address.testutil.PatientBuilder;
@@ -102,6 +103,11 @@ public class AddressBookTest {
         @Override
         public ObservableList<Patient> getPatientList() {
             return patients;
+        }
+
+        @Override
+        public ObservableList<Appointment> getUpcomingAppointmentList() {
+            throw new AssertionError("This method should not be called.");
         }
     }
 

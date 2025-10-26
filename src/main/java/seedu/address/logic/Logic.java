@@ -8,6 +8,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -52,4 +53,9 @@ public interface Logic {
      * Get selecetedPatient
      */
     Patient getSelectedPatient();
+
+    /** Returns an unmodifiable view of upcoming appointments */
+    ObservableList<Appointment> getUpcomingAppointments();
 }
+
+

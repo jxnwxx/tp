@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -131,6 +132,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Appointment> getUpcomingAppointments() {
+        return addressBook.getUpcomingAppointmentList();
+    }
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
@@ -167,6 +173,4 @@ public class ModelManager implements Model {
     public void setSelectedPatient(Patient patient) {
         selectedPatient = patient;
     }
-
-
 }

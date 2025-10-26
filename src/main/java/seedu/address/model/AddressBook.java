@@ -2,10 +2,14 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.UniquePatientList;
 
@@ -16,7 +20,6 @@ import seedu.address.model.patient.UniquePatientList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePatientList patients;
-
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
@@ -107,6 +110,19 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Patient> getPatientList() {
         return patients.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Appointment> getUpcomingAppointmentList() {
+        List<Appointment> upcomingAppointments = getPatientList().stream()
+                .flatMap(patient -> patient.getAppointments().stream())
+                .filter(appointment -> appointment.getDateTime().isAfter(LocalDateTime.now()))
+                .sorted()
+                .toList();
+
+        return FXCollections.unmodifiableObservableList(
+                FXCollections.observableArrayList(upcomingAppointments)
+        );
     }
 
     @Override
