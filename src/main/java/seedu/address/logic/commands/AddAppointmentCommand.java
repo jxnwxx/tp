@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_TITLE;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,6 +61,7 @@ public class AddAppointmentCommand extends Command {
         Patient targetPatient = lastShownList.get(index.getZeroBased());
 
         // Check for any duplicate timings
+        model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
         ArrayList<Appointment> allAppointments = new ArrayList<>();
         for (int i = 0; i < lastShownList.size(); i++) {
             allAppointments.addAll(lastShownList.get(i).getAppointments());
