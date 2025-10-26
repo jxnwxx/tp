@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 
-public class ListAppointmentUpcomingTest {
+public class ListAppointmentUpcomingCommandTest {
     private final Model model = new ModelManager();
     private final Model expectedModel = new ModelManager();
 

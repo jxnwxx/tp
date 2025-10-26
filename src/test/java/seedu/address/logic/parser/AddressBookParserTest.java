@@ -23,6 +23,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListAppointmentCommand;
+import seedu.address.logic.commands.ListAppointmentUpcomingCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Appointment;
@@ -109,6 +110,13 @@ public class AddressBookParserTest {
         assertEquals(new ListAppointmentCommand(INDEX_FIRST_PATIENT), command);
     }
 
+    @Test
+    public void parseCommand_listAppointmentUpcoming() throws Exception {
+        assertTrue(parser.parseCommand(ListAppointmentUpcomingCommand.COMMAND_WORD)
+                instanceof ListAppointmentUpcomingCommand);
+        assertTrue(parser.parseCommand(ListAppointmentUpcomingCommand.COMMAND_WORD + " 4")
+                instanceof ListAppointmentUpcomingCommand);
+    }
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
