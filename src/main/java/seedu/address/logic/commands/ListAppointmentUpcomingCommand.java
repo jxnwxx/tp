@@ -22,10 +22,4 @@ public class ListAppointmentUpcomingCommand extends Command {
         model.setSelectedPatient(null);
         return new CommandResult(String.format(MESSAGE_SUCCESS), false, true, false);
     }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this)
-                .toString();
-    }
 }
