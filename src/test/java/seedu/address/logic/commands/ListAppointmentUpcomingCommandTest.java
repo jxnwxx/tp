@@ -13,7 +13,7 @@ public class ListAppointmentUpcomingCommandTest {
     private final Model expectedModel = new ModelManager();
 
     @Test
-    public void execute_help_success() {
+    public void execute_listAppointmentUpcoming_success() {
         CommandResult expectedCommandResult = new CommandResult(MESSAGE_SUCCESS, false, true, false);
         assertCommandSuccess(new ListAppointmentUpcomingCommand(), model, expectedCommandResult, expectedModel);
     }
