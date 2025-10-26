@@ -10,7 +10,6 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 import seedu.address.commons.core.index.Index;
@@ -84,10 +83,9 @@ public class EditAppointmentCommand extends Command {
         Appointment editedAppointment = createEditedAppointment(appointmentToEdit, editAppointmentDescriptor);
 
         // Check for any duplicate timings
-        List<Patient> lastShownList = model.getFilteredPatientList();
         ArrayList<Appointment> allAppointments = new ArrayList<>();
-        for (int i = 0; i < lastShownList.size(); i++) {
-            allAppointments.addAll(lastShownList.get(i).getAppointments());
+        for (int i = 0; i < model.getAddressBook().getPatientList().size(); i++) {
+            allAppointments.addAll(model.getAddressBook().getPatientList().get(i).getAppointments());
         }
         if (allAppointments.stream().anyMatch(x -> x.clashTime(editedAppointment)
                 && !x.equals(appointmentToEdit))) {

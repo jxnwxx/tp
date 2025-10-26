@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_TITLE;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,10 +60,9 @@ public class AddAppointmentCommand extends Command {
         Patient targetPatient = lastShownList.get(index.getZeroBased());
 
         // Check for any duplicate timings
-        model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
         ArrayList<Appointment> allAppointments = new ArrayList<>();
-        for (int i = 0; i < lastShownList.size(); i++) {
-            allAppointments.addAll(lastShownList.get(i).getAppointments());
+        for (int i = 0; i < model.getAddressBook().getPatientList().size(); i++) {
+            allAppointments.addAll(model.getAddressBook().getPatientList().get(i).getAppointments());
         }
         if (allAppointments.stream().anyMatch(x -> x.clashTime(toAdd))) {
             throw new CommandException(MESSAGE_APPOINTMENT_TIME_CLASH);
