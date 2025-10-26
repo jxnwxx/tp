@@ -1,7 +1,5 @@
 package seedu.address.logic.commands;
 
-import java.time.LocalDateTime;
-
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;

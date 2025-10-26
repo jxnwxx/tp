@@ -8,8 +8,6 @@ import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 import java.util.Objects;
 
-import seedu.address.model.patient.Patient;
-
 
 /**
  * Represents an Appointment in the address book.
