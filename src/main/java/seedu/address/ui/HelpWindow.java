@@ -16,7 +16,24 @@ import seedu.address.commons.core.LogsCenter;
 public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "https://ay2526s1-cs2103t-w10-3.github.io/tp/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
+    public static final String HELP_MESSAGE =
+              "Pro Tip: Enter a command without parameters to see usage examples!\n\n"
+            + "[Patient Commands]\n"
+            + "1. Add Patient: add n/NAME i/NRIC g/GENDER p/PHONE e/EMAIL d/DATEOFBIRTH a/ADDRESS [mh/MEDICALHISTORY]\n"
+            + "2. List Patients: list\n"
+            + "3. Find Patient: find KEYWORD [MORE_KEYWORDS]\n"
+            + "4. Edit Patient: edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...\n"
+            + "5. Delete Patient: delete INDEX\n"
+            + "6. Clear All Patients: clear\n"
+            + "\n"
+            + "[Appointment Commands]\n"
+            + "1. Add Appointment: add-appt INDEX at/APPOINTMENT_TITLE ad/APPOINTMENT_DATE\n"
+            + "2. List Appointments: list-appt INDEX\n"
+            + "3. Edit Appointment: edit-appt INDEX [at/APPOINTMENT_TITLE] [ad/APPOINTMENT_DATE]\n"
+            + "4. Delete Appointment: delete-appt INDEX\n"
+            + "\n"
+            + "User guide: " + USERGUIDE_URL + "\n";
+
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
