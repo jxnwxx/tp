@@ -49,11 +49,6 @@ deactivate DoctorBaseParser
 LogicManager -> DeleteAppointmentCommand : execute(m)
 activate DeleteAppointmentCommand
 
-DeleteAppointmentCommand -> Model : getSelectedPatient()
-activate Model
-Model --> DeleteAppointmentCommand : Patient
-deactivate Model
-
 DeleteAppointmentCommand -> Model : getSelectedPatient().getAppointments()
 activate Model
 Model --> DeleteAppointmentCommand : List<Appointment>
