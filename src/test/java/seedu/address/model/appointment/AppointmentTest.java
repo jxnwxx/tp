@@ -92,8 +92,8 @@ public class AppointmentTest {
 
         Appointment a = new Appointment(title, date);
 
-        // Appointment.toString() -> "%s (%s)" where date is "dd-MM-yyyy, HHmm"
-        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd-MM-yyyy, HHmm");
+        // Appointment.toString() -> "%s (%s)" where date is "dd-MM-uuuu, HHmm"
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd-MM-uuuu, HHmm");
         String expected = title + " (" + date.format(fmt) + ")";
         assertEquals(expected, a.toString());
     }

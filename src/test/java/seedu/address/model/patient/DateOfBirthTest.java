@@ -26,7 +26,7 @@ public class DateOfBirthTest {
     @Test
     public void isValidDateOfBirth() {
         // null name
-        assertThrows(NullPointerException.class, () -> DateOfBirth.isValidDateOfBirth(null));
+        assertFalse(DateOfBirth.isValidDateOfBirth(null));
 
         // invalid name
         assertFalse(DateOfBirth.isValidDateOfBirth("")); // empty string
