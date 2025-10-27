@@ -125,7 +125,7 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getDoctorBaseFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
@@ -167,7 +167,7 @@ public class MainWindow extends UiPart<Stage> {
         patientListPanelPlaceholder.setVisible(true);
         appointmentListPanelPlaceholder.setVisible(false);
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getDoctorBaseFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
     }
 
@@ -194,7 +194,7 @@ public class MainWindow extends UiPart<Stage> {
         appointmentListPanelPlaceholder.getChildren().add(appointmentListPanel.getRoot());
 
         StatusBarFooter statusBarFooter =
-                new StatusBarFooter(logic.getAddressBookFilePath(), logic.getSelectedPatient());
+                new StatusBarFooter(logic.getDoctorBaseFilePath(), logic.getSelectedPatient());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         showAppointmentList();

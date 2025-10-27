@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.DoctorBase;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.Title;
 import seedu.address.model.patient.Patient;
@@ -52,7 +52,8 @@ public class TypicalPatients {
                 new Appointment(
                         new Title("Dentist Appointment"),
                         LocalDateTime.of(2025, 10, 7, 14, 30)
-                )
+                ), new Appointment(new Title("Flu jab"),
+                            LocalDateTime.of(2025, 10, 7, 15, 30))
             ))).build();
     public static final Patient CARL = new PatientBuilder().withName("Carl Kurz")
             .withNric("T1257515C")
@@ -115,10 +116,10 @@ public class TypicalPatients {
     private TypicalPatients() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical patients.
+     * Returns an {@code DoctorBase} with all the typical patients.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static DoctorBase getTypicalDoctorBase() {
+        DoctorBase ab = new DoctorBase();
         for (Patient patient : getTypicalPatients()) {
             ab.addPatient(new Patient(patient));
         }
