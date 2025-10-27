@@ -7,12 +7,12 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_APPOINTMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_APPOINTMENT;
 import static seedu.address.testutil.TypicalPatients.BENSON;
-import static seedu.address.testutil.TypicalPatients.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPatients.getTypicalDoctorBase;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.EditAppointmentCommand.EditAppointmentDescriptor;
-import seedu.address.model.AddressBook;
+import seedu.address.model.DoctorBase;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -22,7 +22,7 @@ import seedu.address.testutil.AppointmentBuilder;
 import seedu.address.testutil.EditAppointmentDescriptorBuilder;
 
 public class EditAppointmentCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalDoctorBase(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecified_success() {
@@ -48,7 +48,7 @@ public class EditAppointmentCommandTest {
                 editedAppointment
         );
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new DoctorBase(model.getDoctorBase()), new UserPrefs());
         expectedModel.setPatient(model.getFilteredPatientList().get(1), newPatient);
 
         assertCommandSuccess(editAppointmentCommand, model, expectedMessage, expectedModel);
@@ -78,7 +78,7 @@ public class EditAppointmentCommandTest {
                 editedAppointment
         );
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new DoctorBase(model.getDoctorBase()), new UserPrefs());
         expectedModel.setPatient(model.getFilteredPatientList().get(1), newPatient);
 
         assertCommandSuccess(editAppointmentCommand, model, expectedMessage, expectedModel);
@@ -107,7 +107,7 @@ public class EditAppointmentCommandTest {
                 editedAppointment
         );
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new DoctorBase(model.getDoctorBase()), new UserPrefs());
         expectedModel.setPatient(model.getFilteredPatientList().get(1), newPatient);
 
         assertCommandSuccess(editAppointmentCommand, model, expectedMessage, expectedModel);
