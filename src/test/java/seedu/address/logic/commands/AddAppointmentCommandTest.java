@@ -138,6 +138,16 @@ public class AddAppointmentCommandTest {
     }
 
     @Test
+    public void execute_selectedPatientNotNull_throwsCommandException() {
+        Patient patient = model.getFilteredPatientList().get(INDEX_FIRST_PATIENT.getZeroBased());
+        // Set selected patient to indicate already viewing
+        model.setSelectedPatient(patient);
+        AddAppointmentCommand command = new AddAppointmentCommand(INDEX_FIRST_PATIENT, VALID_APPOINTMENT);
+
+        assertCommandFailure(command, model, AddAppointmentCommand.MESSAGE_NOT_VIEWING_PATIENT_LIST);
+    }
+
+    @Test
     public void equals() {
         Appointment appt1 = new Appointment(new Title("A"), LocalDateTime.of(2025, 10, 1, 10, 0));
         Appointment appt2 = new Appointment(new Title("B"), LocalDateTime.of(2025, 11, 2, 11, 0));
