@@ -8,7 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PATIENT;
-import static seedu.address.testutil.TypicalPatients.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPatients.getTypicalDoctorBase;
 
 import org.junit.jupiter.api.Test;
 
@@ -23,7 +23,7 @@ import seedu.address.model.patient.Patient;
  * Contains integration tests (interaction with the Model) and unit tests for ListAppointmentCommand.
  */
 public class ListAppointmentCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalDoctorBase(), new UserPrefs());
 
     @Test
     public void constructor_nullArguments_throwsNullPointerException() {
@@ -37,7 +37,7 @@ public class ListAppointmentCommandTest {
 
         String expectedMessage = String.format(ListAppointmentCommand.MESSAGE_SUCCESS, patient.getName(),
                 patient.getNric());
-        Model expectedModel = new ModelManager(model.getAddressBook(), model.getUserPrefs());
+        Model expectedModel = new ModelManager(model.getDoctorBase(), model.getUserPrefs());
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
 
@@ -49,7 +49,7 @@ public class ListAppointmentCommandTest {
 
         expectedMessage = String.format(ListAppointmentCommand.MESSAGE_SUCCESS, patient.getName(),
                 patient.getNric());
-        expectedModel = new ModelManager(model.getAddressBook(), model.getUserPrefs());
+        expectedModel = new ModelManager(model.getDoctorBase(), model.getUserPrefs());
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
