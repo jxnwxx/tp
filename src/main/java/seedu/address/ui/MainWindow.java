@@ -201,7 +201,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * TODO
+     * Set Appointment list content to all upcoming appointments and displays it
      */
     @FXML
     public void handleListAllUpcomingAppointments() {
