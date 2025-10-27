@@ -22,6 +22,7 @@ import seedu.address.model.DoctorBase;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyDoctorBase;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.ViewMode;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.patient.Patient;
 import seedu.address.testutil.PatientBuilder;
@@ -176,6 +177,16 @@ public class AddCommandTest {
 
         @Override
         public void setSelectedPatient(Patient patient) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ViewMode getViewMode() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setViewMode(ViewMode viewMode) {
             throw new AssertionError("This method should not be called.");
         }
     }

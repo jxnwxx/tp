@@ -17,6 +17,7 @@ import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.ViewMode;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -42,7 +43,7 @@ public class ListAppointmentCommandTest {
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
 
         // Reset for another test
-        model.setSelectedPatient(null);
+        model.setViewMode(ViewMode.PATIENT_LIST);
 
         patient = model.getFilteredPatientList().get(INDEX_SECOND_PATIENT.getZeroBased());
         command = new ListAppointmentCommand(INDEX_SECOND_PATIENT);
@@ -55,14 +56,11 @@ public class ListAppointmentCommandTest {
     }
 
     @Test
-    public void execute_selectedPatientNotNull_throwsCommandException() {
-        Patient patient = model.getFilteredPatientList().get(INDEX_FIRST_PATIENT.getZeroBased());
-        // Set selected patient to indicate already viewing
-        model.setSelectedPatient(patient);
+    public void execute_viewModeNotPatientList_throwsCommandException() {
+        model.setViewMode(ViewMode.PATIENT_APPOINTMENT_LIST);
         ListAppointmentCommand command = new ListAppointmentCommand(INDEX_FIRST_PATIENT);
 
-        assertCommandFailure(command, model,
-                String.format(ListAppointmentCommand.MESSAGE_ALREADY_LISTING, patient.getName(), patient.getNric()));
+        assertCommandFailure(command, model, Messages.MESSAGE_NOT_VIEWING_PATIENT_LIST);
     }
 
     @Test

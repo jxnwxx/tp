@@ -25,9 +25,6 @@ public class ListAppointmentCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_SUCCESS = "Listed all appointments for %1$s [%2$s]";
-    public static final String MESSAGE_NOT_LISTING_PATIENTS = "Command only works when displaying patients."
-            + " Run command list to display patients.";
-
 
     private final Index targetIndex;
 
@@ -45,7 +42,7 @@ public class ListAppointmentCommand extends Command {
         List<Patient> lastShownList = model.getFilteredPatientList();
 
         if (model.getViewMode() != ViewMode.PATIENT_LIST) {
-            throw new CommandException(MESSAGE_NOT_LISTING_PATIENTS);
+            throw new CommandException(Messages.MESSAGE_NOT_VIEWING_PATIENT_LIST);
         }
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
