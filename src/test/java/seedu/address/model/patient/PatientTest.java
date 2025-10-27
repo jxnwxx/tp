@@ -105,4 +105,10 @@ public class PatientTest {
                 + ", medicalhistory=" + ALICE.getTags() + "}";
         assertEquals(expected, ALICE.toString());
     }
+
+    @Test
+    public void hashCodeTest() {
+        Patient aliceCopy = new PatientBuilder(ALICE).build();
+        assertEquals(aliceCopy.hashCode(), new PatientBuilder(ALICE).build().hashCode());
+    }
 }

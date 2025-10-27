@@ -1,5 +1,6 @@
 package seedu.address.model.patient;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -52,5 +53,11 @@ public class AddressTest {
 
         // different values -> returns false
         assertFalse(address.equals(new Address("Other Valid Address")));
+    }
+
+    @Test
+    public void hashCodeTest() {
+        Address address = new Address("Valid Address");
+        assertEquals(address.hashCode(), new Address("Valid Address").hashCode());
     }
 }

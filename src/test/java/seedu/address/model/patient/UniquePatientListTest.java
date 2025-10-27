@@ -172,4 +172,14 @@ public class UniquePatientListTest {
     public void toStringMethod() {
         assertEquals(uniquePatientList.asUnmodifiableObservableList().toString(), uniquePatientList.toString());
     }
+
+    @Test
+    public void hashCodeTest() {
+        uniquePatientList.add(ALICE);
+        List<Patient> patientList = Collections.singletonList(BOB);
+        uniquePatientList.setPatients(patientList);
+        UniquePatientList expectedUniquePatientList = new UniquePatientList();
+        expectedUniquePatientList.add(BOB);
+        assertEquals(expectedUniquePatientList.hashCode(), uniquePatientList.hashCode());
+    }
 }

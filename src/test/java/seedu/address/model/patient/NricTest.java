@@ -1,5 +1,6 @@
 package seedu.address.model.patient;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -54,5 +55,12 @@ public class NricTest {
 
         // different values -> returns false
         assertFalse(nric.equals(new Name("T5437220A")));
+    }
+
+    @Test
+    public void hashCodeTest() {
+        Nric nric = new Nric("S1234567A");
+
+        assertEquals(nric.hashCode(), new Nric("S1234567A").hashCode());
     }
 }
