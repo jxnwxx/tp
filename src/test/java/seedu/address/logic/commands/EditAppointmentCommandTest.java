@@ -209,7 +209,7 @@ public class EditAppointmentCommandTest {
                 editedAppointment
         );
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new DoctorBase(model.getDoctorBase()), new UserPrefs());
         expectedModel.setPatient(model.getFilteredPatientList().get(1), newPatient);
 
         assertCommandSuccess(editAppointmentCommand, model, expectedMessage, expectedModel);

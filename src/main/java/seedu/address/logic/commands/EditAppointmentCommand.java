@@ -82,8 +82,8 @@ public class EditAppointmentCommand extends Command {
 
         // Check for any duplicate timings
         ArrayList<Appointment> allAppointments = new ArrayList<>();
-        for (int i = 0; i < model.getAddressBook().getPatientList().size(); i++) {
-            allAppointments.addAll(model.getAddressBook().getPatientList().get(i).getAppointments());
+        for (int i = 0; i < model.getDoctorBase().getPatientList().size(); i++) {
+            allAppointments.addAll(model.getDoctorBase().getPatientList().get(i).getAppointments());
         }
         if (allAppointments.stream().anyMatch(x -> x.clashTime(editedAppointment)
                 && !x.equals(appointmentToEdit))) {

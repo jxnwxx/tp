@@ -96,7 +96,7 @@ public class AddAppointmentCommandTest {
                 sameTitleNoClash
         );
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getDoctorBase(), new UserPrefs());
         expectedModel.setPatient(expectedModel.getFilteredPatientList().get(INDEX_FIRST_PATIENT.getZeroBased()),
                 editedPatient);
 
