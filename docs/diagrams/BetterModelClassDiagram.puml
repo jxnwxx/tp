@@ -7,8 +7,8 @@ skinparam classBackgroundColor MODEL_COLOR
 DoctorBase *-right-> "1" UniquePatientList
 UniquePatientList -right-> Patient
 DoctorBase *-right-> "1" UniqueMedicalHistoryList
-UniqueMedicalHistoryList -right-> MedicalHistory
-Patient -up-> "1" MedicalHistory
+UniqueMedicalHistoryList -right-> "*" MedicalHistory
+Patient -up-> "*" MedicalHistory
 Patient *--> Name
 Patient *--> Nric
 Patient *--> Gender
