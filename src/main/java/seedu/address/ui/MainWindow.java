@@ -201,7 +201,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     *
+     * TODO
      */
     @FXML
     public void handleListAllUpcomingAppointments() {
@@ -210,7 +210,7 @@ public class MainWindow extends UiPart<Stage> {
         appointmentListPanelPlaceholder.getChildren().add(appointmentListPanel.getRoot());
 
         StatusBarFooter statusBarFooter =
-                new StatusBarFooter(logic.getAddressBookFilePath());
+                new StatusBarFooter(logic.getDoctorBaseFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         showAppointmentList();

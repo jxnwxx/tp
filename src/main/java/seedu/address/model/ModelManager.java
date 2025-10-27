@@ -133,7 +133,7 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Appointment> getUpcomingAppointments() {
-        return addressBook.getUpcomingAppointmentList();
+        return doctorBase.getUpcomingAppointmentList();
     }
 
     @Override
