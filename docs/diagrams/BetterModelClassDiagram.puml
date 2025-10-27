@@ -6,10 +6,9 @@ skinparam classBackgroundColor MODEL_COLOR
 
 DoctorBase *-right-> "1" UniquePatientList
 UniquePatientList -right-> Patient
+DoctorBase *-right-> "*" UniqueMedicalHistoryList
+UniqueMedicalHistoryList -right-> MedicalHistory
 Patient -up-> "1" MedicalHistory
-
-MedicalHistory *-right-> "*" PastMedicalRecords
-
 Patient *--> Name
 Patient *--> Nric
 Patient *--> Gender
@@ -17,4 +16,8 @@ Patient *--> Phone
 Patient *--> Email
 Patient *--> DateOfBirth
 Patient *--> Address
+
+Patient -down-> "*" Appointment
+Appointment *--> Title
+Appointment *--> LocalDateTime
 @enduml
