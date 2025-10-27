@@ -32,7 +32,8 @@ public class AddAppointmentCommand extends Command {
             + PREFIX_APPOINTMENT_DATETIME + "10-10-2010, 0900\n";
 
     public static final String MESSAGE_SUCCESS = "New appointment for %1$s: %2$s";
-    public static final String MESSAGE_PATIENT_NOT_FOUND = "No patient with this NRIC exists in the address book.";
+    public static final String MESSAGE_NOT_VIEWING_PATIENT_LIST = "Command only works when displaying patients.\n"
+            + "Use the following command first: list";
     public static final String MESSAGE_APPOINTMENT_TIME_CLASH =
             "The appointment has a clashing timing with another appointment.";
 
@@ -52,6 +53,11 @@ public class AddAppointmentCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (model.getSelectedPatient() != null) {
+            throw new CommandException(MESSAGE_NOT_VIEWING_PATIENT_LIST);
+        }
+
         List<Patient> lastShownList = model.getFilteredPatientList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
