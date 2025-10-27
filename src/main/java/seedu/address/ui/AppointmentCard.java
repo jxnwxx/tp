@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.time.LocalDateTime;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -32,5 +34,11 @@ public class AppointmentCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         title.setText(appointment.getTitle().title);
         date.setText(appointment.getDateTimeAsString());
+        if (appointment.getDateTime().isBefore(LocalDateTime.now())) {
+            // Past appointment: Grey text
+            id.setStyle("-fx-text-fill: #a0a0a0;");
+            title.setStyle("-fx-text-fill: #a0a0a0;"); // light gray
+            date.setStyle("-fx-text-fill: #a0a0a0;");
+        }
     }
 }
