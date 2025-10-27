@@ -106,4 +106,15 @@ public interface Model {
      * Returns an unmodifiable view of all upcoming appointments from all patients in the address book.
      */
     ObservableList<Appointment> getUpcomingAppointments();
+
+    /**
+     * Returns the current {@code ViewMode} of the application.
+     */
+    ViewMode getViewMode();
+
+    /**
+     * Sets the current {@code ViewMode} of the application.
+     * @param viewMode The new view mode to set. Must not be null.
+     */
+    void setViewMode(ViewMode viewMode);
 }

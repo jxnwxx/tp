@@ -37,4 +37,21 @@ public class StatusBarFooter extends UiPart<Region> {
         saveLocationStatus.setText(Paths.get(".").resolve(saveLocation).toString());
         listStatus.setText("Displaying " + patient.getNric() + " appointments!");
     }
+
+    /**
+     * Creates a {@code StatusBarFooter} with the given {@code Path} and custom text.
+     */
+    private StatusBarFooter(Path saveLocation, String text) {
+        super(FXML);
+        saveLocationStatus.setText(Paths.get(".").resolve(saveLocation).toString());
+        listStatus.setText(text);
+    }
+
+    /**
+     * Creates a {@code StatusBarFooter} with the given {@code Path} and text indicating
+     * that upcoming appointments are being displayed.
+     */
+    public static StatusBarFooter getUpcomingAppointmentsFooter(Path saveLocation) {
+        return new StatusBarFooter(saveLocation, "Displaying upcoming appointments!");
+    }
 }

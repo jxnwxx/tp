@@ -9,6 +9,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.ViewMode;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -24,8 +25,6 @@ public class DeleteCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_PATIENT_SUCCESS = "Deleted Patient: %1$s";
-    public static final String MESSAGE_NOT_VIEWING_PATIENT_LIST = "Command only works when displaying patients.\n"
-            + "Use the following command first: list";
 
     private final Index targetIndex;
 
@@ -41,8 +40,8 @@ public class DeleteCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.getSelectedPatient() != null) {
-            throw new CommandException(MESSAGE_NOT_VIEWING_PATIENT_LIST);
+        if (model.getViewMode() != ViewMode.PATIENT_LIST) {
+            throw new CommandException(Messages.MESSAGE_NOT_VIEWING_PATIENT_LIST);
         }
 
         List<Patient> lastShownList = model.getFilteredPatientList();

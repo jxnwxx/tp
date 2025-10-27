@@ -9,6 +9,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.ViewMode;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -24,7 +25,8 @@ public class ListAppointmentCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_SUCCESS = "Listed all appointments for %1$s [%2$s]";
-    public static final String MESSAGE_ALREADY_LISTING = "Already listing appointments for %1$s [%2$s]";
+    public static final String MESSAGE_NOT_LISTING_PATIENTS = "Command only works when displaying patients."
+            + " Run command list to display patients.";
 
 
     private final Index targetIndex;
@@ -42,9 +44,8 @@ public class ListAppointmentCommand extends Command {
         requireNonNull(model);
         List<Patient> lastShownList = model.getFilteredPatientList();
 
-        if (model.getSelectedPatient() != null) {
-            throw new CommandException(String.format(MESSAGE_ALREADY_LISTING, model.getSelectedPatient().getName(),
-                    model.getSelectedPatient().getNric()));
+        if (model.getViewMode() != ViewMode.PATIENT_LIST) {
+            throw new CommandException(MESSAGE_NOT_LISTING_PATIENTS);
         }
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
@@ -53,6 +54,7 @@ public class ListAppointmentCommand extends Command {
         Patient targetPatient = lastShownList.get(targetIndex.getZeroBased());
 
         model.setSelectedPatient(targetPatient);
+        model.setViewMode(ViewMode.PATIENT_APPOINTMENT_LIST);
         return new CommandResult(String.format(MESSAGE_SUCCESS, targetPatient.getName(),
                 targetPatient.getNric()), false, true, false);
     }

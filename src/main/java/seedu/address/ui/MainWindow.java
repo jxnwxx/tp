@@ -210,7 +210,7 @@ public class MainWindow extends UiPart<Stage> {
         appointmentListPanelPlaceholder.getChildren().add(appointmentListPanel.getRoot());
 
         StatusBarFooter statusBarFooter =
-                new StatusBarFooter(logic.getDoctorBaseFilePath());
+                StatusBarFooter.getUpcomingAppointmentsFooter(logic.getDoctorBaseFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         showAppointmentList();
