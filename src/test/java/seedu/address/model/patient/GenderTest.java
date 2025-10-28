@@ -1,5 +1,6 @@
 package seedu.address.model.patient;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -90,5 +91,12 @@ public class GenderTest {
 
         // different input for same gender -> returns true
         assertTrue(gender.equals(new Gender("MAlE")));
+    }
+
+    @Test
+    public void hashCodeTest() {
+        Gender gender = new Gender("m");
+
+        assertEquals(gender.hashCode(), new Gender("m").hashCode());
     }
 }

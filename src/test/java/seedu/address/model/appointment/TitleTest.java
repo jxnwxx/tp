@@ -1,5 +1,6 @@
 package seedu.address.model.appointment;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -59,5 +60,12 @@ public class TitleTest {
 
         // different values -> returns false
         assertFalse(title.equals(new Title("Other Valid Title")));
+    }
+
+    @Test
+    public void hashCodeTest() {
+        Title title = new Title("Valid Title");
+
+        assertEquals(title.hashCode(), new Title("Valid Title").hashCode());
     }
 }
