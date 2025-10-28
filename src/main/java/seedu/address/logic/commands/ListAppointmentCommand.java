@@ -2,6 +2,9 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
@@ -10,6 +13,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ViewMode;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -50,8 +54,33 @@ public class ListAppointmentCommand extends Command {
         }
         Patient targetPatient = lastShownList.get(targetIndex.getZeroBased());
 
-        model.setSelectedPatient(targetPatient);
+        // Fetch the time now
+        LocalDateTime now = LocalDateTime.now();
+
+        // Sorts appointment list to display upcoming first and past appointments after
+        List<Appointment> sortedAppointments = targetPatient.getAppointments().stream()
+                .sorted(Comparator.comparing((Appointment a) -> a.getDateTime().isBefore(now))
+                        .thenComparing(Appointment::getDateTime))
+                .toList();
+
+        // Update Patient to have sorted list
+        Patient updatedPatient = new Patient(
+                targetPatient.getName(),
+                targetPatient.getNric(),
+                targetPatient.getGender(),
+                targetPatient.getPhone(),
+                targetPatient.getEmail(),
+                targetPatient.getDob(),
+                targetPatient.getAddress(),
+                targetPatient.getTags(),
+                new ArrayList<>(sortedAppointments)
+        );
+
+        // Update the model so subsequent commands see the same sorted order
+        model.setPatient(targetPatient, updatedPatient);
+        model.setSelectedPatient(updatedPatient);
         model.setViewMode(ViewMode.PATIENT_APPOINTMENT_LIST);
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, targetPatient.getName(),
                 targetPatient.getNric()), false, true, false);
     }

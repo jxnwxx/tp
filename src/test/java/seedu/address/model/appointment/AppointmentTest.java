@@ -126,9 +126,20 @@ public class AppointmentTest {
 
         Appointment a = new Appointment(title, date);
 
-        // Appointment.toString() -> "%s (%s)" where date is "dd-MM-yyyy, HHmm"
-        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd-MM-yyyy, HHmm");
+        // Appointment.toString() -> "%s (%s)" where date is "dd-MM-uuuu, HHmm"
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd-MM-uuuu, HHmm");
         String expected = title + " (" + date.format(fmt) + ")";
         assertEquals(expected, a.toString());
+    }
+
+    @Test
+    public void hashCodeTest() {
+        Title title = new Title("Dentist Appointment");
+        LocalDateTime date = LocalDateTime.of(2025, 10, 7, 14, 30);
+
+        Appointment a = new Appointment(title, date);
+
+        assertEquals(a.hashCode(), new Appointment(new Title("Dentist Appointment"),
+                LocalDateTime.of(2025, 10, 7, 14, 30)).hashCode());
     }
 }

@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 
 /**
  * Represents a Patient's DOB in the address book
@@ -17,7 +18,7 @@ public class DateOfBirth {
     public static final String MESSAGE_CONSTRAINTS =
             "DOB must be in DD-MM-YYYY format.";
 
-    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-uuuu");
 
     /*
      * Regex for DOB
@@ -47,11 +48,11 @@ public class DateOfBirth {
      */
     public static boolean isValidDateOfBirth(String test) {
         try {
-            LocalDate.parse(test, FORMATTER);
-        } catch (DateTimeParseException e) {
+            FORMATTER.withResolverStyle(ResolverStyle.STRICT).parse(test);
+            return true;
+        } catch (NullPointerException | DateTimeParseException e) {
             return false;
         }
-        return true;
     }
 
     /**

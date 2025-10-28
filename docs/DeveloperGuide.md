@@ -155,6 +155,14 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+The following sequence diagram shows how an add-appt command interacts within the Logic component.
+Using `add-appt 1 at/DentalCheckup ad/10-10-2010, 0900` as an example. 
+![AddAppointmentSequenceDiagram](images/AddAppointmentSequenceDiagram.png)
+
+The following sequence diagram shows how a delete-appt command interacts within the Logic component.
+Using `delete-appt 1` as an example. 
+![DeleteAppointmentSequenceDiagram](images/DeleteAppointmentSequenceDiagram.png)
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation

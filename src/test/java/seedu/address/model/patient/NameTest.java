@@ -1,5 +1,6 @@
 package seedu.address.model.patient;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -56,5 +57,12 @@ public class NameTest {
 
         // different values -> returns false
         assertFalse(name.equals(new Name("Other Valid Name")));
+    }
+
+    @Test
+    public void hashCodeTest() {
+        Name name = new Name("Valid");
+
+        assertEquals(name.hashCode(), new Name("Valid").hashCode());
     }
 }

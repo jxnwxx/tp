@@ -28,9 +28,7 @@ public class EditAppointmentCommand extends Command {
     public static final String COMMAND_WORD = "edit-appt";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits appointment on patient's appointment list. "
-            + "Parameters: "
-            + PREFIX_NRIC + "NRIC "
-            + PREFIX_INDEX + "INDEX "
+            + "Parameters: INDEX "
             + "[" + PREFIX_APPOINTMENT_TITLE + "TITLE] "
             + "[" + PREFIX_APPOINTMENT_DATETIME + "DATE_TIME (dd-MM-yyyy, HHmm)]\n"
             + "Example: " + COMMAND_WORD + " "
@@ -74,7 +72,7 @@ public class EditAppointmentCommand extends Command {
                 targetPatient.getAppointments());
 
         if (index.getZeroBased() >= updatedAppointments.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
         }
 
         Appointment appointmentToEdit = updatedAppointments.get(index.getZeroBased());

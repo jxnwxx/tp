@@ -18,7 +18,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.appointment.Title;
 
 public class EditAppointmentDescriptorTest {
-    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy, HHmm");
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-uuuu, HHmm");
 
     private Model model = new ModelManager(getTypicalDoctorBase(), new UserPrefs());
 
