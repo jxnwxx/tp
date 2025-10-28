@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 
 import seedu.address.model.Model;
+import seedu.address.model.ViewMode;
 
 /**
  * Lists all patients in the address book to the user.
@@ -21,6 +22,7 @@ public class ListCommand extends Command {
 
         model.setSelectedPatient(null);
         model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
+        model.setViewMode(ViewMode.PATIENT_LIST);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

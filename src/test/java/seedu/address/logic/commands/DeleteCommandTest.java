@@ -18,6 +18,7 @@ import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.ViewMode;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -48,13 +49,13 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_selectedPatientNotNull_throwsCommandException() {
+    public void execute_viewModeNotPatientList_throwsCommandException() {
         Patient patient = model.getFilteredPatientList().get(INDEX_FIRST_PATIENT.getZeroBased());
-        // Set selected patient to indicate already viewing
-        model.setSelectedPatient(patient);
+
+        model.setViewMode(ViewMode.PATIENT_APPOINTMENT_LIST);
         DeleteCommand command = new DeleteCommand(INDEX_FIRST_PATIENT);
 
-        assertCommandFailure(command, model, DeleteCommand.MESSAGE_NOT_VIEWING_PATIENT_LIST);
+        assertCommandFailure(command, model, Messages.MESSAGE_NOT_VIEWING_PATIENT_LIST);
     }
 
     @Test

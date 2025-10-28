@@ -3,12 +3,15 @@ package seedu.address.model.appointment;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.model.appointment.Appointment.DATETIME_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import org.junit.jupiter.api.Test;
+
+import seedu.address.testutil.AppointmentBuilder;
 
 public class AppointmentTest {
 
@@ -83,6 +86,37 @@ public class AppointmentTest {
         assertTrue(a.clashTime(sameValues));
         assertTrue(a.clashTime(differentTitle));
         assertFalse(a.clashTime(differentTime));
+    }
+
+    @Test
+    public void compareToTest() {
+        Title t1 = new Title("Dentist Appointment");
+        Title t2 = new Title("Routine Checkup");
+
+        LocalDateTime dt = LocalDateTime.of(2025, 10, 7, 12, 10);
+        LocalDateTime dtEarlier = LocalDateTime.of(2025, 10, 7, 12, 8);
+        LocalDateTime dtLater = LocalDateTime.of(2025, 11, 6, 10, 50);
+
+        Appointment a = new AppointmentBuilder()
+                .withTitle(t1.toString())
+                .withDateTime(dt.format(DATETIME_FORMAT))
+                .build();
+        Appointment aSameTime = new AppointmentBuilder()
+                .withTitle(t2.toString())
+                .withDateTime(dt.format(DATETIME_FORMAT))
+                .build();
+        Appointment aEarlier = new AppointmentBuilder()
+                .withTitle(t1.toString())
+                .withDateTime(dtEarlier.format(DATETIME_FORMAT))
+                .build();
+        Appointment aLater = new AppointmentBuilder()
+                .withTitle(t2.toString())
+                .withDateTime(dtLater.format(DATETIME_FORMAT))
+                .build();
+
+        assertTrue(a.compareTo(aSameTime) == 0);
+        assertTrue(a.compareTo(aEarlier) > 0);
+        assertTrue(a.compareTo(aLater) < 0);
     }
 
     @Test

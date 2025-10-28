@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -23,6 +24,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Patient> filteredPatients;
     private Patient selectedPatient;
+    private ViewMode currentViewMode;
 
     /**
      * Initializes a ModelManager with the given doctorBase and userPrefs.
@@ -36,6 +38,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPatients = new FilteredList<>(this.doctorBase.getPatientList());
         selectedPatient = null;
+        currentViewMode = ViewMode.PATIENT_LIST;
     }
 
     public ModelManager() {
@@ -131,6 +134,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Appointment> getUpcomingAppointments() {
+        return doctorBase.getUpcomingAppointmentList();
+    }
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
@@ -168,5 +176,14 @@ public class ModelManager implements Model {
         selectedPatient = patient;
     }
 
+    @Override
+    public ViewMode getViewMode() {
+        return currentViewMode;
+    }
 
+    @Override
+    public void setViewMode(ViewMode viewMode) {
+        requireNonNull(viewMode);
+        this.currentViewMode = viewMode;
+    }
 }

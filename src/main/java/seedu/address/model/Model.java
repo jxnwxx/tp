@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -100,4 +101,20 @@ public interface Model {
      * Sets Patient for Appointment commands
      */
     void setSelectedPatient(Patient patient);
+
+    /**
+     * Returns an unmodifiable view of all upcoming appointments from all patients in the address book.
+     */
+    ObservableList<Appointment> getUpcomingAppointments();
+
+    /**
+     * Returns the current {@code ViewMode} of the application.
+     */
+    ViewMode getViewMode();
+
+    /**
+     * Sets the current {@code ViewMode} of the application.
+     * @param viewMode The new view mode to set. Must not be null.
+     */
+    void setViewMode(ViewMode viewMode);
 }

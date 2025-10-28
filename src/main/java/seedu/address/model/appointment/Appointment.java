@@ -12,7 +12,7 @@ import java.util.Objects;
 /**
  * Represents an Appointment in the address book.
  */
-public class Appointment {
+public class Appointment implements Comparable<Appointment> {
     public static final DateTimeFormatter DATETIME_FORMAT = DateTimeFormatter.ofPattern("dd-MM-uuuu, HHmm");
     public static final String DATETIME_MESSAGE_CONSTRAINTS =
             "Appointment date invalid! Expected Format: dd-MM-yyyy, HHmm";
@@ -53,6 +53,11 @@ public class Appointment {
 
     public String getDateTimeAsString() {
         return dateTime.format(DATETIME_FORMAT);
+    }
+
+    @Override
+    public int compareTo(Appointment other) {
+        return this.dateTime.compareTo(other.dateTime);
     }
 
     /**

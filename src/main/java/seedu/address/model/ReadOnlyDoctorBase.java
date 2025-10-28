@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -14,4 +15,8 @@ public interface ReadOnlyDoctorBase {
      */
     ObservableList<Patient> getPatientList();
 
+    /**
+     * Returns an unmodifiable view of all upcoming appointments from all patients in the address book.
+     */
+    ObservableList<Appointment> getUpcomingAppointmentList();
 }

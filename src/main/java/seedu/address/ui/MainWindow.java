@@ -184,12 +184,33 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleListAppointment() {
+        if (logic.getSelectedPatient() == null) {
+            handleListAllUpcomingAppointments();
+            return;
+        }
+
         appointmentListPanel =
                 new AppointmentListPanel(FXCollections.observableList(logic.getSelectedPatient().getAppointments()));
         appointmentListPanelPlaceholder.getChildren().add(appointmentListPanel.getRoot());
 
         StatusBarFooter statusBarFooter =
                 new StatusBarFooter(logic.getDoctorBaseFilePath(), logic.getSelectedPatient());
+        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+
+        showAppointmentList();
+    }
+
+    /**
+     * Set Appointment list content to all upcoming appointments and displays it
+     */
+    @FXML
+    public void handleListAllUpcomingAppointments() {
+        appointmentListPanel =
+                new AppointmentListPanel(FXCollections.observableList(logic.getUpcomingAppointments()));
+        appointmentListPanelPlaceholder.getChildren().add(appointmentListPanel.getRoot());
+
+        StatusBarFooter statusBarFooter =
+                StatusBarFooter.getUpcomingAppointmentsFooter(logic.getDoctorBaseFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         showAppointmentList();

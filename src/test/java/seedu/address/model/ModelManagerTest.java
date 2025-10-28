@@ -4,19 +4,27 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
+import static seedu.address.model.appointment.Appointment.DATETIME_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPatients.ALICE;
 import static seedu.address.testutil.TypicalPatients.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.patient.NameContainsKeywordsPredicate;
+import seedu.address.model.patient.Patient;
+import seedu.address.testutil.AppointmentBuilder;
 import seedu.address.testutil.DoctorBaseBuilder;
+import seedu.address.testutil.PatientBuilder;
 
 public class ModelManagerTest {
 
@@ -102,6 +110,37 @@ public class ModelManagerTest {
         // Set to null
         modelManager.setSelectedPatient(null);
         assertEquals(modelManager.getSelectedPatient(), null);
+    }
+
+    @Test
+    public void getUpcomingAppointments_noPatients_returnsEmptyList() {
+        assertTrue(modelManager.getUpcomingAppointments().isEmpty());
+    }
+
+    @Test
+    public void getUpcomingAppointments_delegatesToDoctorBase() {
+        LocalDateTime now = LocalDateTime.now();
+        Appointment future = new AppointmentBuilder().withDateTime(now.format(DATETIME_FORMAT)).build();
+
+        ArrayList<Appointment> appointments = new ArrayList<>();
+        appointments.add(future);
+
+        Patient patient = new PatientBuilder().withAppointments(appointments).build();
+        modelManager.addPatient(patient);
+
+        ObservableList<Appointment> expected = modelManager.getDoctorBase().getUpcomingAppointmentList();
+        ObservableList<Appointment> actual = modelManager.getUpcomingAppointments();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void getUpcomingAppointments_listIsUnmodifiable() {
+        modelManager.addPatient(ALICE);
+
+        ObservableList<Appointment> upcoming = modelManager.getUpcomingAppointments();
+        assertThrows(UnsupportedOperationException.class, () ->
+                upcoming.add(new AppointmentBuilder().build()));
     }
 
     @Test
