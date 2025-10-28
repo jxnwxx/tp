@@ -268,35 +268,41 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**: Solo Doctor who handles both medical practice and administrative tasks on their own.
+**Target user profile**: 
+- Solo doctor who manages administrative tasks on their own.
+- prefer desktop apps over other types 
+- can type fast 
+- prefers typing to mouse interactions 
+- is reasonably comfortable using CLI apps
 
 **Value proposition**: 
-- Simplify admin workload
-- Easily manage patient records and appointments
-- Quickly search for patient records
-- Reduce forgotten or missed appointments
+- Simplifies administrative workload
+- Can manage patient records and appointments faster than a typical mouse/GUI driven app
+- Reduces forgotten or missed appointments
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​     | I want to …​                        | So that I can…​                                               |
-|----------|-------------|-------------------------------------|---------------------------------------------------------------|
-| `* * *`  | doctor      | add patient contacts                | register patients' information                                |
-| `* * *`  | doctor      | delete patient contacts             | delete patients' information                                  |
-| `* * *`  | doctor      | list patient contacts               | see all patients' information                                 |
-| `* * *`  | doctor      | see my patients' appointments       | prepare for upcoming appointments                             |
-| `* * *`  | doctor      | add a patient's appointment         | register a new appointment                                    |
-| `* * *`  | doctor      | delete a patient's appointment      | handle cancellation of appointments                           |
-| `* * *`  | doctor      | edit patients' contacts             | edit patients' information                                    |
-| `* * *`  | doctor      | see all stored appointments         | easily see upcoming appointments                              |
-| `* * *`  | doctor      | edit upcoming appointments          | reschedule appointments if needed                             |
-| `* *`    | doctor      | search appointments by patient name | quickly locate a specific consultation                        |
-| `* *`    | doctor      | add detailed notes for each patient | remember diagnoses, observations and treatments               |
-| `*`      | doctor      | attach documents/links              | easily reference patient documents                            |
-| `*`      | busy doctor | autocomplete commands               | use the program more easily without technological know-how    |
-| `*`      | busy doctor | use alias commands                  | quickly add patient and appointment information via shortcuts |
+| Priority | As a …​     | I want to …​                        | So that I can…​                                                         |
+|----------|-------------|-------------------------------------|-------------------------------------------------------------------------|
+| `* * *`  | new user    | see usage instructions              | refer to instructions when I forget how to use the app                  |
+| `* * *`  | doctor      | add patient details                 | keep track of my patients                                               |
+| `* * *`  | doctor      | delete patient details              | remove information on patients I no longer need                         |
+| `* * *`  | doctor      | find a patient by name              | locate details of patients without having to go through the entire list |
+| `* * *`  | doctor      | list patient details                | view all of my patients' information                                    |
+| `* * *`  | doctor      | see my patients' appointments       | prepare for upcoming appointments                                       |
+| `* * *`  | doctor      | add a patient's appointment         | register a new appointment                                              |
+| `* * *`  | doctor      | delete a patient's appointment      | handle cancellation of appointments                                     |
+| `* * *`  | doctor      | edit patients' contacts             | edit patients' information                                              |
+| `* * *`  | doctor      | see all stored appointments         | easily see upcoming appointments                                        |
+| `* * *`  | doctor      | edit upcoming appointments          | reschedule appointments if needed                                       |
+| `* *`    | doctor      | search appointments by patient name | quickly locate a specific consultation                                  |
+| `* *`    | doctor      | add detailed notes for each patient | remember diagnoses, observations and treatments                         |
+| `*`      | doctor      | attach documents/links              | easily reference patient documents                                      |
+| `*`      | busy doctor | autocomplete commands               | use the program more easily without technological know-how              |
+| `*`      | busy doctor | use alias commands                  | quickly add patient and appointment information via shortcuts           |
 
 
 
