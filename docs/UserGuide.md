@@ -145,7 +145,8 @@ Useful when you want to record a patient's upcoming appointment
 
 Format: `add-appt INDEX at/APPOINTMENT TITLE ad/APPOINTMENT DATE`
 
-* The `INDEX` refers to the index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
+* The `INDEX` refers to the index number shown in the displayed patient list. 
+  * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `add-appt 2 at/flu jab ad/29-02-2025, 0900`
@@ -185,7 +186,8 @@ Edits an existing patient in the patient list.
 
 Format: `edit INDEX [n/NAME] [i/NRIC] [g/GENDER] [p/PHONE] [e/EMAIL] d/[DATEOFBIRTH] [a/ADDRESS] [mh/MEDICALHISTORY]…​`
 
-* Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
+* The `INDEX` refers to the index number shown in the displayed patient list.
+  * The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing medicalHistories, the existing medicalHistories of the patient will be removed i.e adding of medicalHistories is not cumulative.
@@ -205,7 +207,9 @@ Edits an existing appointment from the currently selected patient's appointment 
 
 Format: `edit-appt INDEX [at/APPOINTMENT TITLE] [ad/APPOINTMENT DATE]`
 
-* Edits the appointment at the specified `INDEX`.The index refers to the index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
+* The `INDEX` refers to the index number shown in the displayed appointment list.
+  * The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
 * Existing values will be updated to the input values
 
 Examples:
@@ -244,8 +248,8 @@ Useful when a patient is no longer going to be under your care
 Format: `delete INDEX`
 
 * Deletes the patient at the specified `INDEX`.
-* The index refers to the index number shown in the displayed patient list.
-* The index **must be a positive integer** 1, 2, 3, …​
+  * The index refers to the index number shown in the displayed patient list.
+  * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd patient in the patient list.
@@ -261,13 +265,12 @@ Useful when a patient cancels their appointment
 
 Format: `delete-appt INDEX`
 
-* Deletes an appointment of patient with specified `NRIC`
-* The index refers the index number shown in the patient's appointment list
-* The index **must be a positive integer** 1, 2, 3, …​
+* The `INDEX` refers to the index number shown in the displayed appointment list.
+  * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `delete-appt i/S8052802G id/2`
-* `delete-appt i/T0213123S, id/1`
+* `delete-appt 1`
+* `delete-appt 3`
 <br>
 <br>
 <br>
@@ -341,13 +344,13 @@ If that does not solve the issue, please redownload the latest `.jar` file (rele
 | Action                 | Format, Examples                                                                                                                                                                                                         |
 |------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add Patient**        | `add n/NAME i/NRIC g/GENDER p/PHONE_NUMBER e/EMAIL d/DATEOFBITH a/ADDRESS [mh/MEDICALHISTORY]…​`<br> e.g., `add n/John Doe i/S8052802G g/m p/98765432 e/johnd@example.com d/12-12-2002 a/John street, block 123, #01-01` |
-| **Add Appointment**    | `add-appt INDEX at/APPOINTMENT TITLE ad/APPOINTMENT DATE`<br> e.g., `add-appt i/S8052802G at/flu jab ad/29-02-2025, 0900`                                                                                                |
+| **Add Appointment**    | `add-appt INDEX at/APPOINTMENT TITLE ad/APPOINTMENT DATE`<br> e.g., `add-appt 1 at/flu jab ad/29-02-2025, 0900`                                                                                                          |
 | **Clear List**         | `clear`                                                                                                                                                                                                                  |
 | **Delete Patient**     | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                      |
-| **Delete Appointment** | `delete-appt INDEX`<br> e.g., `delete-appt i/S8052802G id/2`                                                                                                                                                             |
+| **Delete Appointment** | `delete-appt INDEX`<br> e.g., `delete-appt 1`                                                                                                                                                                            |
 | **Edit Patient**       | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                              |
-| **Edit Appointment**   | `edit-appt INDEX [at/APPOINTMENT TITLE] [ad/APPOINTMENT DATE]` <br> e.g., `edit-appt i/S1234567D id/1 at/dental ad/02-02-2002, 0900`                                                                                     |
+| **Edit Appointment**   | `edit-appt INDEX [at/APPOINTMENT TITLE] [ad/APPOINTMENT DATE]` <br> e.g., `edit-appt 1 at/dental ad/02-02-2002, 0900`                                                                                                    |
 | **Find Patient**       | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                               |
 | **List Patient**       | `list`                                                                                                                                                                                                                   |
-| **List Appointment**   | `list-appt INDEX`<br> e.g., `list-appt i/S8052802G`                                                                                                                                                                      |
+| **List Appointment**   | `list-appt INDEX`<br> e.g., `list-appt 1`                                                                                                                                                                                |
 | **Help**               | `help`                                                                                                                                                                                                                   |
