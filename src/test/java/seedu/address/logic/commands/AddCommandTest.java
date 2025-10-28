@@ -27,6 +27,7 @@ import seedu.address.testutil.PatientBuilder;
 
 public class AddCommandTest {
 
+
     @Test
     public void constructor_nullPatient_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
@@ -88,6 +89,8 @@ public class AddCommandTest {
      * A default model stub that have all of the methods failing.
      */
     private class ModelStub implements Model {
+        private Patient selectedPatient;
+
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
@@ -165,12 +168,12 @@ public class AddCommandTest {
 
         @Override
         public Patient getSelectedPatient() {
-            throw new AssertionError("This method should not be called.");
+            return selectedPatient;
         }
 
         @Override
         public void setSelectedPatient(Patient patient) {
-            throw new AssertionError("This method should not be called.");
+            selectedPatient = patient;
         }
     }
 
