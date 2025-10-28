@@ -284,8 +284,8 @@ Format: `delete-appt INDEX`
   * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `delete-appt 1`
-* `delete-appt 3`
+* `list-appt 1` followed by `delete-appt 1` deletes the 1st appointment of the 1st patient in the patient list
+* `find alex` followed by `list-appt 1` followed by `delete-appt 3` deletes the 1st appointment of the 1st patient in the results of the find command
 <br>
 <br>
 <br>
