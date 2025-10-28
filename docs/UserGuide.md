@@ -1,4 +1,7 @@
-
+---
+layout: page
+title: User Guide
+---
 # DoctorBase
 
 Hi there, and welcome to **DoctorBase**, your new desktop assistant for managing patient information and appointments!
