@@ -14,6 +14,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.ViewMode;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -65,6 +66,7 @@ public class AddCommand extends Command {
 
         model.addPatient(toAdd);
         model.setSelectedPatient(null);
+        model.setViewMode(ViewMode.PATIENT_LIST);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
 
