@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Developer Guide
+title: User Guide
 ---
 # DoctorBase
 
