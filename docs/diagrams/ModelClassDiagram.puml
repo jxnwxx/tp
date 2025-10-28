@@ -48,8 +48,8 @@ Patient *--> Phone
 Patient *--> Email
 Patient *--> Address
 Patient *--> DateOfBirth
-Patient *--> MedicalHistory
-Patient *--> Appointment
+Patient *--> "*" MedicalHistory
+Patient *--> "*" Appointment
 
 Patient -[hidden]up--> I
 UniquePatientList -[hidden]right-> I
