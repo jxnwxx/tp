@@ -60,5 +60,4 @@ public class Messages {
                 .forEach(builder::append);
         return builder.toString();
     }
-
 }
