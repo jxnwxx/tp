@@ -81,7 +81,15 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Person` and `Appointment` objects residing in the 
+`Model`.
+
+`MainWindow` also handles switching between views:
+* `PatientListPanel` is shown when the user is browsing patients
+* `AppointmentListPanel` is shown when the user requests to view appointments
+
+Additionally, the `HelpWindow` is displayed when the user issues the `help` command or presses **F1**. The status bar
+at the bottom of the UI updates based on whether the user is viewing patients or appointments.
 
 ### Logic component
 
