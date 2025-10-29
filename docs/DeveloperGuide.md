@@ -88,8 +88,11 @@ The `UI` component,
 * `PatientListPanel` is shown when the user is browsing patients
 * `AppointmentListPanel` is shown when the user requests to view appointments
 
-Additionally, the `HelpWindow` is displayed when the user issues the `help` command or presses **F1**. The status bar
-at the bottom of the UI updates based on whether the user is viewing patients or appointments.
+Additionally, the `HelpWindow` is displayed when the user issues the `help` command or presses **F1**. 
+
+
+The `StatusBarFooter` at the bottom of the UI updates according to what the user is currently viewing
+(either overall patient data or a specific patient’s appointment list).
 
 ### Logic component
 
