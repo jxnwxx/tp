@@ -109,6 +109,10 @@ Whether you're a solo doctor managing many patients or just looking to streamlin
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[mh/MEDICALHISTORY]…​` can be used as ` ` (i.e. 0 times), `mh/cancer`, `mh/cancer mh/covid` etc.
 
+* `INDEX` refers to the number shown beside a patient or appointment in the displayed list.
+    * `INDEX` must be a positive integer (1, 2, 3, …)
+    * After using commands like `find`, the displayed list changes and the `INDEX` may change too.
+
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
@@ -125,9 +129,8 @@ Shows a message explaining how to access the help page.
 ![help message](images/helpMessage.png)
 
 Format: `help`
-<br>
-<br>
-<br>
+
+---
 
 ### Adding a patient : `add`
 
@@ -141,9 +144,8 @@ Format: `add n/NAME i/NRIC g/GENDER p/PHONE_NUMBER e/EMAIL d/DATEOFBITH a/ADDRES
 Examples:
 * `add n/John Doe i/S8052802G g/m p/98765432 e/johnd@example.com d/12-12-2002 a/John street, block 123, #01-01`
 * `add n/Betsy Crowe i/T0231512Z mh/covid e/betsycrowe@example.com a/Newgate Prison p/1234567 mh/leg fracture`
-<br>
-<br>
-<br>
+
+---
 
 ### Adding an appointment : `add-appt`
 
@@ -152,15 +154,11 @@ Useful when you want to record a patient's upcoming appointment
 
 Format: `add-appt INDEX at/APPOINTMENT TITLE ad/APPOINTMENT DATE`
 
-* The `INDEX` refers to the index number shown in the displayed patient list. 
-  * The index **must be a positive integer** 1, 2, 3, …​
-
 Examples:
 * `add-appt 2 at/flu jab ad/29-02-2025, 0900`
 * `add-appt 1 at/full body checkup ad/18-12-2025, 1000`
-<br>
-<br>
-<br>
+
+---
 
 ### Listing all patients : `list`
 
@@ -168,9 +166,8 @@ Shows a list of all patients in the patient list. <br>
 Useful when you want to view all the patients currently under your care
 
 Format: `list`
-<br>
-<br>
-<br>
+
+---
 
 ### Listing all upcoming appointments : `list-appt-upcoming`
 
@@ -178,9 +175,8 @@ Shows a list of all upcoming appointments with any patient. <br>
 Useful when you want to keep track of your upcoming appointment schedule
 
 Format: `list-appt-upcoming`
-<br>
-<br>
-<br>
+
+---
 
 ### Listing all appointments of patient : `list-appt`
 
@@ -189,13 +185,10 @@ Useful when you want to check the upcoming appointments of a patient
 
 Format: `list-appt INDEX`
 
-* Shows a list of all appointments a patient with the specified `INDEX`
-
 Examples:
 * `list-appt 1`
-<br>
-<br>
-<br>
+
+---
 
 ### Editing a patient : `edit`
 
@@ -203,8 +196,6 @@ Edits an existing patient in the patient list.
 
 Format: `edit INDEX [n/NAME] [i/NRIC] [g/GENDER] [p/PHONE] [e/EMAIL] d/[DATEOFBIRTH] [a/ADDRESS] [mh/MEDICALHISTORY]…​`
 
-* The `INDEX` refers to the index number shown in the displayed patient list.
-  * The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing medicalHistories, the existing medicalHistories of the patient will be removed i.e adding of medicalHistories is not cumulative.
@@ -214,9 +205,8 @@ Format: `edit INDEX [n/NAME] [i/NRIC] [g/GENDER] [p/PHONE] [e/EMAIL] d/[DATEOFBI
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower mh/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing medicalHistories.
-<br>
-<br>
-<br>
+
+---
 
 ### Editing an appointment : `edit-appt`
 
@@ -224,17 +214,14 @@ Edits an existing appointment from the currently selected patient's appointment 
 
 Format: `edit-appt INDEX [at/APPOINTMENT TITLE] [ad/APPOINTMENT DATE]`
 
-* The `INDEX` refers to the index number shown in the displayed appointment list.
-  * The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values
 
 Examples:
 * `edit-appt 1 at/dental ad/02-02-2002, 0900`
 * `edit-appt 2 ad/20-12-2025, 1200`
-<br>
-<br>
-<br>
+
+---
 
 ### Locating patients by name: `find`
 
@@ -253,9 +240,8 @@ Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
-<br>
-<br>
-<br>
+
+---
 
 ### Deleting a patient : `delete`
 
@@ -264,16 +250,11 @@ Useful when a patient is no longer going to be under your care
 
 Format: `delete INDEX`
 
-* Deletes the patient at the specified `INDEX`.
-  * The index refers to the index number shown in the displayed patient list.
-  * The index **must be a positive integer** 1, 2, 3, …​
-
 Examples:
 * `list` followed by `delete 2` deletes the 2nd patient in the patient list.
 * `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
-<br>
-<br>
-<br>
+
+---
 
 ### Deleting an appointment : `delete-appt`
 
@@ -282,40 +263,33 @@ Useful when a patient cancels their appointment
 
 Format: `delete-appt INDEX`
 
-* The `INDEX` refers to the index number shown in the displayed appointment list.
-  * The index **must be a positive integer** 1, 2, 3, …​
-
 Examples:
 * `list-appt 1` followed by `delete-appt 1` deletes the 1st appointment of the 1st patient in the patient list
 * `find alex` followed by `list-appt 1` followed by `delete-appt 3` deletes the 1st appointment of the 1st patient in the results of the find command
-<br>
-<br>
-<br>
+
+---
 
 ### Clearing all entries : `clear`
 
 Clears all entries from the patient list.
 
 Format: `clear`
-<br>
-<br>
-<br>
+
+---
 
 ### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
-<br>
-<br>
-<br>
+
+---
 
 ### Saving the data
 
 DoctorBase data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-<br>
-<br>
-<br>
+
+---
 
 ### Editing the data file
 
@@ -325,9 +299,8 @@ DoctorBase data are saved automatically as a JSON file `[JAR file location]/data
 If your changes to the data file makes its format invalid, DoctorBase will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the DoctorBase to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
-<br>
-<br>
-<br>
+
+---
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -339,19 +312,19 @@ Furthermore, certain edits can cause the DoctorBase to behave in unexpected ways
 **Q**: What happens if I accidentally type in the wrong parameters? <br>
 **A**: Do not worry, the application will pick up invalid parameters and tell you what was the issue and will not update the patient/appointment list.
 
-**Q**: Can I undo a mistaken deletion?
+**Q**: Can I undo a mistaken deletion?<br>
 **A**: `DoctorBase` does not currently support an undo feature. Once a patient or appointment is deleted, it is permanently removed. We recommend making sure the correct patient or appointment is selected before running delete or delete-appt.
 
-**Q**: Can I use `DoctorBase` without an internet connection?
+**Q**: Can I use `DoctorBase` without an internet connection?<br>
 **A**: Yes. `DoctorBase` works fully offline. Your data is stored locally on your computer and does not require internet access.
 
-**Q**: Where is my data stored?
+**Q**: Where is my data stored?<br>
 **A**: `DoctorBase` stores your data in a file named `DoctorBase.json` inside the `data` folder, located where the .jar file is run.
 
 **Q**: Can I change where `DoctorBase` stores its data?<br>
 **A**: Yes. Simply move your .jar file to a different folder and re-run it. `DoctorBase` will then create and store the data in a `data/` folder, relative to the new .jar location.
 
-**Q**: Can I run `DoctorBase` on multiple computers?
+**Q**: Can I run `DoctorBase` on multiple computers?<br>
 **A**: Yes. Just copy your `DoctorBase.json` file to another machine running `DoctorBase`. As long as both computers have Java 17 or higher, your data will load normally.
 
 **Q**: Can two patients share the same name?<br>
