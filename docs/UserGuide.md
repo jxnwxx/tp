@@ -105,11 +105,16 @@ With simple commands, you can add patients, schedule appointments, search record
 
 ### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+Opens a window that shows a summary of all available commands and a link to this User Guide.
 
 ![help message](images/helpMessage.png)
 
-Format: `help`
+**Format:** `help`
+
+**Example:**
+Typing `help` and pressing `Enter` opens the window shown above.
+
+* **Tip:** You can also press **F1** on your keyboard to open the help window.
 
 ---
 
