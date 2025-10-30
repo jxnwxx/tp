@@ -179,9 +179,28 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+## Some features
+For parsing the commands entered by the user, some examples are the AddAppointmentCommandParser and DeleteAppointmentCommandParser.<br>
+They are used to extract the appointment information provided, along with the index of the patient to operate on.
+
+### Adding appointment feature
+
+The following activity diagram summarizes what happens when the `AddAppointmentParser` attempts to parse the user's input:
+![AddAppointmentParserActivityDiagram](images/AddAppointmentParserActivityDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes the `AddAppointmentCommand`:
+![AddAppointmentActivityDiagram](images/AddAppointmentActivityDiagram.png)
+
 The following sequence diagram shows how an add-appt command interacts within the Logic component.
-Using `add-appt 1 at/DentalCheckup ad/10-10-2010, 0900` as an example. 
+Using `add-appt 1 at/DentalCheckup ad/10-10-2010, 0900` as an example.
 ![AddAppointmentSequenceDiagram](images/AddAppointmentSequenceDiagram.png)
+
+### Deleting appointment feature
+The following activity diagram summarizes what happens when the `DeleteAppointmentParser` attempts to parse the user's input:
+![DeleteAppointmentParserActivityDiagram](images/DeleteAppointmentParserActivityDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes the `DeleteAppointmentCommand`:
+![DeleteAppointmentActivityDiagram](images/DeleteAppointmentActivityDiagram.png)
 
 The following sequence diagram shows how a delete-appt command interacts within the Logic component.
 Using `delete-appt 1` as an example. 
