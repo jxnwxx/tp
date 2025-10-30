@@ -164,7 +164,7 @@ Shows the full patient list currently in DoctorBase.
 
 ![list picture here](images/listExample.png)
 
-Format: `list`
+**Format:** `list`
 
 
 ### Locating patients by name: `find`
@@ -225,11 +225,11 @@ Useful when a patient is no longer going to be under your care
 
 Adds a new appointment to a selected patient.
 
-Format: `add-appt INDEX at/APPOINTMENT_TITLE ad/APPOINTMENT_DATE`
+**Format:** `add-appt INDEX at/APPOINTMENT_TITLE ad/APPOINTMENT_DATE`
 * `INDEX` refers to patient shown in the current **patient list**
 * `APPOINTMENT_DATE` uses the format `dd-mm-yyyy, HHmm` 
 
-Examples:
+**Examples:**
 * `add-appt 2 at/flu jab ad/29-02-2025, 0900`
 * `add-appt 3 at/Heart Checkup ad/08-12-2025, 1630`
 
@@ -282,9 +282,9 @@ Updates details of an existing appointment.
 
 Deletes an appointment from the currently selected patient.
 
-Format: `delete-appt INDEX`
+**Format:** `delete-appt INDEX`
 
-Examples:
+**Examples:**
 * `list-appt 1` followed by `delete-appt 1` deletes the 1st appointment of the 1st patient in the patient list
 * `find alex` followed by `list-appt 1` followed by `delete-appt 3` deletes the 1st appointment of the 1st patient in the results of the find command
 
