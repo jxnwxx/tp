@@ -93,7 +93,7 @@ With simple commands, you can add patients, schedule appointments, search record
 * `INDEX` refers to the number shown beside a patient or appointment in the displayed list.
     * `INDEX` **must be a positive integer** (`1, 2, 3, …`)
     * After using commands like `find`, the displayed list changes so the `INDEX` changes too.
-    * Commands that use `INDEX` work only in the view currently shown on screen:
+    * Commands that use `INDEX` depend on the list currently displayed:
         * e.g. `delete 2` deletes the 2nd patient only when the **patient list** is displayed.
         * e.g. `delete-appt 2` deletes the 2nd appointment only when the **appointment list** is displayed.
 
