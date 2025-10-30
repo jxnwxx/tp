@@ -13,6 +13,9 @@ With simple commands, you can add patients, schedule appointments, search record
 # Table of Contents
 1. [Quick start](#quick-start)
 2. [Features](#features)
+   * [General Commands](#general-commands)
+   * [Patient Commands](#patient-commands)
+   * [Appointment Commands](#appointment-commands)
 3. [FAQ](#faq)
 4. [Known issues](#known-issues)
 5. [Command summary](#command-summary)
@@ -139,7 +142,7 @@ Useful if you want to restart with a clean database.
 
 ---
 
-## Patient management commands
+## Patient Commands
 
 ### Adding a patient : `add`
 
@@ -219,7 +222,7 @@ Useful when a patient is no longer going to be under your care
 > **:warning: Caution:** This action **cannot be undone**!
 
 
-## Appointment management commands
+## Appointment Commands
 
 ### Adding an appointment : `add-appt`
 
@@ -249,8 +252,9 @@ Useful when you want to keep track of your upcoming schedule.
 
 ### Listing all appointments of patient : `list-appt`
 
-Shows all appointments of the selected patient.   
-Useful when you want to check the upcoming appointments of a patient
+Shows all appointments of the selected patient.  
+Past appointments will appear **greyed out**, while upcoming appointments remain in the normal colour.  
+Useful when you want to check a patient’s appointment history or upcoming schedule.
 
 **Format:** `list-appt INDEX`
 
@@ -291,19 +295,24 @@ Deletes an appointment from the currently selected patient.
 
 ---
 
+## Extra features
+
+
 ### Saving the data
 
 DoctorBase data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
----
 
 ### Editing the data file
 
 DoctorBase data are saved automatically as a JSON file `[JAR file location]/data/doctorbase.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">
+
+:exclamation:**Caution:**
 If your changes to the data file makes its format invalid, DoctorBase will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.  
 Furthermore, certain edits can cause the DoctorBase to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
