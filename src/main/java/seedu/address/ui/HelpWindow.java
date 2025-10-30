@@ -28,7 +28,7 @@ public class HelpWindow extends UiPart<Stage> {
             + "\n"
             + "[Appointment Commands]\n"
             + "1. Add Appointment: add-appt INDEX at/APPOINTMENT_TITLE ad/APPOINTMENT_DATE\n"
-            + "2. List All Upcoming Appointments: list-appt-upcoming"
+            + "2. List All Upcoming Appointments: list-appt-upcoming\n"
             + "3. List Selected Patient Appointments: list-appt INDEX\n"
             + "4. Edit Appointment: edit-appt INDEX [at/APPOINTMENT_TITLE] [ad/APPOINTMENT_DATE]\n"
             + "5. Delete Appointment: delete-appt INDEX\n"
