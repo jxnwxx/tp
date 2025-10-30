@@ -32,6 +32,7 @@ public class DateOfBirthTest {
         assertFalse(DateOfBirth.isValidDateOfBirth("")); // empty string
         assertFalse(DateOfBirth.isValidDateOfBirth(" ")); // spaces only
         assertFalse(DateOfBirth.isValidDateOfBirth("31-87-2002")); // Note valid date
+        assertFalse(DateOfBirth.isValidDateOfBirth("02-10-2993"));
 
         // valid dob
         assertTrue(DateOfBirth.isValidDateOfBirth("20-12-1920"));
