@@ -162,7 +162,7 @@ Useful when you take in a new patient under your care.
 
 Shows the full patient list currently in DoctorBase.
 
-![list picture here]()
+![list picture here](images/listExample.png)
 
 Format: `list`
 
@@ -183,7 +183,8 @@ Finds patients whose names contain any of the given keywords.
 **Examples:**
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`  
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+
+![result for 'find alex david'](images/findAlexDavidResult.png)
 
 
 ### Editing a patient : `edit`
@@ -230,7 +231,10 @@ Format: `add-appt INDEX at/APPOINTMENT_TITLE ad/APPOINTMENT_DATE`
 
 Examples:
 * `add-appt 2 at/flu jab ad/29-02-2025, 0900`
-* `add-appt 1 at/full body checkup ad/18-12-2025, 1000`
+* `add-appt 3 at/Heart Checkup ad/08-12-2025, 1630`
+
+
+![add appt example](images/addApptExample.png)
 
 
 ### Listing all upcoming appointments : `list-appt-upcoming`
@@ -239,6 +243,8 @@ Shows every future appointments across all patients, sorted by date.
 Useful when you want to keep track of your upcoming schedule.
 
 **Format:** `list-appt-upcoming`
+
+![list appointment upcoming](images/listApptUpcomingExample.png)
 
 
 ### Listing all appointments of patient : `list-appt`
@@ -250,6 +256,9 @@ Useful when you want to check the upcoming appointments of a patient
 
 **Examples:**
 * `list-appt 1` : List all appointments of patient in index 1 of patient list.
+
+![list appointment](images/listApptExample.png)
+
 
 > :information_source: **Note:** After using `list-appt`, all other appointment-related commands (edit, delete, etc.) 
 > will refer to this list.
