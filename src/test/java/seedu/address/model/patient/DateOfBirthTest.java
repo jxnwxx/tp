@@ -36,7 +36,7 @@ public class DateOfBirthTest {
         // valid name
         assertTrue(DateOfBirth.isValidDateOfBirth("20-12-2002"));
         assertTrue(DateOfBirth.isValidDateOfBirth("12-12-1999"));
-        assertTrue(DateOfBirth.isValidDateOfBirth("02-10-2003"));
+        assertTrue(DateOfBirth.isValidDateOfBirth("02-10-2025"));
     }
 
     @Test
