@@ -5,8 +5,9 @@ title: User Guide
 
 Welcome to **DoctorBase**, a desktop app for managing patient records and appointments quickly and accurately.
 
-DoctorBase is designed for **doctors and small clinics** who prefer typing fast commands instead of clicking through menus. 
-With simple commands and instant results, you can add patients, schedule appointments, search records, and view your daily schedule — all in one place, without needing internet access.
+DoctorBase is designed for **solo medical practitioners** who prefer typing fast commands instead of clicking through 
+menus. 
+With simple commands, you can add patients, schedule appointments, search records, and view your upcoming schedule — all in one place.
 
 ---
 # Table of Contents
