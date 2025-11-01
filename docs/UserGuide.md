@@ -282,8 +282,11 @@ Updates details of an existing appointment.
 * Existing values will be updated to the input values
 
 **Examples:**
-* `edit-appt 1 at/dental ad/02-02-2002, 0900`
-* `edit-appt 2 ad/20-12-2025, 1200`
+* `edit-appt 1 at/dental ad/02-02-2002, 0900` edits the 1st appointment in the appointments list for the selected patient
+* `edit-appt 2 ad/20-12-2025, 1200` edits the 2nd appointment in the appointments list for the selected patient
+
+**Note**
+- This command only works in appointments view (i.e. `list-appt INDEX` has to be ran first)
 
 
 ### Deleting an appointment : `delete-appt`
@@ -293,8 +296,11 @@ Deletes an appointment from the currently selected patient.
 **Format:** `delete-appt INDEX`
 
 **Examples:**
-* `list-appt 1` followed by `delete-appt 1` deletes the 1st appointment of the 1st patient in the patient list
-* `find alex` followed by `list-appt 1` followed by `delete-appt 3` deletes the 3rd appointment of the 1st patient in the results of the find command
+* `delete-appt 1` deletes the 1st appointment in the appointments list for the selected patient
+* `delete-appt 3` deletes the 3rd appointment in the appointments list for the selected patient
+
+**Note**
+- This command only works in appointments view (i.e. `list-appt INDEX` has to be ran first)
 
 
 ---
