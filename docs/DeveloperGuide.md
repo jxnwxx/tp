@@ -185,7 +185,7 @@ They are used to extract the appointment information provided, along with the in
 
 ### Adding appointment feature
 
-The following activity diagram summarizes what happens when the `AddAppointmentParser` attempts to parse the user's input:
+The following activity diagram summarizes what happens when the `AddAppointmentParser` attempts to parse the user's input:  
 ![AddAppointmentParserActivityDiagram](images/AddAppointmentParserActivityDiagram.png)
 
 The following activity diagram summarizes what happens when a user executes the `AddAppointmentCommand`:
@@ -196,7 +196,7 @@ Using `add-appt 1 at/DentalCheckup ad/10-10-2010, 0900` as an example.
 ![AddAppointmentSequenceDiagram](images/AddAppointmentSequenceDiagram.png)
 
 ### Deleting appointment feature
-The following activity diagram summarizes what happens when the `DeleteAppointmentParser` attempts to parse the user's input:
+The following activity diagram summarizes what happens when the `DeleteAppointmentParser` attempts to parse the user's input:  
 ![DeleteAppointmentParserActivityDiagram](images/DeleteAppointmentParserActivityDiagram.png)
 
 The following activity diagram summarizes what happens when a user executes the `DeleteAppointmentCommand`:
@@ -411,7 +411,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample patients. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -420,8 +420,6 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
 ### Deleting a patient
 
 1. Deleting a patient while all patients are being shown
@@ -429,7 +427,7 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all patients using the `list` command. Multiple patients in the list.
 
    1. Test case: `delete 1`  
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First patient is deleted from the list. Details of the deleted patient shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`  
       Expected: No patient is deleted. Error details shown in the status message. Status bar remains the same.
@@ -437,12 +435,3 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)  
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
