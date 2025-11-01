@@ -16,6 +16,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.ViewMode;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.Title;
 import seedu.address.model.patient.Patient;
@@ -59,11 +60,11 @@ public class EditAppointmentCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        Patient targetPatient = model.getSelectedPatient();
-        if (targetPatient == null) {
+        if (model.getViewMode() != ViewMode.PATIENT_APPOINTMENT_LIST) {
             throw new CommandException(MESSAGE_NOT_VIEWING_APPOINTMENT);
         }
 
+        Patient targetPatient = model.getSelectedPatient();
         ArrayList<Appointment> updatedAppointments = new ArrayList<>(
                 targetPatient.getAppointments());
 
