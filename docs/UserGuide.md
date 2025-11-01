@@ -195,7 +195,9 @@ Finds patients whose names contain any of the given keywords.
 
 ### Editing a patient : `edit`
 
-Updates the details of an existing patient.
+Updates the details of an existing patient.  
+Can only be used while viewing a list of patients. Run `list` to do so.
+
 
 **Format:** `edit INDEX [n/NAME] [i/NRIC] [g/GENDER] [p/PHONE] [e/EMAIL] d/[DATE_OF_BIRTH] [a/ADDRESS] 
 [mh/MEDICAL_HISTORY]…​`
@@ -213,8 +215,11 @@ Updates the details of an existing patient.
 
 ### Deleting a patient : `delete`
 
-Removes a patient (and all of their appointments) from the patient list.   
+Removes a patient (and all of their appointments) from the currently viewed patient list.   
 Useful when a patient is no longer going to be under your care
+
+Can only be used while viewing a list of patients. Run `list` to do so.
+
 
 **Format:** `delete INDEX`
 
@@ -229,7 +234,9 @@ Useful when a patient is no longer going to be under your care
 
 ### Adding an appointment : `add-appt`
 
-Adds a new appointment to a selected patient.
+Adds a new appointment to a selected patient.  
+Can only be used while viewing a list of patients. Run `list` to do so.
+
 
 **Format:** `add-appt INDEX at/APPOINTMENT_TITLE ad/APPOINTMENT_DATE`
 * `INDEX` refers to patient shown in the current **patient list**
@@ -260,6 +267,8 @@ Past appointments will appear **greyed out**, while upcoming appointments remain
 Appointments are sorted with upcoming dates first (earliest to latest), followed by past visits in chronological order.  
 Useful when you want to check a patient’s appointment history or upcoming schedule.
 
+Can only be used while viewing a list of patients. Run `list` to do so.
+
 **Format:** `list-appt INDEX`
 
 **Examples:**
@@ -274,7 +283,8 @@ Useful when you want to check a patient’s appointment history or upcoming sche
 
 ### Editing an appointment : `edit-appt`
 
-Updates details of an existing appointment.
+Updates the details of an existing appointment.  
+Can only be used while viewing the appointments of a patient. Run `list-appt INDEX` to do so.
 
 **Format:** `edit-appt INDEX [at/APPOINTMENT_TITLE] [ad/APPOINTMENT_DATE]`
 
@@ -288,7 +298,8 @@ Updates details of an existing appointment.
 
 ### Deleting an appointment : `delete-appt`
 
-Deletes an appointment from the currently selected patient.
+Deletes an appointment from the currently viewed list of appointments of a patient.  
+Can only be used while viewing the appointments of a patient. Run `list-appt INDEX` to do so.
 
 **Format:** `delete-appt INDEX`
 
