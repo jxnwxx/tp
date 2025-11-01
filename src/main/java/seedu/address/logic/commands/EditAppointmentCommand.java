@@ -86,7 +86,7 @@ public class EditAppointmentCommand extends Command {
         }
 
         updatedAppointments.set(index.getZeroBased(), editedAppointment);
-        
+
         // Sorts appointment list to display upcoming first and past appointments after
         LocalDateTime now = LocalDateTime.now();
         updatedAppointments.sort(Comparator
