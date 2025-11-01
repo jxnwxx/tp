@@ -166,10 +166,6 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-## Some features
-For parsing the commands entered by the user, some examples are the AddAppointmentCommandParser and DeleteAppointmentCommandParser.  
-They are used to extract the appointment information provided, along with the index of the patient to operate on.
-
 ### Adding appointment feature
 
 The following activity diagram summarizes what happens when the `AddAppointmentParser` attempts to parse the user's input:  
@@ -333,11 +329,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <br>
 
 
-**Use case: UC5 - List appointment**
+**Use case: UC5 - List patient's appointments**
 
 **MSS**
 
-1. User chooses to view a list of existing appointments 
+1. User chooses to view a list of existing appointments for a specific patient
+2. DoctorBase shows the list of existing appointments to User  
+   Use case ends.
+
+**Extensions**
+
+* 1a. DoctorBase detects that the given INDEX does not correspond to any patient in the current list
+    * 1a1. DoctorBase rejects command and does nothing  
+      Use case ends.
+  
+* 2a. DoctorBase detects no entries in list  
+  Use case ends.
+
+<br>
+
+**Use case: UC6 - List all upcoming appointments**
+
+**MSS**
+
+1. User chooses to view the list of all upcoming appointments
 2. DoctorBase shows the list of existing appointments to User  
    Use case ends.
 
@@ -348,7 +363,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
-**Use case: UC6 - Delete appointment**
+**Use case: UC7 - Delete appointment**
 
 **MSS**
 
@@ -365,7 +380,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
-**Use case: UC7 - Find patient by name**
+**Use case: UC8 - Find patient by name**
 
 **MSS**
 
@@ -385,7 +400,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
-**Use case: UC8 - Edit patient**
+**Use case: UC9 - Edit patient**
 
 **MSS**
 
@@ -409,7 +424,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
-**Use case: UC9 - Edit appointment**
+**Use case: UC10 - Edit appointment**
 
 **MSS**
 
