@@ -510,15 +510,28 @@ testers are expected to do more *exploratory* testing.
       Expected: Similar to previous.
 
 ### Saving data
+
 1. Dealing with missing data files.
+
    1. From the initial sample data, run any valid command to initiate a save to the data file.
+
    2. Close the application.
+   
    3. Delete the data file and re-launch the application.  
       Expected: DoctorBase will start with the sample data again.
+
 2. Dealing with corrupted data files.
+   
    1. From the initial sample data, run any valid command to initiate a save to the data file.
+   
    2. Close the application.
+   
    3. Modify `data/doctorBase.json` to corrupt it.  
    E.g. Modify `patients` to `patient`  
    Expected: DoctorBase will start with no data. The data file will only be updated when a save is initiated.
 
+## **Appendix: Planned Enhancements**
+
+### Team Size: 5
+
+1.
