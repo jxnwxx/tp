@@ -3,7 +3,6 @@ layout: page
 title: Developer Guide
 ---
 * Table of Contents
-{:toc}
 - [**Acknowledgements**](#acknowledgements)
 - [**Setting up, getting started**](#setting-up-getting-started)
 - [**Design**](#design)
