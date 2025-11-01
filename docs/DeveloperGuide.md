@@ -365,6 +365,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
+**Use case: UC7 - Find patient by name**
+
+**MSS**
+
+1. User chooses to find patients by name in DoctorBase  
+2. DoctorBase lists all patients whose names contain any of the given keywords (case-insensitive, full-word match)  
+   Use case ends.
+
+**Extensions**
+
+* 1a. No keyword is entered  
+  * 1a1. DoctorBase rejects the command and does nothing  
+  Use case ends.
+
+* 2a. No patient names match the given keywords  
+  * 2a1. DoctorBase displays an empty list.
+  Use case ends.
+  
+<br>
+
 ### Non-Functional Requirements
 
 * The system should respond within 2 seconds (performance)
