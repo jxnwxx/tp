@@ -339,7 +339,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. DoctorBase detects NRIC not in storage
+* 1a. DoctorBase detects that the given INDEX does not correspond to any patient in the current list
   * 1a1. DoctorBase rejects command and does nothing  
   Use case ends.
 
