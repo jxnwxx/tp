@@ -195,7 +195,7 @@ Finds patients whose names contain any of the given keywords.
 
 ### Editing a patient : `edit`
 
-Updates the details of an existing patient.  
+Updates the details of an existing patient in the currently viewed patient list.  
 Can only be used while viewing a list of patients. Run `list` to do so.
 
 
@@ -283,7 +283,7 @@ Can only be used while viewing a list of patients. Run `list` to do so.
 
 ### Editing an appointment : `edit-appt`
 
-Updates the details of an existing appointment.  
+Updates the details of an existing appointment in the currently viewed appointment list of a patient.  
 Can only be used while viewing the appointments of a patient. Run `list-appt INDEX` to do so.
 
 **Format:** `edit-appt INDEX [at/APPOINTMENT_TITLE] [ad/APPOINTMENT_DATE]`
@@ -298,7 +298,7 @@ Can only be used while viewing the appointments of a patient. Run `list-appt IND
 
 ### Deleting an appointment : `delete-appt`
 
-Deletes an appointment from the currently viewed list of appointments of a patient.  
+Deletes an appointment from the currently viewed appointment list of a patient.  
 Can only be used while viewing the appointments of a patient. Run `list-appt INDEX` to do so.
 
 **Format:** `delete-appt INDEX`
