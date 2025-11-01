@@ -5,7 +5,9 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_TITLE;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
@@ -78,6 +80,12 @@ public class AddAppointmentCommand extends Command {
                 targetPatient.getAppointments()
         );
         updatedAppointments.add(toAdd);
+
+        // Sort updated appointment list
+        LocalDateTime now = LocalDateTime.now();
+        updatedAppointments.sort(Comparator
+                .comparing((Appointment appt) -> appt.getDateTime().isBefore(now))
+                .thenComparing(Appointment::getDateTime));
 
         Patient newPatient = new Patient(
                 targetPatient.getName(),

@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_TITLE;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Optional;
 
 import seedu.address.commons.core.index.Index;
@@ -85,6 +86,12 @@ public class EditAppointmentCommand extends Command {
         }
 
         updatedAppointments.set(index.getZeroBased(), editedAppointment);
+        
+        // Sorts appointment list to display upcoming first and past appointments after
+        LocalDateTime now = LocalDateTime.now();
+        updatedAppointments.sort(Comparator
+                .comparing((Appointment appt) -> appt.getDateTime().isBefore(now))
+                .thenComparing(Appointment::getDateTime));
 
         Patient newPatient = new Patient(targetPatient.getName(),
                 targetPatient.getNric(),
