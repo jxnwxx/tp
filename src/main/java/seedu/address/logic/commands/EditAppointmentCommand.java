@@ -26,8 +26,8 @@ import seedu.address.model.patient.Patient;
 public class EditAppointmentCommand extends Command {
     public static final String COMMAND_WORD = "edit-appt";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits appointment on patient's appointment list. "
-            + "Parameters: INDEX "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits appointment on patient's appointment list.\n"
+            + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_APPOINTMENT_TITLE + "TITLE] "
             + "[" + PREFIX_APPOINTMENT_DATETIME + "DATE_TIME (dd-MM-yyyy, HHmm)]\n"
             + "Example: " + COMMAND_WORD + " "
