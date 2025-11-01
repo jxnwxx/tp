@@ -382,7 +382,59 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. No patient names match the given keywords  
   * 2a1. DoctorBase displays an empty list.
   Use case ends.
-  
+
+<br>
+
+**Use case: UC8 - Edit patient**
+
+**MSS**
+
+1. User chooses to edit a patient’s details.  
+2. DoctorBase updates the patient’s record with the new details.  
+   Use case ends.
+
+**Extensions**
+
+* 2a. DoctorBase detects an invalid patient index  
+  * 2a1. DoctorBase rejects command and does nothing  
+  Use case ends.
+
+* 2b. User provides no fields to edit  
+  * 2b1. DoctorBase rejects command and does nothing  
+  Use case ends.
+
+* 2c. DoctorBase detects a duplicate patient after editing  
+  * 2c1. DoctorBase rejects command and does nothing  
+  Use case ends.
+
+<br>
+
+**Use case: UC9 - Edit appointment**
+
+**MSS**
+
+1. User chooses to edit a patient’s appointment.  
+2. DoctorBase updates the appointment with the new details.  
+   Use case ends.
+
+**Extensions**
+
+* 1a. User is not currently viewing a patient’s appointment list  
+  * 1a1. DoctorBase rejects command and does nothing  
+  Use case ends.
+
+* 2a. DoctorBase detects an invalid appointment index  
+  * 2a1. DoctorBase rejects command and does nothing  
+  Use case ends.
+
+* 2b. User provides no fields to edit  
+  * 2b1. DoctorBase rejects command and does nothing  
+  Use case ends.
+
+* 2c. DoctorBase detects a clashing appointment time  
+  * 2c1. DoctorBase rejects command and does nothing  
+  Use case ends.
+
 <br>
 
 ### Non-Functional Requirements
