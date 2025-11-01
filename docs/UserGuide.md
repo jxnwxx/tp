@@ -203,7 +203,7 @@ Updates the details of an existing patient.
 * At least **one optional field** must be provided.
 * Existing values will be updated to the input values.
 * When editing medical histories, the existing medical histories of the patient will be removed i.e adding of medical histories is not cumulative.
-* You can remove all the patient’s medical histories by typing `mh/` without specifying any medicalHistories after it.
+* You can remove all the patient’s medical histories by typing `mh/` without specifying any medical histories after it.
 
 **Examples:**
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
