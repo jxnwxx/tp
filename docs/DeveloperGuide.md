@@ -9,7 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* Based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -166,10 +166,6 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-## Some features
-For parsing the commands entered by the user, some examples are the AddAppointmentCommandParser and DeleteAppointmentCommandParser.  
-They are used to extract the appointment information provided, along with the index of the patient to operate on.
-
 ### Adding appointment feature
 
 The following activity diagram summarizes what happens when the `AddAppointmentParser` attempts to parse the user's input:  
@@ -316,7 +312,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. DoctorBase detects NRIC not in storage
+* 1a. DoctorBase detects that the given INDEX does not correspond to any patient in the current list
   * 1a1. DoctorBase rejects command and does nothing  
   Use case ends.
 
@@ -333,11 +329,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <br>
 
 
-**Use case: UC5 - List appointment**
+**Use case: UC5 - List patient's appointments**
 
 **MSS**
 
-1. User chooses to view a list of existing appointments 
+1. User chooses to view a list of existing appointments for a specific patient
+2. DoctorBase shows the list of existing appointments to User  
+   Use case ends.
+
+**Extensions**
+
+* 1a. DoctorBase detects that the given INDEX does not correspond to any patient in the current list
+    * 1a1. DoctorBase rejects command and does nothing  
+      Use case ends.
+  
+* 2a. DoctorBase detects no entries in list  
+  Use case ends.
+
+<br>
+
+**Use case: UC6 - List all upcoming appointments**
+
+**MSS**
+
+1. User chooses to view the list of all upcoming appointments
 2. DoctorBase shows the list of existing appointments to User  
    Use case ends.
 
@@ -348,7 +363,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
-**Use case: UC6 - Delete appointment**
+**Use case: UC7 - Delete appointment**
 
 **MSS**
 
@@ -365,7 +380,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
-**Use case: UC7 - Find patient by name**
+**Use case: UC8 - Find patient by name**
 
 **MSS**
 
@@ -385,7 +400,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
-**Use case: UC8 - Edit patient**
+**Use case: UC9 - Edit patient**
 
 **MSS**
 
@@ -409,7 +424,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br>
 
-**Use case: UC9 - Edit appointment**
+**Use case: UC10 - Edit appointment**
 
 **MSS**
 
@@ -435,7 +450,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 2c1. DoctorBase rejects command and does nothing  
   Use case ends.
 
-<br>
 
 ### Non-Functional Requirements
 
@@ -452,6 +466,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Solo doctor**: A doctor that takes care of patients under them by themselves with no other assistance
 * **Patient**: A person that receives care and has appointments with the solo doctor
 * **Appointment**: A scheduled medical meeting between the patient and the solo doctor
+* **JSON (JavaScript Object Notation)**: The file format the application uses to store patient and appointment details
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -493,4 +508,17 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)  
       Expected: Similar to previous.
+
+### Saving data
+1. Dealing with missing data files.
+   1. From the initial sample data, run any valid command to initiate a save to the data file.
+   2. Close the application.
+   3. Delete the data file and re-launch the application.  
+      Expected: DoctorBase will start with the sample data again.
+2. Dealing with corrupted data files.
+   1. From the initial sample data, run any valid command to initiate a save to the data file.
+   2. Close the application.
+   3. Modify `data/doctorBase.json` to corrupt it.  
+   E.g. Modify `patients` to `patient`  
+   Expected: DoctorBase will start with no data. The data file will only be updated when a save is initiated.
 
