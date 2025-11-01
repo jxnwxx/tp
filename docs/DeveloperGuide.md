@@ -3,35 +3,13 @@ layout: page
 title: Developer Guide
 ---
 * Table of Contents
-- [**Acknowledgements**](#acknowledgements)
-- [**Setting up, getting started**](#setting-up-getting-started)
-- [**Design**](#design)
-  - [Architecture](#architecture)
-  - [UI component](#ui-component)
-  - [Logic component](#logic-component)
-  - [Model component](#model-component)
-  - [Storage component](#storage-component)
-  - [Common classes](#common-classes)
-- [**Implementation**](#implementation)
-- [Some features](#some-features)
-  - [Adding appointment feature](#adding-appointment-feature)
-  - [Deleting appointment feature](#deleting-appointment-feature)
-- [**Documentation, logging, testing, configuration, dev-ops**](#documentation-logging-testing-configuration-dev-ops)
-- [**Appendix: Requirements**](#appendix-requirements)
-  - [Product scope](#product-scope)
-  - [User stories](#user-stories)
-  - [Use cases](#use-cases)
-  - [Non-Functional Requirements](#non-functional-requirements)
-  - [Glossary](#glossary)
-- [**Appendix: Instructions for manual testing**](#appendix-instructions-for-manual-testing)
-  - [Launch and shutdown](#launch-and-shutdown)
-  - [Deleting a patient](#deleting-a-patient)
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
 
-* [AddressBook-Level3 (AB3)] (https://se-education.org/addressbook-level3/)
+* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -338,7 +316,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. DoctorBase detects that the given INDEX does not correspond to any patient in the current list
+* 1a. DoctorBase detects NRIC not in storage
   * 1a1. DoctorBase rejects command and does nothing  
   Use case ends.
 
@@ -383,6 +361,78 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. DoctorBase does not find the indicated appointment entry
   * 2a1. DoctorBase rejects command and does nothing  
+  Use case ends.
+
+<br>
+
+**Use case: UC7 - Find patient by name**
+
+**MSS**
+
+1. User chooses to find patients by name in DoctorBase  
+2. DoctorBase lists all patients whose names contain any of the given keywords (case-insensitive, full-word match)  
+   Use case ends.
+
+**Extensions**
+
+* 1a. No keyword is entered  
+  * 1a1. DoctorBase rejects the command and does nothing  
+  Use case ends.
+
+* 2a. No patient names match the given keywords  
+  * 2a1. DoctorBase displays an empty list.
+  Use case ends.
+
+<br>
+
+**Use case: UC8 - Edit patient**
+
+**MSS**
+
+1. User chooses to edit a patient’s details.  
+2. DoctorBase updates the patient’s record with the new details.  
+   Use case ends.
+
+**Extensions**
+
+* 2a. DoctorBase detects an invalid patient index  
+  * 2a1. DoctorBase rejects command and does nothing  
+  Use case ends.
+
+* 2b. User provides no fields to edit  
+  * 2b1. DoctorBase rejects command and does nothing  
+  Use case ends.
+
+* 2c. DoctorBase detects a duplicate patient after editing  
+  * 2c1. DoctorBase rejects command and does nothing  
+  Use case ends.
+
+<br>
+
+**Use case: UC9 - Edit appointment**
+
+**MSS**
+
+1. User chooses to edit a patient’s appointment.  
+2. DoctorBase updates the appointment with the new details.  
+   Use case ends.
+
+**Extensions**
+
+* 1a. User is not currently viewing a patient’s appointment list  
+  * 1a1. DoctorBase rejects command and does nothing  
+  Use case ends.
+
+* 2a. DoctorBase detects an invalid appointment index  
+  * 2a1. DoctorBase rejects command and does nothing  
+  Use case ends.
+
+* 2b. User provides no fields to edit  
+  * 2b1. DoctorBase rejects command and does nothing  
+  Use case ends.
+
+* 2c. DoctorBase detects a clashing appointment time  
+  * 2c1. DoctorBase rejects command and does nothing  
   Use case ends.
 
 <br>
