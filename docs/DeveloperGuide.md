@@ -9,7 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* Based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -316,7 +316,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. DoctorBase detects NRIC not in storage
+* 1a. DoctorBase detects that the given INDEX does not correspond to any patient in the current list
   * 1a1. DoctorBase rejects command and does nothing  
   Use case ends.
 
@@ -435,7 +435,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 2c1. DoctorBase rejects command and does nothing  
   Use case ends.
 
-<br>
 
 ### Non-Functional Requirements
 
@@ -452,6 +451,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Solo doctor**: A doctor that takes care of patients under them by themselves with no other assistance
 * **Patient**: A person that receives care and has appointments with the solo doctor
 * **Appointment**: A scheduled medical meeting between the patient and the solo doctor
+* **JSON (JavaScript Object Notation)**: The file format the application uses to store patient and appointment details
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -494,3 +494,15 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)  
       Expected: Similar to previous.
 
+### Saving data
+1. Dealing with missing data files.
+   1. From the initial sample data, run any valid command to initiate a save to the data file.
+   2. Close the application.
+   3. Delete the data file and re-launch the application.  
+      Expected: DoctorBase will start with the sample data again.
+2. Dealing with corrupted data files.
+   1. From the initial sample data, run any valid command to initiate a save to the data file.
+   2. Close the application.
+   3. Modify `data/doctorBase.json` to corrupt it.  
+   E.g. Modify `patients` to `patient`  
+   Expected: DoctorBase will start with no data. The data file will only be updated when a save is initiated.
