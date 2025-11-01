@@ -134,9 +134,9 @@ Useful if you want to restart with a clean database.
 
 **Format:** `clear`
 
-> **:warning: Caution:** This action **cannot be undone**!
-
----
+<div class="alert alert-warning" markdown="1">
+:warning:  **Caution:** This action **cannot be undone**!
+</div>
 
 ## Patient Commands
 
@@ -146,20 +146,21 @@ Adds a new patient to your patient list.
 Useful when you take in a new patient under your care.
 
 **Format:** `add n/NAME i/NRIC g/GENDER p/PHONE_NUMBER e/EMAIL d/DATE_OF_BIRTH a/ADDRESS [mh/MEDICAL_HISTORY]…​`
-* `DATE_OF_BIRTH` uses the format `dd-mm-yyyy`, and cannot be a future date
-* `PHONE_NUMBER` should only include numbers. eg. `12345678`
+* `DATE_OF_BIRTH` uses the format `dd-mm-yyyy`, and cannot be a future date.
+* `PHONE_NUMBER` should only include numbers. eg. `12345678`.
+* `NAME` should not include `/`.
 
-> **:bulb: Tip:** You can add multiple medical histories by repeating the `mh/` field as needed. You can also choose to add none.
-
+<div class="alert alert-info" markdown="1">
+:bulb: **Tip:** You can add multiple medical histories by repeating the `mh/` field as needed. You can also choose to add none.
+:information_source: **Info:** PHONE_NUMBER` and `EMAIL` duplicates are allowed for patients using guardians' or parents' contact details
+</div> 
 **Examples:**
 * `add n/John Doe i/S8052802G g/m p/98765432 e/johnd@example.com d/12-12-2002 a/John street, block 123, #01-01`
 * `add n/Betsy Crowe i/T0231512Z g/f d/02-12-2001 mh/covid e/betsycrowe@example.com a/Newgate Prison p/1234567 mh/leg fracture mh/G6PD`
 
-> **:information_source: Note:** Ensure that a **unique** `Nric` is provided. Else, the patient will be considered a 
-> duplicate, and an error message will be shown.
-
-> **:information_source: Note:** `PHONE_NUMBER` and `EMAIL` duplicates are allowed for patients
-> using guardians' or parents' contact details
+<div class="alert alert-danger" markdown="1">
+:x: **Note** Ensure that a **unique** `Nric` is provided. Else, the patient will be considered a duplicate, and an error message will be shown.
+</div>
 
 
 ### Listing all patients : `list`
@@ -222,8 +223,9 @@ Useful when a patient is no longer going to be under your care
 * `list` followed by `delete 2` deletes the 2nd patient in the patient list.
 * `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
 
-> **:warning: Caution:** This action **cannot be undone**!
-
+<div class="alert alert-warning" markdown="1">
+:warning: **Caution:** This action **cannot be undone**!
+</div>
 
 ## **Appointment Commands**
 
@@ -250,6 +252,10 @@ Useful when you want to keep track of your upcoming schedule.
 
 **Format:** `list-appt-upcoming`
 
+<div class="alert alert-info" markdown="1">
+:information_source: **Note:** No commands other than `add` and `list` can be run in this view model
+</div>
+
 ![list appointment upcoming](images/listApptUpcomingExample.png)
 
 
@@ -257,7 +263,7 @@ Useful when you want to keep track of your upcoming schedule.
 
 Shows all appointments of the selected patient.  
 Past appointments will appear **greyed out**, while upcoming appointments remain in the normal colour.  
-Appointments are sorted with upcoming dates first (earliest to latest), followed by past visits in chronological order.  
+Appointments are sorted with **upcoming dates** first (earliest to latest), followed by **past visits** in chronological order.  
 Useful when you want to check a patient’s appointment history or upcoming schedule.
 
 **Format:** `list-appt INDEX`
@@ -267,9 +273,9 @@ Useful when you want to check a patient’s appointment history or upcoming sche
 
 ![list appointment](images/listApptExample.png)
 
-
-> :information_source: **Note:** After using `list-appt`, all other appointment-related commands (edit, delete, etc.) 
-> will refer to this list.
+<div class="alert alert-info" markdown="1">
+:information_source: **Note:** After using `list-appt [INDEX]`, all other appointment-related commands (edit, delete, etc.) will refer to this list.
+</div>
 
 
 ### Editing an appointment : `edit-appt`
@@ -360,8 +366,8 @@ If that does not solve the issue, please redownload the latest `.jar` file (rele
 ## **Known issues**
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the Graphical User Interface(GUI) will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
-2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
-
+2. **When entering parameters**, if you include `/` in your parameter, the command will be rejected, please avoid doing so.  
+   e.g. if the parameter is `n/Hiller s/o Tim`, the `NAME` input will be rejected. To remedy this, please use a whitespace instead.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Command summary**
@@ -373,7 +379,7 @@ If that does not solve the issue, please redownload the latest `.jar` file (rele
 | **Clear List**                     | `clear`                                                                                                                                                                                                                    |
 | **Delete Patient**                 | `delete INDEX`   e.g., `delete 3`                                                                                                                                                                                          |
 | **Delete Appointment**             | `delete-appt INDEX`   e.g., `delete-appt 1`                                                                                                                                                                                |
-| **Edit Patient**                   | `edit INDEX [n/NAME] [i/NRIC] [g/GENDER] [p/PHONE_NUMBER] [e/EMAIL] [d/DATE_OF_BIRTH] [a/ADDRESS] [mh/MEDICALHISTORY]…​`   e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                 |
+| **Edit Patient**                   | `edit INDEX [n/NAME] [i/NRIC] [g/GENDER] [p/PHONE_NUMBER] [e/EMAIL] [d/DATE_OF_BIRTH] [a/ADDRESS] [mh/MEDICALHISTORY]…​`   e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                |
 | **Edit Appointment**               | `edit-appt INDEX [at/APPOINTMENT TITLE] [ad/APPOINTMENT DATE]`    e.g., `edit-appt 1 at/dental ad/02-02-2002, 0900`                                                                                                        |
 | **Find Patient**                   | `find KEYWORD [MORE_KEYWORDS]`   e.g., `find James Jake`                                                                                                                                                                   |
 | **List Patients**                  | `list`                                                                                                                                                                                                                     |
