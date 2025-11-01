@@ -151,7 +151,7 @@ Useful when you take in a new patient under your care.
 * `NAME` should not include special characters, such as `/`.
 
 <div class="alert alert-info" markdown="1">
-:bulb: **Tip:** You can add multiple medical histories by repeating the `mh/` field as needed. You can also choose to add none.
+:bulb: **Tip:** You can add multiple medical histories by repeating the `mh/` field as needed. You can also choose to add none.  
 :information_source: **Info:** PHONE_NUMBER` and `EMAIL` duplicates are allowed for patients using guardians' or parents' contact details
 </div> 
 **Examples:**
@@ -369,6 +369,7 @@ If that does not solve the issue, please redownload the latest `.jar` file (rele
 2. **When entering parameters**, you are unable to add special characters into your parameter. However, you are allowed to use hyphen, `-`, in your MedicalHistory  
    e.g. if the parameter is `n/Hiller s/o Tim`, the `NAME` input will be rejected. To remedy this, please use a whitespace instead.
 3. **For foreigner patients**, we are unable to use this app as they do not have an `NRIC`. Unfortunately this cannot be remedied at this point in time.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Command summary**
