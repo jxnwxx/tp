@@ -21,7 +21,7 @@ public class DeleteAppointmentCommand extends Command {
 
     public static final String COMMAND_WORD = "delete-appt";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes an appointment from the address book.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes an appointment from DoctorBase.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
