@@ -53,6 +53,8 @@ public class HelpWindow extends UiPart<Stage> {
     public HelpWindow(Stage root) {
         super(FXML, root);
         helpMessage.setText(HELP_MESSAGE);
+        root.initStyle(javafx.stage.StageStyle.UTILITY);
+        root.setResizable(false);
     }
 
     /**
