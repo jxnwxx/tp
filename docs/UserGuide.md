@@ -368,7 +368,7 @@ If that does not solve the issue, please redownload the latest `.jar` file (rele
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the Graphical User Interface(GUI) will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
 2. **When entering parameters**, you are unable to add special characters into your parameter. However, you are allowed to use hyphen, `-`, in your MedicalHistory  
    e.g. if the parameter is `n/Hiller s/o Tim`, the `NAME` input will be rejected. To remedy this, please use a whitespace instead.
-3. **For foreigner patients**, we are unable to use this app as they do not have an `NRIC`. Unfortunately this cannot be remedied at point in time.
+3. **For foreigner patients**, we are unable to use this app as they do not have an `NRIC`. Unfortunately this cannot be remedied at this point in time.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Command summary**
