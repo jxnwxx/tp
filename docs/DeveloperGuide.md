@@ -4,25 +4,35 @@ title: Developer Guide
 ---
 * Table of Contents
 {:toc}
-1. [Acknowledgements](#acknowledgements)
-2. [Setting up, getting started](#setting-up-getting-started)
-3. [Design](#design)
-   1. [Architecture](#architecture)
-   2. [UI component](#ui-component)
-   3. [Logic component](#logic-component)
-   4. [Model component](#model-component)
-   5. [Storage component](#storage-component)
-   6. [Common classes](#common-classes)
-   7. [Implementation](#implementation)
-4. [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
-5. [Appendix: Requirements](#appendix-requirements)
-6. [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+- [**Acknowledgements**](#acknowledgements)
+- [**Setting up, getting started**](#setting-up-getting-started)
+- [**Design**](#design)
+  - [Architecture](#architecture)
+  - [UI component](#ui-component)
+  - [Logic component](#logic-component)
+  - [Model component](#model-component)
+  - [Storage component](#storage-component)
+  - [Common classes](#common-classes)
+- [**Implementation**](#implementation)
+- [Some features](#some-features)
+  - [Adding appointment feature](#adding-appointment-feature)
+  - [Deleting appointment feature](#deleting-appointment-feature)
+- [**Documentation, logging, testing, configuration, dev-ops**](#documentation-logging-testing-configuration-dev-ops)
+- [**Appendix: Requirements**](#appendix-requirements)
+  - [Product scope](#product-scope)
+  - [User stories](#user-stories)
+  - [Use cases](#use-cases)
+  - [Non-Functional Requirements](#non-functional-requirements)
+  - [Glossary](#glossary)
+- [**Appendix: Instructions for manual testing**](#appendix-instructions-for-manual-testing)
+  - [Launch and shutdown](#launch-and-shutdown)
+  - [Deleting a patient](#deleting-a-patient)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* [AddressBook-Level3 (AB3)] (https://se-education.org/addressbook-level3/)
 
 --------------------------------------------------------------------------------------------------------------------
 
