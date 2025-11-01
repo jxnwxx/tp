@@ -257,6 +257,7 @@ Useful when you want to keep track of your upcoming schedule.
 
 Shows all appointments of the selected patient.  
 Past appointments will appear **greyed out**, while upcoming appointments remain in the normal colour.  
+Appointments are sorted with upcoming dates first (earliest to latest), followed by past visits in chronological order.  
 Useful when you want to check a patient’s appointment history or upcoming schedule.
 
 **Format:** `list-appt INDEX`
