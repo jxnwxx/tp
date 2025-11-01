@@ -84,6 +84,10 @@ public class EditCommand extends Command {
         requireNonNull(model);
         List<Patient> lastShownList = model.getFilteredPatientList();
 
+        if (model.getViewMode() != ViewMode.PATIENT_LIST) {
+            throw new CommandException(Messages.MESSAGE_NOT_VIEWING_PATIENT_LIST);
+        }
+
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
         }
