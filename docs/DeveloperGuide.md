@@ -521,3 +521,4 @@ testers are expected to do more *exploratory* testing.
    3. Modify `data/doctorBase.json` to corrupt it.  
    E.g. Modify `patients` to `patient`  
    Expected: DoctorBase will start with no data. The data file will only be updated when a save is initiated.
+
