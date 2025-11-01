@@ -148,7 +148,7 @@ Useful when you take in a new patient under your care.
 **Format:** `add n/NAME i/NRIC g/GENDER p/PHONE_NUMBER e/EMAIL d/DATE_OF_BIRTH a/ADDRESS [mh/MEDICAL_HISTORY]…​`
 * `DATE_OF_BIRTH` uses the format `dd-mm-yyyy`, and cannot be a future date.
 * `PHONE_NUMBER` should only include numbers. eg. `12345678`.
-* `NAME` should not include `/`.
+* `NAME` should not include special characters, such as `/`.
 
 <div class="alert alert-info" markdown="1">
 :bulb: **Tip:** You can add multiple medical histories by repeating the `mh/` field as needed. You can also choose to add none.
@@ -366,7 +366,7 @@ If that does not solve the issue, please redownload the latest `.jar` file (rele
 ## **Known issues**
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the Graphical User Interface(GUI) will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
-2. **When entering parameters**, if you include `/` in your parameter, the command will be rejected, please avoid doing so.  
+2. **When entering parameters**, you are unable to add special characters into your parameter. However, you are allowed to use hyphen, `-`, in your MedicalHistory  
    e.g. if the parameter is `n/Hiller s/o Tim`, the `NAME` input will be rejected. To remedy this, please use a whitespace instead.
 --------------------------------------------------------------------------------------------------------------------
 
